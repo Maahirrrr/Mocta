@@ -1,128 +1,116 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowUpRight, Play } from 'lucide-react';
+import { BlurText } from './BlurText';
 
 export const Hero: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setTimeout(() => setSubscribed(false), 4000);
-      setEmail('');
-    }
-  };
-
   return (
-    <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background text-foreground">
-      {/* Background looping MP4 video */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+    <section className="relative overflow-visible h-[1000px] w-full flex flex-col items-center justify-between bg-black text-white">
+      {/* Background video */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-60"
+          poster="./images/hero_bg.jpeg"
+          className="absolute left-0 w-full h-auto object-contain"
+          style={{ top: '20%' }}
         >
           <source
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260325_120549_0cd82c36-56b3-4dd9-b190-069cfc3a623f.mp4"
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
             type="video/mp4"
           />
         </video>
-        {/* Soft vignette/dim overlay */}
-        <div className="absolute inset-0 bg-background/40" />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/5 z-0" />
       </div>
 
-      {/* Bottom gradient fade for smooth transition to black */}
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none z-10" />
+      {/* Bottom gradient fade: height 300px, transparent to black */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[300px] pointer-events-none z-0"
+        style={{ background: 'linear-gradient(to bottom, transparent, black)' }}
+      />
 
-      {/* Content Container */}
-      <div className="relative z-20 flex flex-col items-center text-center max-w-4xl px-4 pt-28 md:pt-32">
-        {/* Avatar Row */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="flex items-center gap-3 mb-6"
-        >
-          <div className="flex -space-x-2">
-            <img
-              src="./avatar-1.png"
-              alt="Subscriber 1"
-              className="w-8 h-8 rounded-full border-2 border-background object-cover bg-neutral-900"
-            />
-            <img
-              src="./avatar-2.png"
-              alt="Subscriber 2"
-              className="w-8 h-8 rounded-full border-2 border-background object-cover bg-neutral-900"
-            />
-            <img
-              src="./avatar-3.png"
-              alt="Subscriber 3"
-              className="w-8 h-8 rounded-full border-2 border-background object-cover bg-neutral-900"
-            />
-          </div>
-          <span className="text-muted-foreground text-sm font-normal">
-            7,000+ people already subscribed
+      {/* Content: z-10, centered, paddingTop: 150px */}
+      <div
+        className="relative z-10 flex flex-col items-center text-center max-w-4xl px-4 w-full"
+        style={{ paddingTop: '150px' }}
+      >
+        {/* Badge Pill */}
+        <div className="liquid-glass rounded-full px-1 py-1 flex items-center gap-2.5 mb-8 border border-white/10 shadow-lg">
+          <span className="bg-white text-black rounded-full px-3 py-1 text-xs font-semibold font-body tracking-tight">
+            New
           </span>
-        </motion.div>
+          <span className="text-xs md:text-sm text-white/90 font-body font-normal pr-3">
+            Introducing AI-powered web design.
+          </span>
+        </div>
 
-        {/* Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
-          className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-[-2px] leading-[1.08] mb-6 text-foreground"
-        >
-          Get <span className="font-serif italic font-normal">Inspired</span> with Us
-        </motion.h1>
+        {/* Heading: BlurText component */}
+        <div className="mb-6 max-w-3xl">
+          <BlurText
+            text="The Website Your Brand Deserves"
+            className="text-6xl md:text-7xl lg:text-[5.5rem] font-heading italic text-foreground leading-[0.85] tracking-[-3px] md:tracking-[-4px]"
+            delay={100}
+            animateBy="words"
+            direction="bottom"
+          />
+        </div>
 
-        {/* Subtitle */}
+        {/* Subtext: blur-in animation, delay 0.8s */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-          className="text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto mb-10 text-[hsl(var(--hero-subtitle))]"
+          initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+          animate={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8, ease: 'easeOut' }}
+          className="text-sm md:text-base text-white font-body font-light leading-tight max-w-xl mx-auto mb-10"
         >
-          Join our feed for meaningful updates, news around technology and a shared journey toward depth and direction.
+          Stunning design. Blazing performance. Built by AI, refined by experts. This is web design, wildly reimagined.
         </motion.p>
 
-        {/* Email form */}
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-          onSubmit={handleSubmit}
-          className="liquid-glass rounded-full p-2 w-full max-w-lg flex items-center gap-2 mb-4"
+        {/* CTA Buttons: delay 1.1s */}
+        <motion.div
+          initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
+          animate={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.1, ease: 'easeOut' }}
+          className="flex items-center gap-5"
         >
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            required
-            className="flex-1 bg-transparent px-5 py-3 text-sm md:text-base text-foreground placeholder:text-muted-foreground focus:outline-none"
-          />
-          <motion.button
-            type="submit"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            className="bg-foreground text-background font-semibold text-xs md:text-sm tracking-wider uppercase rounded-full px-8 py-3.5 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
+          <a
+            href="#cta"
+            className="liquid-glass-strong rounded-full px-6 py-2.5 text-sm font-medium font-body text-white flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all shadow-md group"
           >
-            SUBSCRIBE
-          </motion.button>
-        </motion.form>
+            <span>Get Started</span>
+            <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </a>
 
-        {subscribed && (
-          <motion.p
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-xs text-muted-foreground tracking-wide"
+          <a
+            href="#how-it-works"
+            className="text-sm font-medium font-body text-white/90 hover:text-white flex items-center gap-2 transition-colors py-2 px-3"
           >
-            ✓ Welcome to Mocta. Please check your inbox.
-          </motion.p>
-        )}
+            <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
+              <Play className="w-3 h-3 fill-white text-white" />
+            </span>
+            <span>Watch the Film</span>
+          </a>
+        </motion.div>
+      </div>
+
+      {/* Partners Bar at bottom: mt-auto pb-8 pt-16 */}
+      <div className="relative z-10 w-full mt-auto pb-8 pt-16 flex flex-col items-center">
+        <div className="liquid-glass rounded-full px-4 py-1 text-xs text-white/60 font-body mb-6 border border-white/10">
+          Trusted by the teams behind
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 px-4">
+          {['Stripe', 'Vercel', 'Linear', 'Notion', 'Figma'].map((brand) => (
+            <span
+              key={brand}
+              className="text-2xl md:text-3xl font-heading italic text-white/80 hover:text-white transition-colors duration-200 select-none tracking-tight"
+            >
+              {brand}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

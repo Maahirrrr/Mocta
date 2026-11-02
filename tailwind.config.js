@@ -43,8 +43,10 @@ export default {
         "hero-subtitle": "hsl(var(--hero-subtitle))",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        serif: ["Instrument Serif", "serif"],
+        heading: ["'Instrument Serif'", "serif"],
+        body: ["'Barlow'", "sans-serif"],
+        sans: ["'Barlow'", "sans-serif"],
+        serif: ["'Instrument Serif'", "serif"],
       },
     },
   },

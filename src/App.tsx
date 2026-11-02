@@ -4,18 +4,19 @@ import 'lenis/dist/lenis.css';
 
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { StartSection } from './components/StartSection';
 import { ServicesSection } from './components/ServicesSection';
-import { SearchSection } from './components/SearchSection';
-import { MissionSection } from './components/MissionSection';
-import { SolutionSection } from './components/SolutionSection';
-import { CTASection } from './components/CTASection';
-import { Footer } from './components/Footer';
+import { FeaturesChess } from './components/FeaturesChess';
+import { FeaturesGrid } from './components/FeaturesGrid';
+import { Stats } from './components/Stats';
+import { Testimonials } from './components/Testimonials';
+import { CtaFooter } from './components/CtaFooter';
 
 export const App: React.FC = () => {
-  // Initialize Studio Namma-inspired smooth slow scroll with Lenis
+  // Initialize luxury smooth slow scroll (Lenis)
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.05, // Ultra-smooth slow inertia damping (Studio Namma uses 0.05)
+      lerp: 0.05,
       wheelMultiplier: 0.9,
       touchMultiplier: 1.5,
       infinite: false,
@@ -37,7 +38,7 @@ export const App: React.FC = () => {
         const el = document.querySelector(href);
         if (el) {
           e.preventDefault();
-          lenis.scrollTo(el as HTMLElement, { offset: -60, duration: 1.4 });
+          lenis.scrollTo(el as HTMLElement, { offset: -70, duration: 1.2 });
         }
       }
     };
@@ -52,21 +53,22 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-white selection:text-black">
-      <Navbar />
-      <div id="home">
-        <Hero />
+    <div className="bg-black text-white font-body selection:bg-white selection:text-black">
+      <div className="relative z-10">
+        <Navbar />
+        <div id="home">
+          <Hero />
+        </div>
+        <div className="bg-black">
+          <StartSection />
+          <ServicesSection />
+          <FeaturesChess />
+          <FeaturesGrid />
+          <Stats />
+          <Testimonials />
+          <CtaFooter />
+        </div>
       </div>
-      <ServicesSection />
-      <div id="search">
-        <SearchSection />
-      </div>
-      <div id="philosophy">
-        <MissionSection />
-      </div>
-      <SolutionSection />
-      <CTASection />
-      <Footer />
     </div>
   );
 };
