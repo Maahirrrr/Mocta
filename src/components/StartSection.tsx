@@ -11,10 +11,20 @@ export const StartSection: React.FC = () => {
     if (!video) return;
 
     if (Hls.isSupported()) {
-      const hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+      const hls = new Hls({
+        enableWorker: true,
+        lowLatencyMode: true,
+        capLevelToPlayerSize: false,
+        maxBufferLength: 60,
+      });
       hls.loadSource(streamUrl);
       hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
+        if (data.levels && data.levels.length > 0) {
+          const maxLvl = data.levels.length - 1;
+          hls.currentLevel = maxLvl;
+          hls.loadLevel = maxLvl;
+        }
         video.play().catch(() => {});
       });
       return () => {

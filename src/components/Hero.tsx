@@ -6,7 +6,7 @@ import { BlurText } from './BlurText';
 export const Hero: React.FC = () => {
   return (
     <section className="relative overflow-visible h-[1000px] w-full flex flex-col items-center justify-between bg-black text-white">
-      {/* Background video */}
+      {/* 4K UHD Full-Bleed Background Video */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <video
           autoPlay
@@ -14,16 +14,15 @@ export const Hero: React.FC = () => {
           muted
           playsInline
           poster="./images/hero_bg.jpeg"
-          className="absolute left-0 w-full h-auto object-contain"
-          style={{ top: '20%' }}
+          className="w-full h-full object-cover object-center scale-[1.03] filter contrast-[1.08] brightness-[0.98] transform-gpu will-change-transform"
         >
           <source
             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
             type="video/mp4"
           />
         </video>
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/5 z-0" />
+        {/* Subtle UHD film overlay */}
+        <div className="absolute inset-0 bg-black/15 z-0" />
       </div>
 
       {/* Bottom gradient fade: height 300px, transparent to black */}

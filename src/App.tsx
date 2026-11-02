@@ -53,7 +53,22 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white font-body selection:bg-white selection:text-black">
+    <div className="relative min-h-screen bg-black text-white font-body selection:bg-white selection:text-black">
+      {/* 4K UHD Atmospheric Depth & Ambient Lighting */}
+      <div
+        className="fixed inset-0 pointer-events-none z-[1] opacity-50 mix-blend-screen"
+        style={{
+          background: 'radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.09) 0%, rgba(0, 0, 0, 0) 60%)',
+        }}
+      />
+      {/* 4K Micro-film Grain Texture to eliminate banding on OLED / 4K monitors */}
+      <div
+        className="fixed inset-0 pointer-events-none z-[2] opacity-[0.025] contrast-150 brightness-150"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
       <div className="relative z-10">
         <Navbar />
         <div id="home">
