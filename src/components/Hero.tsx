@@ -120,7 +120,7 @@ export const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-xs text-muted-foreground tracking-wide"
           >
-            ✓ Welcome to Mindloop. Please check your inbox.
+            ✓ Welcome to Mocta. Please check your inbox.
           </motion.p>
         )}
       </div>

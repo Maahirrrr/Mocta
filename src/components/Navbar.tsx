@@ -3,13 +3,13 @@ import React from 'react';
 export const Navbar: React.FC = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-28 py-4 bg-transparent pointer-events-auto">
-      {/* Left: Logo + Mindloop */}
+      {/* Left: Logo + Mocta */}
       <a href="#" className="flex items-center gap-3 group">
         <div className="relative flex items-center justify-center w-7 h-7 rounded-full border-2 border-foreground/60">
           <div className="w-3 h-3 rounded-full border border-foreground/60 group-hover:scale-125 transition-transform duration-300" />
         </div>
         <span className="text-xl font-bold tracking-tight text-foreground">
-          Mindloop
+          Mocta
         </span>
       </a>
 
