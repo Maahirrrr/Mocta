@@ -1,823 +1,802 @@
-<!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOCTA — Digital Product, Brand & Behavioral UX Studio</title>
-  <meta name="description" content="Mocta is a digital product and brand studio. We build high-conversion websites, brand design systems, and software interfaces for tech startups.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f3">
+  <title>Mocta Studio — Design, Fine Arts & AI Automation for Startups</title>
+  <meta name="description" content="Mocta is a web design, branding, and AI workflow studio founded by technical and fine art designers. We craft conversion-focused websites, design systems, and back-office AI automations.">
   
-  <!-- Fonts: Space Grotesk & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Space Grotesk', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-            body: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            background: '#101010',
-            foreground: '#EDEDED',
-            primary: {
-              DEFAULT: '#A3FF12', // Electric Lime / Watermelon UI signature
-              foreground: '#101010',
-            },
-            secondary: {
-              DEFAULT: '#1c1c1c',
-              foreground: '#EDEDED',
-            },
-            muted: {
-              DEFAULT: '#222222',
-              foreground: '#888888',
-            },
-            border: 'rgba(255, 255, 255, 0.1)',
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    /* Technical Radial Grid Background */
-    .bg-tech-grid {
-      background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-    
-    /* Technical Corner Accents */
-    .corner-accents {
-      position: relative;
-    }
-    .corner-accents::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 8px; height: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
-      border-left: 1px solid rgba(255, 255, 255, 0.5);
-      pointer-events: none;
-      z-index: 20;
-    }
-    .corner-accents::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 8px; height: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      border-right: 1px solid rgba(255, 255, 255, 0.5);
-      pointer-events: none;
-      z-index: 20;
-    }
-    .corner-top-right {
-      position: absolute;
-      top: 0; right: 0;
-      width: 8px; height: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
-      border-right: 1px solid rgba(255, 255, 255, 0.5);
-      pointer-events: none;
-      z-index: 20;
-    }
-    .corner-bottom-left {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 8px; height: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      border-left: 1px solid rgba(255, 255, 255, 0.5);
-      pointer-events: none;
-      z-index: 20;
-    }
-
-    /* Ambient Hero Glow */
-    .hero-glow {
-      background: radial-gradient(ellipse at center, rgba(163, 255, 18, 0.08) 0%, rgba(163, 255, 18, 0.02) 40%, transparent 70%);
-    }
-
-    /* Continuous Marquee Animation */
-    @keyframes marquee {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 35s linear infinite;
-    }
-    .marquee-track:hover {
-      animation-play-state: paused;
-    }
-
-    /* Knob Dial Animation */
-    .knob-dial {
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#101010] text-[#EDEDED] min-h-screen overflow-x-hidden selection:bg-primary selection:text-black font-body">
+<body class="mo gx-js gx">
 
-  <!-- Ambient Background Glow & Technical Grid -->
-  <div class="fixed inset-0 pointer-events-none z-0">
-    <div class="absolute inset-0 bg-tech-grid opacity-80"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] hero-glow rounded-full blur-3xl opacity-60"></div>
-  </div>
+  <a class="skip" href="#main">Skip to main content</a>
 
-  <!-- Technical Edge Borders & Crosshairs -->
-  <div class="hidden lg:block fixed inset-0 pointer-events-none z-40">
-    <div class="absolute top-0 bottom-0 left-8 md:left-14 w-px bg-white/5"></div>
-    <div class="absolute top-0 bottom-0 right-8 md:right-14 w-px bg-white/5"></div>
-  </div>
-
-  <!-- ==================== 1. NAVBAR ==================== -->
-  <header id="mainNavbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent py-5">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-8 h-8 rounded border border-white/20 bg-white/5 flex items-center justify-center font-mono font-bold text-sm text-primary transition-transform duration-300 group-hover:scale-105 shadow-[0_0_12px_rgba(163,255,18,0.2)]">
-          ✦
-        </div>
-        <span class="font-mono font-bold text-sm tracking-widest uppercase text-white">MOCTA</span>
-      </a>
-
-      <!-- Center Links -->
-      <nav class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest text-white/50">
-        <a href="#services" class="hover:text-primary transition-colors">Services</a>
-        <a href="#bento" class="hover:text-primary transition-colors">Architecture</a>
-        <a href="#process" class="hover:text-primary transition-colors">Process</a>
-        <a href="#pricing" class="hover:text-primary transition-colors">Pricing</a>
-        <a href="#feedback" class="hover:text-primary transition-colors">Telemetry</a>
-      </nav>
-
-      <!-- Right Action -->
-      <div class="hidden md:flex items-center gap-4">
-        <a href="https://github.com/Maahirrrr/Mocta" target="_blank" rel="noreferrer" class="flex items-center justify-center h-9 w-9 border border-white/10 bg-transparent text-white/50 hover:text-white hover:border-white/30 transition-colors" title="GitHub Repo">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        </a>
-        <a href="#contact" class="flex items-center h-9 bg-primary text-black font-mono font-bold tracking-widest uppercase px-5 text-xs hover:bg-primary/90 transition-all active:scale-[0.97]">
-          Get Started
-        </a>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="mobileMenuBtn" class="md:hidden text-white/70 hover:text-white p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+  <!-- Masthead Navigation -->
+  <header class="mast mast-home" data-enhanced="true">
+    <div class="shell nav-inner">
+      <a class="wordmark" href="#" aria-label="Mocta home">Mocta<span>.</span></a>
+      <button class="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false">
+        Menu <span aria-hidden="true">+</span>
       </button>
-    </div>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobileMenu" class="hidden md:hidden bg-background border-b border-border p-6 flex flex-col gap-4 font-mono text-xs uppercase tracking-widest">
-      <a href="#services" class="hover:text-primary">Services</a>
-      <a href="#bento" class="hover:text-primary">Architecture</a>
-      <a href="#process" class="hover:text-primary">Process</a>
-      <a href="#pricing" class="hover:text-primary">Pricing</a>
-      <a href="#contact" class="text-primary font-bold">Start a Project →</a>
+      <nav id="main-nav" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#work">Selected work</a>
+        <a href="#approach">Our approach</a>
+        <a href="#partners">Founders</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="nav-contact">Let’s talk</a>
+        <p class="nav-extra nav-reach">
+          <a href="mailto:hello@mocta.design">hello@mocta.design</a>
+        </p>
+      </nav>
     </div>
   </header>
 
-  <main class="relative z-10 pt-24">
-    <!-- ==================== 2. HERO SECTION ==================== -->
-    <section class="relative min-h-[90vh] flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto py-20 font-mono">
-      <div class="mx-auto flex max-w-4xl flex-col items-center text-center">
-        <!-- Top Telemetry Pill -->
-        <div class="text-primary mb-8 inline-flex items-center gap-2 border border-white/10 bg-white/2 px-4 py-1.5 text-xs font-bold tracking-widest uppercase backdrop-blur-sm shadow-[0_0_16px_rgba(163,255,18,0.15)]">
-          <span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse mr-1"></span>
-          Fine Arts &middot; AI Engineering &middot; Behavioral UX
+  <main id="main">
+
+    <!-- Hero / Opening Section -->
+    <section class="ed-opening" aria-labelledby="hero-title">
+      <div class="shell">
+        <div class="ed-issue-line">
+          <p>DESIGN, BRAND SYSTEMS &amp; AI AUTOMATION / WORLDWIDE</p>
+          <p>EST. 2026</p>
         </div>
 
-        <!-- Main Title -->
-        <h1 class="text-4xl md:text-6xl lg:text-[76px] font-sans font-bold leading-[1.02] tracking-tighter text-white mb-6">
-          Websites and interfaces built for <span id="rotatingWord" class="text-primary transition-all duration-300">startups</span>
-        </h1>
+        <div class="ed-heading-row">
+          <h1 id="hero-title">
+            <span class="mo-line"><span class="mo-word">DESIGN</span> <span class="mo-word">&amp;</span> <span class="mo-word">AI</span></span>
+            <span class="mo-line"><span class="mo-word">STUDIO</span><span class="mo-dot">.</span></span>
+          </h1>
 
-        <!-- Subheading -->
-        <p class="mb-10 max-w-2xl text-sm md:text-base leading-relaxed text-white/60 font-mono uppercase tracking-widest text-pretty">
-          Handcrafted fine art aesthetics backed by cognitive psychology and fast code. We build brand systems, websites, and interfaces that make complex software simple.
+          <!-- Studio Wireframe Architectural SVG Illustration -->
+          <svg class="hx-hero-art gx-draw" viewBox="0 0 680 172" aria-hidden="true">
+            <!-- Screen 1: Web Interface -->
+            <path class="hx-ln" pathLength="1" style="--i:0" d="M14 18h236v124H14zM14 38h236"/>
+            <circle cx="26" cy="28" r="2.6" class="hx-dot"/>
+            <circle cx="36" cy="28" r="2.6" class="hx-dot"/>
+            <circle cx="46" cy="28" r="2.6" class="hx-dot"/>
+            <path class="hx-ln" pathLength="1" style="--i:1" d="M30 58h70M30 70h92M30 82h58"/>
+            <path class="hx-ln" pathLength="1" style="--i:2" d="M142 52h92v62h-92zM142 104l22-20 16 12 20-24 34 32"/>
+            <rect class="hx-fill" x="30" y="96" width="56" height="16"/>
+            <path class="hx-ln" pathLength="1" style="--i:3" d="M30 128h204"/>
+
+            <!-- Screen 2: AI Pipeline & Logic -->
+            <path class="hx-ln" pathLength="1" style="--i:1" d="M296 34h60v90h-60zM296 50h60"/>
+            <path class="hx-ln" pathLength="1" style="--i:2" d="M306 64h40M306 76h32M306 88h38M306 100h26M306 112h34"/>
+            <path class="hx-ln" pathLength="1" style="--i:2" d="M362 79h16M372 73l6 6-6 6"/>
+            <path class="hx-ln" pathLength="1" style="--i:3" d="M384 34h68v90h-68zM384 50h68"/>
+            <path class="hx-ln" pathLength="1" style="--i:4" d="M394 62l3 3 6-7M410 62h32M394 78l3 3 6-7M410 78h28M394 94l3 3 6-7M410 94h32"/>
+            <rect class="hx-fill" x="394" y="104" width="48" height="12"/>
+
+            <!-- Screen 3: Brand Identity & Print Specs -->
+            <path class="hx-ln" pathLength="1" style="--i:2" d="M470 26l92 8v112l-92-8zM562 34l96-8v112l-96 8z"/>
+            <path class="hx-ln" pathLength="1" style="--i:3" d="M482 46h66v40h-66zM482 98h60M482 110h44"/>
+            <path class="hx-ln" pathLength="1" style="--i:4" d="M574 44h72v56h-72zM574 72h72M604 44v56"/>
+            <rect class="hx-fill" x="606" y="74" width="38" height="24"/>
+            <path class="hx-ln" pathLength="1" style="--i:5" d="M574 116h56M574 128h40"/>
+
+            <text x="14" y="166" class="hx-svg-label">HIGH-CONVERSION WEB</text>
+            <text x="296" y="166" class="hx-svg-label">INTELLIGENT WORKFLOWS</text>
+            <text x="470" y="166" class="hx-svg-label">FINE ART BRANDING</text>
+          </svg>
+
+          <div class="ed-hero-lede">
+            <p>
+              We design websites, product interfaces, and fine-art brand systems, paired with custom AI automation that handles your back-office workflows.
+            </p>
+            <div class="hx-hero-side">
+              <div class="hx-actions">
+                <a class="hx-btn" href="#contact">
+                  Let’s talk 
+                  <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 18 18 6M6 6h12v12"/>
+                  </svg>
+                </a>
+                <a class="hx-btn-ghost" href="#work">See our work</a>
+              </div>
+              <p class="hx-hero-proof">
+                <span class="hx-hero-quote">“Mocta transformed our brand identity and replaced our clunky manual quoting with a sleek automated engine.”</span>
+                <span>Founding Team, Apex Ventures</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Project Hero Plate -->
+        <a class="ed-cover" href="#work">
+          <div class="ed-device-scene" style="padding: 40px; display: flex; align-items: center; justify-content: center; background: #2a3d31;">
+            <svg viewBox="0 0 600 360" style="width: 100%; height: auto; max-width: 520px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.35));" aria-hidden="true">
+              <rect x="10" y="10" width="580" height="340" rx="8" fill="#181a17" stroke="#334b3b" stroke-width="2"/>
+              <rect x="10" y="10" width="580" height="40" rx="8" fill="#202220"/>
+              <circle cx="35" cy="30" r="5" fill="#e76f51"/>
+              <circle cx="52" cy="30" r="5" fill="#e9c46a"/>
+              <circle cx="69" cy="30" r="5" fill="#2a9d8f"/>
+              <rect x="100" y="22" width="240" height="16" rx="4" fill="#2d302a"/>
+              
+              <!-- Content Mockup -->
+              <text x="40" y="95" fill="#dce87a" font-family="Hanken Grotesk, sans-serif" font-size="12" font-weight="700" letter-spacing="2">FINTECH INFRASTRUCTURE / YC S24</text>
+              <text x="40" y="135" fill="#f8f7f3" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="500">Kinetix Capital OS</text>
+              <rect x="40" y="160" width="320" height="8" rx="2" fill="#3e4338"/>
+              <rect x="40" y="176" width="240" height="8" rx="2" fill="#3e4338"/>
+              <rect x="40" y="210" width="120" height="34" rx="4" fill="#dce87a"/>
+              <text x="65" y="232" fill="#181a17" font-family="Hanken Grotesk, sans-serif" font-size="12" font-weight="700">EXPLORE PORTAL</text>
+              
+              <!-- Data Chart Grid -->
+              <rect x="400" y="70" width="160" height="240" rx="6" fill="#24281f" stroke="#373d30" stroke-width="1"/>
+              <path d="M420 260 L450 210 L480 230 L510 150 L540 120" fill="none" stroke="#dce87a" stroke-width="2.5"/>
+              <circle cx="540" cy="120" r="4" fill="#dce87a"/>
+              <text x="420" y="100" fill="#aeb3a3" font-family="Hanken Grotesk, sans-serif" font-size="10" font-weight="600">CONVERSION +184%</text>
+            </svg>
+          </div>
+          <div class="ed-cover-detail">
+            <div>
+              <p class="eyebrow">Featured Launch</p>
+              <h2>KINETIX<br><em>Capital OS.</em></h2>
+              <p class="ed-cover-lede" style="margin-top: 14px; font-size: 14px; line-height: 1.6; color: #d4d9c6;">
+                Complete brand system, investor presentation deck, and production web application with real-time portfolio analytics.
+              </p>
+            </div>
+            <div class="ed-cover-note" style="margin-top: 24px;">
+              <span>Fintech Web Application &amp; Identity</span>
+              <span class="ed-cover-arrow" aria-hidden="true">
+                <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 18 18 6M6 6h12v12"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <div class="ed-cover-caption">
+          <p>Kinetix Capital OS / Institutional Digital Experience</p>
+          <a href="#work">Explore all work 
+            <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 4v16m-6-6 6 6 6-6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work Grid -->
+    <section class="shell ed-print-work" id="work">
+      <div class="ed-work-heading">
+        <p class="eyebrow">Portfolio</p>
+        <h2>SELECTED<br><em>work.</em></h2>
+        <p>Websites, identities, design systems, and AI workflows<br>we have engineered and deployed.</p>
+      </div>
+
+      <div class="ed-print-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; margin-top: 50px;">
+        
+        <!-- Project 1 -->
+        <article>
+          <div class="ed-print-image" style="background: #e5e2d6; border-radius: 4px; overflow: hidden; padding: 32px 24px 0; border: 1px solid var(--line); position: relative;">
+            <svg viewBox="0 0 400 280" style="width: 100%; height: auto; display: block;" aria-hidden="true">
+              <rect x="20" y="20" width="360" height="260" rx="6" fill="#1e201c"/>
+              <rect x="20" y="20" width="360" height="32" rx="6" fill="#292c26"/>
+              <circle cx="38" cy="36" r="4" fill="#aeb3a3"/>
+              <circle cx="50" cy="36" r="4" fill="#aeb3a3"/>
+              <circle cx="62" cy="36" r="4" fill="#aeb3a3"/>
+              <text x="40" y="90" fill="#f8f7f3" font-family="Fraunces, Georgia, serif" font-size="22" font-style="italic">Siren Bio</text>
+              <rect x="40" y="110" width="200" height="6" fill="#dce87a"/>
+              <rect x="40" y="125" width="280" height="4" fill="#677064"/>
+              <rect x="40" y="137" width="220" height="4" fill="#677064"/>
+              <rect x="40" y="170" width="90" height="28" rx="3" fill="#dce87a"/>
+              <text x="56" y="188" fill="#181a17" font-family="Hanken Grotesk, sans-serif" font-size="10" font-weight="700">READ RESEARCH</text>
+            </svg>
+            <span class="ed-image-link" aria-hidden="true">
+              <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 18 18 6M6 6h12v12"/>
+              </svg>
+            </span>
+          </div>
+          <div class="ed-print-caption">
+            <span>01</span>
+            <div>
+              <h3><a href="#contact">Siren Biotech Research</a></h3>
+              <p>Biomedical Web Platform &amp; Design Architecture</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article>
+          <div class="ed-print-image" style="background: #e2e8f0; border-radius: 4px; overflow: hidden; padding: 32px 24px 0; border: 1px solid var(--line); position: relative;">
+            <svg viewBox="0 0 400 280" style="width: 100%; height: auto; display: block;" aria-hidden="true">
+              <rect x="20" y="20" width="360" height="260" rx="6" fill="#0f172a"/>
+              <rect x="20" y="20" width="360" height="32" rx="6" fill="#1e293b"/>
+              <text x="40" y="90" fill="#38bdf8" font-family="Hanken Grotesk, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">INTELLIGENT PIPELINE</text>
+              <text x="40" y="125" fill="#f8fafc" font-family="Fraunces, Georgia, serif" font-size="22">Aura Automated Quoting</text>
+              <path d="M40 160 H180 L210 185 H360" stroke="#38bdf8" stroke-width="2" fill="none"/>
+              <circle cx="210" cy="185" r="5" fill="#38bdf8"/>
+              <rect x="40" y="205" width="140" height="24" rx="4" fill="#334155"/>
+              <text x="50" y="221" fill="#94a3b8" font-family="Hanken Grotesk, sans-serif" font-size="10">24/7 AI ESTIMATOR</text>
+            </svg>
+            <span class="ed-image-link" aria-hidden="true">
+              <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 18 18 6M6 6h12v12"/>
+              </svg>
+            </span>
+          </div>
+          <div class="ed-print-caption">
+            <span>02</span>
+            <div>
+              <h3><a href="#contact">Aura Construction Group</a></h3>
+              <p>AI Quote Generator &amp; Multi-Page Marketing Site</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article>
+          <div class="ed-print-image" style="background: #ede8e1; border-radius: 4px; overflow: hidden; padding: 32px 24px 0; border: 1px solid var(--line); position: relative;">
+            <svg viewBox="0 0 400 280" style="width: 100%; height: auto; display: block;" aria-hidden="true">
+              <rect x="20" y="20" width="360" height="260" rx="6" fill="#2b231d"/>
+              <rect x="20" y="20" width="360" height="32" rx="6" fill="#3b322a"/>
+              <text x="40" y="85" fill="#e6b17e" font-family="Hanken Grotesk, sans-serif" font-size="11" font-weight="700" letter-spacing="2">FINE ART IDENTITY</text>
+              <text x="40" y="125" fill="#fdfbf7" font-family="Fraunces, Georgia, serif" font-size="24" font-style="italic">Maison Vesper</text>
+              <circle cx="320" cy="120" r="30" stroke="#e6b17e" stroke-width="1.5" fill="none"/>
+              <circle cx="320" cy="120" r="22" stroke="#e6b17e" stroke-width="0.8" stroke-dasharray="3 3" fill="none"/>
+              <text x="40" y="160" fill="#bfa593" font-family="Hanken Grotesk, sans-serif" font-size="12">Bespoke Architectural Studio</text>
+              <line x1="40" y1="185" x2="360" y2="185" stroke="#4a3f35" stroke-width="1"/>
+              <text x="40" y="215" fill="#e6b17e" font-family="Hanken Grotesk, sans-serif" font-size="10" font-weight="600">PARIS / TOKYO / NEW YORK</text>
+            </svg>
+            <span class="ed-image-link" aria-hidden="true">
+              <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 18 18 6M6 6h12v12"/>
+              </svg>
+            </span>
+          </div>
+          <div class="ed-print-caption">
+            <span>03</span>
+            <div>
+              <h3><a href="#contact">Maison Vesper Architecture</a></h3>
+              <p>Visual Identity, Editorial Typography &amp; Portfolio</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Testimonials / Client Words -->
+    <section class="hx-proof" aria-labelledby="proof-title">
+      <div class="shell hx-proof-grid">
+        <div class="hx-proof-head">
+          <p class="eyebrow">Client words</p>
+          <h2 id="proof-title">IN THEIR<br><em>words.</em></h2>
+        </div>
+
+        <figure class="hx-quote hx-quote-main">
+          <svg class="hx-qmark" viewBox="0 0 120 92" aria-hidden="true" style="width: 48px; height: 38px; color: var(--ink); margin-bottom: 20px;">
+            <path class="hx-ln" pathLength="1" fill="currentColor" d="M50 8C24 18 8 38 8 62c0 14 8 24 21 24 12 0 20-8 20-20 0-11-8-19-19-19-3 0-5 0-7 1 3-14 13-25 30-32Z M112 8C86 18 70 38 70 62c0 14 8 24 21 24 12 0 20-8 20-20 0-11-8-19-19-19-3 0-5 0-7 1 3-14 13-25 30-32Z"/>
+          </svg>
+          <blockquote>
+            <p>
+              “Working with Mocta eliminated the gap between creative visual artistry and deep technical execution. We didn’t have to compromise between a site that looks like an art museum piece and one that converts enterprise leads.”
+            </p>
+          </blockquote>
+          <figcaption>
+            <strong>Elena Vance</strong>
+            <span>Managing Partner, Kinetix Capital</span>
+          </figcaption>
+        </figure>
+
+        <div class="hx-quote-side">
+          <figure class="hx-quote">
+            <blockquote>
+              <p>“They cut our inbound inquiry response time from 18 hours to 4 minutes with custom AI triage.”</p>
+            </blockquote>
+            <figcaption>
+              <strong>Marcus Sterling</strong>
+              <span>CEO, Aura Group</span>
+            </figcaption>
+          </figure>
+
+          <figure class="hx-quote">
+            <blockquote>
+              <p>“Zero generic templates. The brand identity feels distinctly hand-crafted and timeless.”</p>
+            </blockquote>
+            <figcaption>
+              <strong>Camille Laurent</strong>
+              <span>Principal, Maison Vesper</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio Statement -->
+    <section class="hx-statement" aria-label="About the studio">
+      <div class="shell">
+        <p class="eyebrow">The Studio Philosophy</p>
+        <p class="hx-statement-text">
+          <span class="hx-w">We</span> <span class="hx-w">unite</span> <span class="hx-w">fine-art</span> <span class="hx-w">visual</span> <span class="hx-w">discipline,</span> <span class="hx-w">cognitive</span> <span class="hx-w">psychology,</span> <span class="hx-w">and</span> <span class="hx-w">pragmatic</span> <span class="hx-w">AI</span> <span class="hx-w">automation</span> <span class="hx-w">to</span> <span class="hx-w">build</span> <span class="hx-w">businesses</span> <span class="hx-w hx-w-em">that </span><span class="hx-w hx-w-em">command </span><span class="hx-w hx-w-em">attention </span><span class="hx-w hx-w-em">and </span><span class="hx-w hx-w-em">convert.</span>
         </p>
+      </div>
+    </section>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <a href="#contact" class="h-12 inline-flex items-center justify-center bg-primary text-black font-mono font-bold tracking-widest uppercase px-8 text-xs hover:bg-primary/90 transition-all active:scale-[0.97] shadow-[0_0_20px_rgba(163,255,18,0.3)]">
-            Start an Engagement ↗
+    <!-- Services Section -->
+    <section class="shell re-services" id="services">
+      <div class="re-section-head">
+        <p class="eyebrow">What we do</p>
+        <h2>SERVICES.</h2>
+        <p>Websites, product interfaces, and back-office AI automations tailored for modern startups and growing businesses.</p>
+      </div>
+
+      <div class="re-service-list">
+        
+        <!-- Service 1 -->
+        <a class="re-service" href="#contact">
+          <span class="re-index">01</span>
+          <h3>Website Design &amp; Development</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 44ch;">
+            Tailor-made web experiences built with modern semantic standards, fast loading speeds, fluid responsive layouts, and conversion-focused information hierarchy.
+          </p>
+          <span class="mo-icon" aria-hidden="true">
+            <svg class="ui-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- Service 2 -->
+        <a class="re-service" href="#contact">
+          <span class="re-index">02</span>
+          <h3>Brand Identity &amp; Design Systems</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 44ch;">
+            Fine-art derived visual direction: typography scales, custom color harmonies, vector marks, design guidelines, and cohesive collateral that establish authority.
+          </p>
+          <span class="mo-icon" aria-hidden="true">
+            <svg class="ui-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- Service 3 -->
+        <a class="re-service" href="#contact">
+          <span class="re-index">03</span>
+          <h3>Product UX &amp; Behavioral Psychology</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 44ch;">
+            Frictionless onboarding flows, customer journeys engineered with cognitive psychology, user retention architecture, and high-converting checkout paths.
+          </p>
+          <span class="mo-icon" aria-hidden="true">
+            <svg class="ui-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- Service 4 -->
+        <a class="re-service" href="#contact">
+          <span class="re-index">04</span>
+          <h3>AI Automation &amp; Intelligent Workflows</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 44ch;">
+            Automated customer inquiry handling, intelligent quote generation, CRM pipeline synchronization, and internal paperwork generation ready for human sign-off.
+          </p>
+          <span class="mo-icon" aria-hidden="true">
+            <svg class="ui-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Who We Work With -->
+    <section class="shell hx-paths" id="approach" aria-labelledby="paths-title">
+      <div class="re-section-head">
+        <p class="eyebrow">Who we work with</p>
+        <h2 id="paths-title">WHO WE<br><em>work with.</em></h2>
+        <p>We partner with ambitious founders, established studios, and specialized service firms that demand both aesthetics and automation.</p>
+      </div>
+
+      <div class="hx-path-grid">
+        
+        <div class="hx-path">
+          <span class="hx-path-n">01</span>
+          <h3>Early-Stage Startups</h3>
+          <p>Founders launching new products who need a category-defining brand identity, high-converting landing page, and automated lead capture from day one.</p>
+          <div class="hx-path-go" aria-hidden="true">
+            <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hx-path">
+          <span class="hx-path-n">02</span>
+          <h3>Specialized Service Firms</h3>
+          <p>Architects, law practices, medical specialists, and consulting agencies upgrading from legacy websites to authoritative, bespoke platforms.</p>
+          <div class="hx-path-go" aria-hidden="true">
+            <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hx-path">
+          <span class="hx-path-n">03</span>
+          <h3>Operational Businesses</h3>
+          <p>Companies bogged down by repetitive paperwork, manual quote drafting, and slow customer follow-ups that need practical AI workflow automations.</p>
+          <div class="hx-path-go" aria-hidden="true">
+            <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- How a Project Works / Process -->
+    <section class="hx-process" aria-labelledby="process-title">
+      <div class="shell">
+        <div class="re-section-head">
+          <p class="eyebrow" style="color: var(--acid);">Process</p>
+          <h2 id="process-title">HOW A PROJECT<br><em style="color: var(--acid);">works.</em></h2>
+          <p>Four disciplined phases with clear milestones and fixed pricing before any work starts. You approve each step before the next begins.</p>
+        </div>
+
+        <ol class="hx-steps">
+          
+          <li class="hx-step is-in" style="--i:0">
+            <svg viewBox="0 0 200 120" aria-hidden="true">
+              <path class="hx-ln" pathLength="1" stroke="currentColor" stroke-width="1.5" fill="none" d="M20 22H116V68H52L38 82V68H20Z"/>
+              <circle class="hx-dot" cx="50" cy="45" r="4" fill="currentColor"/>
+              <circle class="hx-dot" cx="68" cy="45" r="4" fill="currentColor"/>
+              <circle class="hx-dot" cx="86" cy="45" r="4" fill="currentColor"/>
+              <path class="hx-fill" fill="var(--acid)" d="M84 58H180V96H164V110L150 96H84Z"/>
+              <path class="hx-ln hx-ink" pathLength="1" stroke="#181a17" stroke-width="1.5" d="M98 72H164M98 82H146"/>
+            </svg>
+            <span class="hx-step-n">01</span>
+            <h3>Discovery &amp; Psychology</h3>
+            <p class="hx-step-meta">Scope &amp; Audience Alignment</p>
+            <p>We dissect your business model, customer psychology, competitive landscape, and operational bottlenecks.</p>
+          </li>
+
+          <li class="hx-step is-in" style="--i:1">
+            <svg viewBox="0 0 200 120" aria-hidden="true">
+              <path class="hx-ln" pathLength="1" stroke="currentColor" stroke-width="1.5" fill="none" d="M60 8H128L148 28V112H60Z"/>
+              <path class="hx-ln" pathLength="1" stroke="currentColor" stroke-width="1.5" fill="none" d="M128 8V28H148"/>
+              <rect class="hx-fill" x="74" y="36" width="12" height="12" fill="var(--acid)"/>
+              <path class="hx-ln hx-ink" stroke="#181a17" stroke-width="1.5" d="M76 42l3 3 5-6"/>
+              <line x1="94" y1="42" x2="134" y2="42" stroke="currentColor" stroke-width="1.5"/>
+              <rect class="hx-fill" x="74" y="58" width="12" height="12" fill="var(--acid)"/>
+              <path class="hx-ln hx-ink" stroke="#181a17" stroke-width="1.5" d="M76 64l3 3 5-6"/>
+              <line x1="94" y1="64" x2="126" y2="64" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span class="hx-step-n">02</span>
+            <h3>Visual Architecture</h3>
+            <p class="hx-step-meta">Fine Art &amp; Layout Systems</p>
+            <p>We craft bespoke typography hierarchies, color systems, component layouts, and high-fidelity interface prototypes.</p>
+          </li>
+
+          <li class="hx-step is-in" style="--i:2">
+            <svg viewBox="0 0 200 120" aria-hidden="true">
+              <rect x="20" y="24" width="160" height="76" rx="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <line x1="20" y1="46" x2="180" y2="46" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="34" cy="35" r="3" fill="var(--acid)"/>
+              <circle cx="46" cy="35" r="3" fill="currentColor"/>
+              <line x1="36" y1="62" x2="100" y2="62" stroke="var(--acid)" stroke-width="2"/>
+              <line x1="36" y1="74" x2="140" y2="74" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="36" y1="86" x2="80" y2="86" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span class="hx-step-n">03</span>
+            <h3>Engineering &amp; AI Integration</h3>
+            <p class="hx-step-meta">Clean Code &amp; API Pipelines</p>
+            <p>Production engineering with fast, clean code, responsive micro-interactions, and connected AI automation pipelines.</p>
+          </li>
+
+          <li class="hx-step is-in" style="--i:3">
+            <svg viewBox="0 0 200 120" aria-hidden="true">
+              <circle cx="100" cy="55" r="36" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <circle cx="100" cy="55" r="24" stroke="var(--acid)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <path d="M100 24 V34 M100 76 V86 M69 55 H79 M121 55 H131" stroke="currentColor" stroke-width="1.5"/>
+              <polygon points="100,45 106,58 94,58" fill="var(--acid)"/>
+            </svg>
+            <span class="hx-step-n">04</span>
+            <h3>Deployment &amp; Support</h3>
+            <p class="hx-step-meta">Launch &amp; Ongoing Reliability</p>
+            <p>Zero-downtime deployment, domain verification, search indexing setup, and ongoing proactive maintenance.</p>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- The Founders & Synergy Section -->
+    <section class="ed-founder" id="partners">
+      <div class="shell ed-founder-grid">
+        
+        <figure>
+          <!-- Stylized Fine Art Studio Plate -->
+          <div style="width: 100%; aspect-ratio: 4/5; background: #262922; border-radius: 4px; overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 36px; border: 1px solid rgba(0,0,0,0.15);">
+            <div>
+              <p style="font-family: 'Hanken Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--acid);">MOCTA STUDIO DIRECTION</p>
+              <h3 style="font-family: 'Fraunces', Georgia, serif; font-size: 32px; color: var(--paper); font-weight: 400; margin-top: 14px; line-height: 1.15;">
+                Fine Arts &amp; Visual Design<br><em style="color: var(--acid);">meets</em> AI &amp; Tech.
+              </h3>
+            </div>
+            
+            <div style="border-top: 1px solid rgba(255,255,255,0.15); padding-top: 20px;">
+              <p style="font-size: 13px; color: #d4d9c6; line-height: 1.6;">
+                Two founders with AI &amp; ML engineering degrees, blending fine arts visual craftsmanship (BRDS) with behavioral psychology and backend systems architecture.
+              </p>
+            </div>
+          </div>
+          <figcaption>Mocta Studio / Founders &amp; Principals</figcaption>
+        </figure>
+
+        <div>
+          <p class="eyebrow">Creative &amp; Technical Leadership</p>
+          <h2>MEET<br><em class="mo-scribbled">the founders.<svg class="mo-scribble" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M6 26 C60 14 120 12 190 16 C230 18 262 22 292 18 M40 34 C100 26 170 24 250 28"/></svg></em></h2>
+          <p>
+            We founded Mocta to resolve a fundamental problem in modern digital production: pure design studios rarely understand AI and systems engineering, while technical software shops build sterile, generic interfaces devoid of taste.
+          </p>
+          <p style="margin-top: 16px; font-size: 16px; line-height: 1.85; color: #50564b;">
+            One partner brings rigorous fine arts and design training (BRDS) to shape bespoke brand identities, typography systems, and aesthetic direction. The other leverages an AI/ML engineering background combined with behavioral and consumer psychology to architect conversion pipelines, user journeys, and custom automated back-office workflows.
+          </p>
+          <a class="text-link" href="#contact">
+            Schedule a conversation with both founders 
+            <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
           </a>
-          <a href="#bento" class="h-12 inline-flex items-center justify-center border border-white/15 bg-white/2 text-white font-mono font-bold tracking-widest uppercase px-8 text-xs hover:bg-white/5 transition-all active:scale-[0.97]">
-            View Architecture
-          </a>
         </div>
 
-        <!-- Social Proof Metric Ribbon -->
-        <div class="mt-16 flex flex-col items-center gap-4">
-          <div class="flex items-center gap-3 font-mono text-xs tracking-widest text-white/40 uppercase">
-            <span class="h-px w-8 bg-white/10"></span>
-            Partner-Led Studio Cadence
-            <span class="h-px w-8 bg-white/10"></span>
-          </div>
-          <div class="flex flex-wrap justify-center items-center gap-4">
-            <div class="border border-white/10 bg-white/2 px-4 py-2 text-xs font-bold tracking-wider text-white/70 uppercase">
-              10–14 Day Sprints
-            </div>
-            <div class="border border-white/10 bg-white/2 px-4 py-2 text-xs font-bold tracking-wider text-white/70 uppercase">
-              100% IP Ownership
-            </div>
-            <div class="border border-white/10 bg-white/2 px-4 py-2 text-xs font-bold tracking-wider text-white/70 uppercase">
-              Direct Founder Access
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- ==================== 3. TELEMETRY STATS ==================== -->
-    <section class="bg-[#101010] relative w-full overflow-hidden py-24 font-mono border-t border-b border-white/5">
-      <div class="max-w-7xl mx-auto px-6 md:px-12">
-        <div class="mb-14 flex flex-col items-start md:items-center text-left md:text-center">
-          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
-            <span class="mr-3 opacity-70">//</span>
-            TELEMETRY DATA
+    <!-- Transparent Engagements & Pricing -->
+    <section class="shell hx-paths" style="border-top: 1px solid var(--line); padding-block: 90px 100px;">
+      <div class="re-section-head">
+        <p class="eyebrow">Engagement models</p>
+        <h2>TRANSPARENT<br><em>pricing.</em></h2>
+        <p>Fixed rates agreed upon before work begins. No hidden line items, no surprise hourly overages.</p>
+      </div>
+
+      <div class="hx-path-grid">
+        
+        <div class="hx-path">
+          <span class="hx-path-n">TIER 01</span>
+          <h3>Sprint Launch</h3>
+          <p>Complete marketing website or landing page, custom typography, conversion hierarchy, and responsive mobile build.</p>
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line);">
+            <p style="font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 4px;">$2,800</p>
+            <p style="font-size: 12px; color: var(--muted);">Timeline: 2 weeks</p>
           </div>
-          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
-            Everything you need <br class="hidden sm:block" /> to <span class="text-primary">ship faster</span>
-          </h2>
-          <p class="mt-4 max-w-2xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
-            Stop building the same generic agency templates. Mocta provides handcrafted design systems, conversion-driven websites, and high-performance code.
-          </p>
+          <div class="hx-path-go" aria-hidden="true">
+            <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Stat 1 -->
-          <div class="corner-accents border border-white/10 bg-neutral-950 p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-primary mb-4 opacity-80 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-            </div>
-            <div class="text-white font-mono text-4xl font-bold tracking-tight mb-2">100%</div>
-            <div class="text-xs font-bold tracking-widest text-white/40 uppercase">Bespoke Fine Art Craft</div>
+        <div class="hx-path" style="background: #eef2dc;">
+          <span class="hx-path-n">TIER 02 / POPULAR</span>
+          <h3>Full Platform &amp; Brand</h3>
+          <p>Comprehensive brand design system, fine-art identity, multi-page website, customer portal UI, and copy development.</p>
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line);">
+            <p style="font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 4px;">$5,400</p>
+            <p style="font-size: 12px; color: var(--muted);">Timeline: 3 to 4 weeks</p>
           </div>
-
-          <!-- Stat 2 -->
-          <div class="corner-accents border border-white/10 bg-neutral-950 p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-primary mb-4 opacity-80 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            </div>
-            <div class="text-white font-mono text-4xl font-bold tracking-tight mb-2">10 Days</div>
-            <div class="text-xs font-bold tracking-widest text-white/40 uppercase">Average Sprint Velocity</div>
-          </div>
-
-          <!-- Stat 3 -->
-          <div class="corner-accents border border-white/10 bg-neutral-950 p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-primary mb-4 opacity-80 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-            </div>
-            <div class="text-white font-mono text-4xl font-bold tracking-tight mb-2">2.8x</div>
-            <div class="text-xs font-bold tracking-widest text-white/40 uppercase">Conversion Lift</div>
-          </div>
-
-          <!-- Stat 4 -->
-          <div class="corner-accents border border-white/10 bg-neutral-950 p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-primary mb-4 opacity-80 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            </div>
-            <div class="text-white font-mono text-4xl font-bold tracking-tight mb-2">Zero</div>
-            <div class="text-xs font-bold tracking-widest text-white/40 uppercase">Junior Delegations</div>
+          <div class="hx-path-go" aria-hidden="true">
+            <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
           </div>
         </div>
+
+        <div class="hx-path">
+          <span class="hx-path-n">TIER 03</span>
+          <h3>Custom AI Systems</h3>
+          <p>Complete digital presence plus custom back-office AI workflow: automated quote generators, customer support triage, and CRM sync.</p>
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line);">
+            <p style="font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 4px;">$7,900</p>
+            <p style="font-size: 12px; color: var(--muted);">Timeline: 4 to 6 weeks</p>
+          </div>
+          <div class="hx-path-go" aria-hidden="true">
+            <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- ==================== 4. ANIMATED BENTO (MICRO-INTERACTIONS) ==================== -->
-    <section id="bento" class="py-24 md:py-32 relative overflow-hidden bg-[#101010] font-mono">
-      <div class="max-w-7xl mx-auto px-6 md:px-12">
-        <div class="mb-14 flex flex-col items-start md:items-center text-left md:text-center">
-          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
-            <span class="mr-3 opacity-70">//</span>
-            MICRO-INTERACTIONS & ARCHITECTURE
+    <!-- FAQ Section -->
+    <section class="shell hx-faq" id="faq" aria-labelledby="faq-title">
+      <div class="hx-faq-head">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title">QUESTIONS,<br><em>answered.</em></h2>
+        <p>Have an unconventional project or unique requirement? <a href="#contact">Reach out directly</a> or write to <a href="mailto:hello@mocta.design">hello@mocta.design</a>.</p>
+      </div>
+
+      <div class="hx-faq-list">
+        
+        <details class="hx-faq-item">
+          <summary><span>How does Mocta differ from conventional web agencies?</span><i aria-hidden="true"></i></summary>
+          <div>
+            <p>Most agencies either operate as pure graphic designers without engineering depth or as offshore dev teams using cookie-cutter templates. Mocta combines fine-arts aesthetic discipline with engineering in AI and behavioral psychology. You get timeless design and systems that actually automate your back office.</p>
           </div>
-          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
-            Interactions that <span class="text-primary">delight & convert</span>
-          </h2>
-          <p class="mt-4 max-w-2xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
-            Drop-in animated interactive components engineered for startups. Smooth, interruptible, and highly optimized.
-          </p>
-        </div>
+        </details>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[420px]">
-          <!-- Card 1: AI Agent / Co-Founder Model (Col Span 2) -->
-          <div class="corner-accents md:col-span-1 lg:col-span-2 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="flex items-center justify-between">
-              <span class="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-primary transition-colors">
-                [ STUDIO CO-FOUNDER ENGINE ]
-              </span>
-              <span class="text-primary text-xs font-bold">ONLINE</span>
-            </div>
-
-            <div class="flex flex-col items-center justify-center my-auto">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
-                <div class="border border-white/10 bg-white/3 p-5 rounded">
-                  <div class="text-primary text-xs font-bold mb-1">DEPARTMENT 01</div>
-                  <div class="font-sans font-bold text-white text-base">Fine Arts & Design</div>
-                  <p class="text-[11px] text-white/50 mt-2 leading-relaxed">BRDS fine arts foundation, color psychology, hand-drawn vector marks, and Figma component libraries.</p>
-                </div>
-                <div class="border border-white/10 bg-white/3 p-5 rounded">
-                  <div class="text-primary text-xs font-bold mb-1">DEPARTMENT 02</div>
-                  <div class="font-sans font-bold text-white text-base">Tech & Behavioral UX</div>
-                  <p class="text-[11px] text-white/50 mt-2 leading-relaxed">AI/ML engineering, conversion cognitive heuristics, friction reduction, and sub-second Next.js code.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between text-[11px] text-white/40 border-t border-white/5 pt-4">
-              <span>DUAL SPECIALIZATION</span>
-              <span class="text-white/70">FINE ART &times; BEHAVIORAL CODE</span>
-            </div>
+        <details class="hx-faq-item">
+          <summary><span>How long does a typical project take?</span><i aria-hidden="true"></i></summary>
+          <div>
+            <p>Focused landing pages and brand foundations take two weeks. Comprehensive multi-page platforms with custom integrations and AI workflows take three to five weeks from scope approval to production launch.</p>
           </div>
+        </details>
 
-          <!-- Card 2: Interactive Morphing Button -->
-          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
+        <details class="hx-faq-item">
+          <summary><span>What kinds of AI automations do you build?</span><i aria-hidden="true"></i></summary>
+          <div>
+            <p>We build pragmatic back-office automations: instant proposal and estimate generators for customer inquiries, document summarizers, automated CRM routing, and customized LLM assistants that draft replies for your team to review and approve.</p>
+          </div>
+        </details>
+
+        <details class="hx-faq-item">
+          <summary><span>Who will be working on our project?</span><i aria-hidden="true"></i></summary>
+          <div>
+            <p>You work directly with the two studio principals. We do not pass your requirements down to junior subcontractors or account managers. Every layout, line of code, and automation model is reviewed and handled by the founders.</p>
+          </div>
+        </details>
+
+        <details class="hx-faq-item">
+          <summary><span>Do you assist with copywriting and messaging?</span><i aria-hidden="true"></i></summary>
+          <div>
+            <p>Yes. Informed by our background in cognitive and consumer psychology, we craft value propositions, headline hierarchies, and clear call-to-action microcopy that guide visitors toward conversion without relying on cheap marketing gimmicks.</p>
+          </div>
+        </details>
+
+        <details class="hx-faq-item">
+          <summary><span>What happens after launch?</span><i aria-hidden="true"></i></summary>
+          <div>
+            <p>We provide comprehensive documentation, handover walkthroughs, and optional monthly studio care covering hosting, security updates, continuous design iterations, and automation monitoring.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- Invitation / Contact Section -->
+    <section class="re-invitation" id="contact">
+      <div class="shell">
+        <p class="eyebrow">Contact Mocta</p>
+        
+        <a class="re-invitation-link" href="mailto:hello@mocta.design">
+          <h2>LET’S<br><em>talk.</em></h2>
+          <span class="re-circle" aria-hidden="true">
+            <svg class="ui-arrow" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18 18 6M6 6h12v12"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- Direct Inquiry Form -->
+        <div style="background: #24281f; padding: 40px; border-radius: 4px; margin-top: 40px; border: 1px solid rgba(255,255,255,0.12);">
+          <h3 style="font-family: 'Fraunces', Georgia, serif; font-size: 26px; color: var(--paper); margin-bottom: 24px; font-weight: 400;">
+            Start an inquiry
+          </h3>
+          <form id="contact-form" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div>
-              <span class="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-primary transition-colors">
-                [ INTERACTIVE ACTION ]
-              </span>
+              <label for="name" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #aeb3a3; margin-bottom: 8px;">YOUR NAME</label>
+              <input type="text" id="name" required placeholder="Elena Vance" style="width: 100%; padding: 14px 16px; background: #181a17; border: 1px solid rgba(255,255,255,0.2); color: var(--paper); border-radius: 4px;">
             </div>
-
-            <div class="flex flex-col items-center justify-center my-auto">
-              <button id="morphButton" class="relative group/btn overflow-hidden h-12 w-48 border border-primary/50 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase rounded flex items-center justify-center transition-all hover:bg-primary hover:text-black">
-                <span id="morphText">Audit Website</span>
+            <div>
+              <label for="email" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #aeb3a3; margin-bottom: 8px;">EMAIL ADDRESS</label>
+              <input type="email" id="email" required placeholder="elena@company.com" style="width: 100%; padding: 14px 16px; background: #181a17; border: 1px solid rgba(255,255,255,0.2); color: var(--paper); border-radius: 4px;">
+            </div>
+            <div style="grid-column: 1 / -1;">
+              <label for="project-type" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #aeb3a3; margin-bottom: 8px;">PROJECT TYPE</label>
+              <select id="project-type" style="width: 100%; padding: 14px 16px; background: #181a17; border: 1px solid rgba(255,255,255,0.2); color: var(--paper); border-radius: 4px;">
+                <option value="website">New Website &amp; Design Architecture</option>
+                <option value="brand">Brand Identity &amp; Fine Art Direction</option>
+                <option value="product">Product UX/UI &amp; Conversion Optimization</option>
+                <option value="ai">AI Automation &amp; Back-Office Systems</option>
+                <option value="full">Complete Studio Package (Brand, Web &amp; AI)</option>
+              </select>
+            </div>
+            <div style="grid-column: 1 / -1;">
+              <label for="details" style="display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #aeb3a3; margin-bottom: 8px;">PROJECT DETAILS &amp; TIMELINE</label>
+              <textarea id="details" rows="4" required placeholder="Tell us about your startup, your goals, and what you’d like us to create." style="width: 100%; padding: 14px 16px; background: #181a17; border: 1px solid rgba(255,255,255,0.2); color: var(--paper); border-radius: 4px; resize: vertical;"></textarea>
+            </div>
+            <div style="grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: 10px;">
+              <p style="font-size: 12px; color: #aeb3a3;">
+                We respond within 24 hours with an initial scope assessment.
+              </p>
+              <button type="submit" class="hx-btn" style="border: none; cursor: pointer;">
+                Submit Inquiry 
+                <svg class="ui-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 18 18 6M6 6h12v12"/>
+                </svg>
               </button>
-              <span class="text-[10px] text-white/30 uppercase tracking-widest mt-4">Click to simulate trigger</span>
             </div>
-
-            <div class="text-[10px] text-white/40 border-t border-white/5 pt-4 flex justify-between">
-              <span>STATE: ACTIVE</span>
-              <span class="text-primary">SPRING INTERACTION</span>
-            </div>
-          </div>
-
-          <!-- Card 3: Interactive Knob Slider -->
-          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div>
-              <span class="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-primary transition-colors">
-                [ SPRINT VELOCITY DIAL ]
-              </span>
-            </div>
-
-            <div class="flex flex-col items-center justify-center my-auto">
-              <div class="relative w-36 h-36 rounded-full border border-white/15 bg-neutral-900 flex items-center justify-center shadow-inner">
-                <div id="knobPointer" class="absolute w-2 h-2 rounded-full bg-primary top-3 knob-dial"></div>
-                <div class="text-center">
-                  <div id="knobDisplay" class="text-3xl font-bold font-sans text-white">10</div>
-                  <div class="text-[9px] text-white/40 uppercase tracking-widest">Days Sprint</div>
-                </div>
-              </div>
-              <input type="range" id="knobInput" min="5" max="30" value="10" class="w-44 mt-6 accent-primary cursor-pointer">
-            </div>
-
-            <div class="text-[10px] text-white/40 border-t border-white/5 pt-4 flex justify-between">
-              <span>TARGET DEADLINE</span>
-              <span id="knobLabel" class="text-primary font-bold">10 DAYS TO LAUNCH</span>
-            </div>
-          </div>
-
-          <!-- Card 4: Telemetry Graphic (100+ Systems) -->
-          <div class="corner-accents border border-primary/30 bg-primary/5 backdrop-blur-md p-8 flex flex-col justify-between group">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div>
-              <span class="text-primary text-[10px] uppercase tracking-widest font-bold">
-                [ DESIGN ARTIFACTS ]
-              </span>
-            </div>
-
-            <div class="flex flex-col items-center justify-center my-auto text-center">
-              <div class="text-6xl font-bold font-sans text-white tracking-tighter mb-2">100+</div>
-              <div class="text-primary font-bold tracking-widest uppercase text-xs">DESIGN TOKENS & FIGMA ASSETS</div>
-              <p class="text-white/40 text-[11px] mt-2 max-w-[200px]">Export-ready vector typography, color systems, and UI components.</p>
-            </div>
-
-            <div class="text-[10px] text-white/40 border-t border-white/10 pt-4 flex justify-between">
-              <span>FIGMA &middot; CODE</span>
-              <span class="text-primary">READY FOR DEV</span>
-            </div>
-          </div>
-
-          <!-- Card 5: Production Ready Template Mockup -->
-          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div>
-              <span class="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-primary transition-colors">
-                [ ARCHITECTURE STACK ]
-              </span>
-            </div>
-
-            <div class="flex flex-col gap-2.5 my-auto w-full">
-              <div class="border border-white/10 bg-neutral-900/80 p-3 rounded flex items-center justify-between text-xs">
-                <span class="text-white/80 font-bold">Next.js / TypeScript</span>
-                <span class="text-primary font-mono text-[10px]">PRODUCTION</span>
-              </div>
-              <div class="border border-white/10 bg-neutral-900/80 p-3 rounded flex items-center justify-between text-xs">
-                <span class="text-white/80 font-bold">Tailwind CSS v4</span>
-                <span class="text-primary font-mono text-[10px]">STYLES</span>
-              </div>
-              <div class="border border-white/10 bg-neutral-900/80 p-3 rounded flex items-center justify-between text-xs">
-                <span class="text-white/80 font-bold">Framer & Webflow</span>
-                <span class="text-primary font-mono text-[10px]">NO-CODE</span>
-              </div>
-            </div>
-
-            <div class="text-[10px] text-white/40 border-t border-white/5 pt-4 flex justify-between">
-              <span>CODE CLEANLINESS</span>
-              <span class="text-primary">100% LIGHTHOUSE</span>
-            </div>
+          </form>
+          <div id="form-success" style="display: none; padding: 20px; background: var(--acid); color: var(--ink); border-radius: 4px; margin-top: 20px; font-weight: 600;">
+            Thank you. Your inquiry has been delivered directly to the Mocta founders. We will review your project details and follow up shortly.
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ==================== 5. FEATURES BENTO (SERVICES) ==================== -->
-    <section id="services" class="bg-[#101010] relative overflow-hidden py-24 font-mono md:py-32 border-t border-white/5">
-      <div class="max-w-7xl mx-auto px-6 md:px-12">
-        <div class="mb-16 flex flex-col items-start md:items-center text-left md:text-center">
-          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
-            <span class="mr-3 opacity-70">//</span>
-            FEATURE BENTO
-          </div>
-          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
-            Why choose <span class="text-primary">Mocta</span> Studio?
-          </h2>
-          <p class="mt-4 max-w-xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
-            Eliminating the traditional agency disconnect between visual beauty and technical conversion.
+        <div class="re-invitation-bottom" style="margin-top: 50px;">
+          <p>
+            A bespoke website, an enduring brand, or a streamlined AI engine.<br>
+            Direct contact: <a href="mailto:hello@mocta.design" style="color: var(--acid); text-decoration: underline;">hello@mocta.design</a>
           </p>
-        </div>
-
-        <div class="grid auto-rows-[340px] grid-cols-1 gap-6 lg:grid-cols-5">
-          <!-- Bento 1: 100% IP Ownership (Col 2) -->
-          <div class="corner-accents lg:col-span-2 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-primary text-2xl font-bold">01</div>
-            <div>
-              <h3 class="text-white font-sans text-xl font-bold uppercase tracking-wider mb-2">100% IP & Source Ownership</h3>
-              <p class="text-xs text-white/50 uppercase tracking-widest leading-relaxed">
-                Zero vendor lock-in. You receive full intellectual property rights, raw Figma design systems, vector logos, and clean git repositories.
-              </p>
-            </div>
-            <div class="text-[10px] text-primary tracking-widest uppercase pt-4 border-t border-white/5">
-              COMPLETE TRANSFER ON COMPLETION
-            </div>
-          </div>
-
-          <!-- Bento 2: Handcrafted Fine Arts (Col 3) -->
-          <div class="corner-accents lg:col-span-3 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-primary text-2xl font-bold">02</div>
-            <div>
-              <h3 class="text-white font-sans text-xl font-bold uppercase tracking-wider mb-2">Fine Arts Visual Direction</h3>
-              <p class="text-xs text-white/50 uppercase tracking-widest leading-relaxed max-w-md">
-                Led by trained fine arts and visual harmony background. Custom-crafted brand marks, spatial balance, curated color palettes, and distinct typographic scales that avoid cookie-cutter themes.
-              </p>
-            </div>
-            <div class="text-[10px] text-primary tracking-widest uppercase pt-4 border-t border-white/5">
-              BRDS TRAINED &middot; ORIGINAL VECTOR MARKS
-            </div>
-          </div>
-
-          <!-- Bento 3: Behavioral Psychology (Col 3) -->
-          <div class="corner-accents lg:col-span-3 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-primary text-2xl font-bold">03</div>
-            <div>
-              <h3 class="text-white font-sans text-xl font-bold uppercase tracking-wider mb-2">Behavioral Psychology & Conversion</h3>
-              <p class="text-xs text-white/50 uppercase tracking-widest leading-relaxed max-w-md">
-                Grounded in empirical cognitive heuristics: visual scan paths, cognitive load reduction, loss aversion framing, and clear decision architecture that turns traffic into signed contracts.
-              </p>
-            </div>
-            <div class="text-[10px] text-primary tracking-widest uppercase pt-4 border-t border-white/5">
-              COGNITIVE HEURISTICS &middot; FRICTION REDUCTION
-            </div>
-          </div>
-
-          <!-- Bento 4: Fast Production Sprints (Col 2) -->
-          <div class="corner-accents lg:col-span-2 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-primary text-2xl font-bold">04</div>
-            <div>
-              <h3 class="text-white font-sans text-xl font-bold uppercase tracking-wider mb-2">Production Ready Sprints</h3>
-              <p class="text-xs text-white/50 uppercase tracking-widest leading-relaxed">
-                Stop waiting 3 months for sluggish agencies. Ship complete high-converting websites and product interfaces in 10 to 14 days.
-              </p>
-            </div>
-            <div class="text-[10px] text-primary tracking-widest uppercase pt-4 border-t border-white/5">
-              RAPID DEPLOYMENT &middot; ZERO BLOAT
-            </div>
+          <div class="re-invitation-actions">
+            <span>Direct studio line: <a href="tel:+12125550198">+1 (212) 555-0198</a></span>
+            <span>Worldwide availability / Remote &amp; On-Site</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== 6. PRICING & ENGAGEMENT PACKAGES ==================== -->
-    <section id="pricing" class="py-24 md:py-32 relative overflow-hidden bg-[#101010] font-mono border-t border-white/5">
-      <div class="max-w-7xl mx-auto px-6 md:px-12">
-        <div class="mb-16 flex flex-col items-start md:items-center text-left md:text-center">
-          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
-            <span class="mr-3 opacity-70">//</span>
-            TRANSPARENT INVESTMENT
-          </div>
-          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
-            Predictable, <span class="text-primary">Flat-Rate</span> Engagements
-          </h2>
-          <p class="mt-4 max-w-xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
-            No surprise retainers or agency bloat. Clear deliverables and direct partner execution.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          <!-- Sprint Tier -->
-          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-white/30 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-white/40 border border-white/10 px-2 py-0.5 rounded">SPRINT</span>
-              <h3 class="text-xl font-sans font-bold text-white mt-4">Landing Page</h3>
-              <div class="text-3xl font-sans font-bold text-white mt-3 mb-1">$1,450 <span class="text-xs font-mono text-white/40">flat</span></div>
-              <p class="text-xs text-white/50 leading-relaxed mb-6">Designed for launching a product, waitlist, or new business offer.</p>
-              
-              <ul class="space-y-3 text-xs text-white/60 border-t border-white/10 pt-6 mb-8">
-                <li class="flex items-center gap-2"><span>&mdash;</span> Custom High-Conversion Page</li>
-                <li class="flex items-center gap-2"><span>&mdash;</span> Mobile & Desktop Responsive</li>
-                <li class="flex items-center gap-2"><span>&mdash;</span> Behavioral Copy Guidance</li>
-                <li class="flex items-center gap-2"><span>&mdash;</span> 5–7 Business Days Delivery</li>
-                <li class="flex items-center gap-2"><span>&mdash;</span> 2 Revision Rounds</li>
-              </ul>
-            </div>
-            <a href="#contact" class="w-full inline-flex items-center justify-center border border-white/20 bg-white/5 hover:bg-white/10 text-white font-mono text-xs font-bold tracking-widest uppercase h-11 transition-colors">
-              Inquire About Sprint
-            </a>
-          </div>
-
-          <!-- Flagship Tier (Selected) -->
-          <div class="corner-accents border border-primary/40 bg-neutral-950 p-8 flex flex-col justify-between relative shadow-[0_0_30px_rgba(163,255,18,0.1)]">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="absolute -top-3 right-6 bg-primary text-black text-[10px] font-mono uppercase tracking-widest px-3 py-0.5 rounded font-bold">
-              RECOMMENDED
-            </div>
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-primary border border-primary/30 px-2 py-0.5 rounded">FULL STUDIO</span>
-              <h3 class="text-xl font-sans font-bold text-white mt-4">Brand & Website</h3>
-              <div class="text-3xl font-sans font-bold text-white mt-3 mb-1">$2,900 <span class="text-xs font-mono text-white/40">flat</span></div>
-              <p class="text-xs text-white/50 leading-relaxed mb-6">Complete visual identity and multi-page web platform to establish market presence.</p>
-              
-              <ul class="space-y-3 text-xs text-white/80 border-t border-white/10 pt-6 mb-8">
-                <li class="flex items-center gap-2 text-primary"><span>✦</span> Full Brand System (Logo, Fonts, Palette)</li>
-                <li class="flex items-center gap-2 text-primary"><span>✦</span> Multi-Page Website (Up to 4 Pages)</li>
-                <li class="flex items-center gap-2 text-primary"><span>✦</span> Figma Design System & Tokens</li>
-                <li class="flex items-center gap-2 text-primary"><span>✦</span> Behavioral Funnel Architecture</li>
-                <li class="flex items-center gap-2 text-primary"><span>✦</span> 10–14 Business Days Delivery</li>
-                <li class="flex items-center gap-2 text-primary"><span>✦</span> Direct Founder Collaboration</li>
-              </ul>
-            </div>
-            <a href="#contact" class="w-full inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-black font-mono text-xs font-bold tracking-widest uppercase h-11 transition-colors shadow-[0_0_15px_rgba(163,255,18,0.3)]">
-              Initiate Project
-            </a>
-          </div>
-
-          <!-- Product UI Tier -->
-          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-white/30 transition-colors">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div>
-              <span class="text-[10px] font-mono uppercase tracking-widest text-white/40 border border-white/10 px-2 py-0.5 rounded">CUSTOM</span>
-              <h3 class="text-xl font-sans font-bold text-white mt-4">Product UX/UI</h3>
-              <div class="text-3xl font-sans font-bold text-white mt-3 mb-1">$4,500 <span class="text-xs font-mono text-white/40">starting</span></div>
-              <p class="text-xs text-white/50 leading-relaxed mb-6">Interface architecture and clickable Figma prototypes for web and mobile software.</p>
-              
-              <ul class="space-y-3 text-xs text-white/60 border-t border-white/10 pt-6 mb-8">
-                <li class="flex items-center gap-2"><span>&mdash;</span> Complete Web/Mobile App Interface</li>
-                <li class="flex items-center gap-2"><span>&mdash;</span> Clickable Interactive Prototype</li>
-                <li class="flex items-center gap-2"><span>&mdash;</span> Scalable Figma Component Library</li>
-                <li class="flex items-center gap-2"><span>&mdash;</span> Onboarding & Retention Flows</li>
-                <li class="flex items-center gap-2"><span>&mdash;</span> Developer Handoff Documentation</li>
-              </ul>
-            </div>
-            <a href="#contact" class="w-full inline-flex items-center justify-center border border-white/20 bg-white/5 hover:bg-white/10 text-white font-mono text-xs font-bold tracking-widest uppercase h-11 transition-colors">
-              Discuss Product Scope
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 7. COMMUNITY MARQUEE (TESTIMONIALS) ==================== -->
-    <section id="feedback" class="bg-[#101010] relative overflow-hidden py-24 md:py-32 font-mono border-t border-white/5">
-      <div class="max-w-7xl mx-auto px-6 md:px-12">
-        <div class="mb-14 flex flex-col items-start md:items-center text-left md:text-center">
-          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
-            <span class="mr-3 opacity-70">//</span>
-            COMMUNITY & CLIENT TELEMETRY
-          </div>
-          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
-            Trusted by <span class="text-primary">founders & builders</span>
-          </h2>
-          <p class="mt-4 max-w-xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
-            Real feedback on our design craft, sprint speed, and conversion results.
-          </p>
-        </div>
-      </div>
-
-      <!-- Infinite Marquee Track -->
-      <div class="relative w-full overflow-hidden mt-8">
-        <!-- Fade Edges -->
-        <div class="pointer-events-none absolute top-0 left-0 z-20 h-full w-24 md:w-40 bg-gradient-to-r from-[#101010] to-transparent"></div>
-        <div class="pointer-events-none absolute top-0 right-0 z-20 h-full w-24 md:w-40 bg-gradient-to-l from-[#101010] to-transparent"></div>
-
-        <div class="marquee-track flex gap-6 px-4">
-          <!-- Card 1 -->
-          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-xs text-primary font-bold mb-3">[ FOUNDER REVIEW ]</div>
-            <p class="text-xs text-white/80 leading-relaxed mb-6">
-              &quot;The combination of fine-arts visual aesthetics and clean Next.js code is rare. Mocta built our landing page in 8 days and our signups doubled.&quot;
-            </p>
-            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
-              <span class="text-white font-bold">Alex Chen</span>
-              <span>@alexchen_dev</span>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-xs text-primary font-bold mb-3">[ DESIGN SYSTEM REVIEW ]</div>
-            <p class="text-xs text-white/80 leading-relaxed mb-6">
-              &quot;Cleanest Figma components our engineers have ever received. No back-and-forth guessing about padding or tokens.&quot;
-            </p>
-            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
-              <span class="text-white font-bold">Elena Rostova</span>
-              <span>Head of Product</span>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-xs text-primary font-bold mb-3">[ CONVERSION AUDIT ]</div>
-            <p class="text-xs text-white/80 leading-relaxed mb-6">
-              &quot;Their psychology audit caught 3 major drop-off points on our checkout flow that our in-house team missed for months.&quot;
-            </p>
-            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
-              <span class="text-white font-bold">Marcus Thorne</span>
-              <span>SaaS Founder</span>
-            </div>
-          </div>
-
-          <!-- Card 4 (Duplicate for loop) -->
-          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-xs text-primary font-bold mb-3">[ FOUNDER REVIEW ]</div>
-            <p class="text-xs text-white/80 leading-relaxed mb-6">
-              &quot;The combination of fine-arts visual aesthetics and clean Next.js code is rare. Mocta built our landing page in 8 days and our signups doubled.&quot;
-            </p>
-            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
-              <span class="text-white font-bold">Alex Chen</span>
-              <span>@alexchen_dev</span>
-            </div>
-          </div>
-
-          <!-- Card 5 (Duplicate for loop) -->
-          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
-            <div class="corner-top-right"></div>
-            <div class="corner-bottom-left"></div>
-            <div class="text-xs text-primary font-bold mb-3">[ DESIGN SYSTEM REVIEW ]</div>
-            <p class="text-xs text-white/80 leading-relaxed mb-6">
-              &quot;Cleanest Figma components our engineers have ever received. No back-and-forth guessing about padding or tokens.&quot;
-            </p>
-            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
-              <span class="text-white font-bold">Elena Rostova</span>
-              <span>Head of Product</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 8. CONTACT & LEAD INTAKE ==================== -->
-    <section id="contact" class="py-24 md:py-32 relative overflow-hidden bg-[#101010] font-mono border-t border-white/5">
-      <div class="max-w-7xl mx-auto px-6 md:px-12">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-          <div class="md:col-span-5">
-            <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
-              <span class="mr-3 opacity-70">//</span>
-              PROJECT INQUIRY
-            </div>
-            <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white mb-6">
-              Let's build your <span class="text-primary">next milestone</span>.
-            </h2>
-            <p class="text-xs md:text-sm text-white/60 uppercase tracking-widest leading-relaxed mb-8">
-              Share details about your product, timeline, and goals. Both studio founders review every submission and reply within 24 hours.
-            </p>
-
-            <div class="space-y-4 text-xs text-white/40 border-t border-white/5 pt-6">
-              <div>
-                <span class="text-white font-bold block mb-1">CURRENT STATUS</span>
-                <span>Accepting 2 new client sprints for this month</span>
-              </div>
-              <div>
-                <span class="text-white font-bold block mb-1">DIRECT INQUIRIES</span>
-                <span class="text-primary">contact@mocta.studio</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="md:col-span-7">
-            <form id="contactForm" class="corner-accents border border-white/10 bg-black/50 p-8 space-y-5">
-              <div class="corner-top-right"></div>
-              <div class="corner-bottom-left"></div>
-
-              <div>
-                <label for="name" class="block text-xs uppercase tracking-widest text-white/50 mb-2">Your Name</label>
-                <input type="text" id="name" name="name" required placeholder="Alex Vance" class="w-full bg-neutral-900 border border-white/10 px-4 py-3 text-xs text-white focus:outline-none focus:border-primary">
-              </div>
-
-              <div>
-                <label for="email" class="block text-xs uppercase tracking-widest text-white/50 mb-2">Work Email</label>
-                <input type="email" id="email" name="email" required placeholder="alex@startup.com" class="w-full bg-neutral-900 border border-white/10 px-4 py-3 text-xs text-white focus:outline-none focus:border-primary">
-              </div>
-
-              <div>
-                <label for="scope" class="block text-xs uppercase tracking-widest text-white/50 mb-2">Scope of Project</label>
-                <select id="scope" name="scope" class="w-full bg-neutral-900 border border-white/10 px-4 py-3 text-xs text-white focus:outline-none focus:border-primary">
-                  <option value="landing">Marketing Landing Page ($1,450)</option>
-                  <option value="brand_web">Complete Brand & Website ($2,900)</option>
-                  <option value="product_ui">Product UX/UI Interface ($4,500)</option>
-                  <option value="audit">Conversion & Heuristic Audit</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="message" class="block text-xs uppercase tracking-widest text-white/50 mb-2">Project Brief & Timeline</label>
-                <textarea id="message" name="message" rows="4" placeholder="Briefly summarize your company, product, and target launch timeline..." class="w-full bg-neutral-900 border border-white/10 px-4 py-3 text-xs text-white focus:outline-none focus:border-primary"></textarea>
-              </div>
-
-              <button type="submit" id="submitBtn" class="w-full h-12 bg-primary text-black font-mono text-xs font-bold tracking-widest uppercase hover:bg-primary/90 transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(163,255,18,0.2)]">
-                Submit Project Inquiry &rarr;
-              </button>
-
-              <div id="formSuccess" class="hidden border border-primary/40 bg-primary/10 p-4 text-xs text-primary font-bold tracking-wider uppercase text-center">
-                Inquiry received. A studio founder will reply within 24 hours.
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- ==================== 9. TECHNICAL FOOTER ==================== -->
-  <footer class="bg-black text-white/70 relative border-t border-white/10 font-mono py-16">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-      <div class="flex items-center gap-3">
-        <div class="w-7 h-7 rounded border border-white/20 bg-white/5 flex items-center justify-center font-mono font-bold text-xs text-primary">
-          ✦
-        </div>
-        <span class="font-sans font-bold text-white tracking-widest uppercase text-sm">MOCTA STUDIO</span>
-        <span class="text-xs text-white/40 ml-2">&copy; 2026. All rights reserved.</span>
-      </div>
+  <!-- Studio Footer -->
+  <footer class="shell footer">
+    <div class="footer-top">
+      <a class="wordmark" href="#" aria-label="Mocta home">Mocta<span>.</span></a>
+      <p>
+        <a href="#services">Websites</a>, <a href="#services">Brand Direction</a> &amp; <a href="#services">AI Automation</a>.<br>
+        Founded by AI Engineers &amp; Fine Art Designers.
+      </p>
+      <p class="footer-contact">
+        <a href="mailto:hello@mocta.design">
+          hello@mocta.design 
+          <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 18 18 6M6 6h12v12"/>
+          </svg>
+        </a>
+      </p>
+    </div>
 
-      <div class="flex items-center gap-8 text-xs tracking-widest uppercase text-white/50">
-        <a href="#services" class="hover:text-primary transition-colors">Services</a>
-        <a href="#bento" class="hover:text-primary transition-colors">Architecture</a>
-        <a href="#pricing" class="hover:text-primary transition-colors">Pricing</a>
-        <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
-      </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#services">Services</a>
+      <a href="#work">Selected work</a>
+      <a href="#approach">Our approach</a>
+      <a href="#partners">Founders</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="footer-bottom">
+      <span>© 2026 Mocta Studio. All rights reserved.</span>
+      <span>Engineered with semantic HTML &amp; timeless design.</span>
+    </div>
+
+    <!-- Oversized Signoff Wordmark -->
+    <div class="ed-signoff" aria-hidden="true">
+      Mocta<span>.</span>
     </div>
   </footer>
 
-  <!-- Script logic -->
+  <!-- Floating Mobile / Quick Contact Dock -->
+  <div class="hx-dock is-on" aria-label="Contact Mocta" role="region">
+    <a class="hx-dock-main" href="#contact">
+      Let’s talk 
+      <svg class="ui-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 18 18 6M6 6h12v12"/>
+      </svg>
+    </a>
+    <a class="hx-dock-alt" href="mailto:hello@mocta.design" aria-label="Email Mocta founders">
+      <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;">
+        <path d="M3 6h18v12H3zM3 7l9 6 9-6"/>
+      </svg>
+      Email
+    </a>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
