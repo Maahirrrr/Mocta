@@ -62,7 +62,7 @@ export const Hero: React.FC = () => {
           initial={{ filter: 'blur(10px)', opacity: 0, y: 20 }}
           animate={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8, ease: 'easeOut' }}
-          className="text-sm md:text-base text-white font-body font-light leading-tight max-w-xl mx-auto mb-10"
+          className="text-sm md:text-base text-white/95 font-body font-normal leading-relaxed max-w-xl mx-auto mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
         >
           Stunning design. Blazing performance. Built by AI, refined by experts. This is web design, wildly reimagined.
         </motion.p>
@@ -84,10 +84,10 @@ export const Hero: React.FC = () => {
 
           <a
             href="#how-it-works"
-            className="text-sm font-medium font-body text-white/90 hover:text-white flex items-center gap-2 transition-colors py-2 px-3"
+            className="liquid-glass rounded-full px-5 py-2.5 text-sm font-medium font-body text-white/90 hover:text-white flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-md group"
           >
-            <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-              <Play className="w-3 h-3 fill-white text-white" />
+            <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
+              <Play className="w-2.5 h-2.5 fill-current" />
             </span>
             <span>Watch the Film</span>
           </a>
