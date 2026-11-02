@@ -1,450 +1,794 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mocta | Design, Tech & UX Studio</title>
-  <meta name="description" content="Mocta is an independent studio. We build brand identities, websites, and user interfaces for software companies and early-stage startups.">
+  <title>MOCTA — Digital Product, Brand & Behavioral UX Studio</title>
+  <meta name="description" content="Mocta is a digital product and brand studio. We build high-conversion websites, brand design systems, and software interfaces for tech startups.">
+  
+  <!-- Fonts: Space Grotesk & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            background: '#101010',
+            foreground: '#EDEDED',
+            primary: {
+              DEFAULT: '#A3FF12', // Electric Lime / Watermelon UI signature
+              foreground: '#101010',
+            },
+            secondary: {
+              DEFAULT: '#1c1c1c',
+              foreground: '#EDEDED',
+            },
+            muted: {
+              DEFAULT: '#222222',
+              foreground: '#888888',
+            },
+            border: 'rgba(255, 255, 255, 0.1)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Technical Radial Grid Background */
+    .bg-tech-grid {
+      background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    
+    /* Technical Corner Accents */
+    .corner-accents {
+      position: relative;
+    }
+    .corner-accents::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .corner-accents::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 8px; height: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      border-right: 1px solid rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .corner-top-right {
+      position: absolute;
+      top: 0; right: 0;
+      width: 8px; height: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-right: 1px solid rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .corner-bottom-left {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 8px; height: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* Ambient Hero Glow */
+    .hero-glow {
+      background: radial-gradient(ellipse at center, rgba(163, 255, 18, 0.08) 0%, rgba(163, 255, 18, 0.02) 40%, transparent 70%);
+    }
+
+    /* Continuous Marquee Animation */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 35s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    /* Knob Dial Animation */
+    .knob-dial {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
 </head>
-<body>
-  <!-- Header -->
-  <header class="studio-header">
-    <div class="site-container header-inner">
-      <a href="#" class="studio-brand">
-        <span class="studio-mark">M</span>
-        <span class="studio-name">MOCTA</span>
+<body class="bg-[#101010] text-[#EDEDED] min-h-screen overflow-x-hidden selection:bg-primary selection:text-black font-body">
+
+  <!-- Ambient Background Glow & Technical Grid -->
+  <div class="fixed inset-0 pointer-events-none z-0">
+    <div class="absolute inset-0 bg-tech-grid opacity-80"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] hero-glow rounded-full blur-3xl opacity-60"></div>
+  </div>
+
+  <!-- Technical Edge Borders & Crosshairs -->
+  <div class="hidden lg:block fixed inset-0 pointer-events-none z-40">
+    <div class="absolute top-0 bottom-0 left-8 md:left-14 w-px bg-white/5"></div>
+    <div class="absolute top-0 bottom-0 right-8 md:right-14 w-px bg-white/5"></div>
+  </div>
+
+  <!-- ==================== 1. NAVBAR ==================== -->
+  <header id="mainNavbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent py-5">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded border border-white/20 bg-white/5 flex items-center justify-center font-mono font-bold text-sm text-primary transition-transform duration-300 group-hover:scale-105 shadow-[0_0_12px_rgba(163,255,18,0.2)]">
+          ✦
+        </div>
+        <span class="font-mono font-bold text-sm tracking-widest uppercase text-white">MOCTA</span>
       </a>
 
-      <nav class="studio-nav">
-        <a href="#services" class="nav-item">Services</a>
-        <a href="#background" class="nav-item">Background</a>
-        <a href="#process" class="nav-item">Process</a>
-        <a href="#pricing" class="nav-item">Pricing</a>
-        <a href="#faq" class="nav-item">FAQ</a>
+      <!-- Center Links -->
+      <nav class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest text-white/50">
+        <a href="#services" class="hover:text-primary transition-colors">Services</a>
+        <a href="#bento" class="hover:text-primary transition-colors">Architecture</a>
+        <a href="#process" class="hover:text-primary transition-colors">Process</a>
+        <a href="#pricing" class="hover:text-primary transition-colors">Pricing</a>
+        <a href="#feedback" class="hover:text-primary transition-colors">Telemetry</a>
       </nav>
 
-      <div class="header-action">
-        <a href="#contact" class="btn btn-primary">Start a Project</a>
+      <!-- Right Action -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="https://github.com/Maahirrrr/Mocta" target="_blank" rel="noreferrer" class="flex items-center justify-center h-9 w-9 border border-white/10 bg-transparent text-white/50 hover:text-white hover:border-white/30 transition-colors" title="GitHub Repo">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a href="#contact" class="flex items-center h-9 bg-primary text-black font-mono font-bold tracking-widest uppercase px-5 text-xs hover:bg-primary/90 transition-all active:scale-[0.97]">
+          Get Started
+        </a>
       </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="mobileMenuBtn" class="md:hidden text-white/70 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden bg-background border-b border-border p-6 flex flex-col gap-4 font-mono text-xs uppercase tracking-widest">
+      <a href="#services" class="hover:text-primary">Services</a>
+      <a href="#bento" class="hover:text-primary">Architecture</a>
+      <a href="#process" class="hover:text-primary">Process</a>
+      <a href="#pricing" class="hover:text-primary">Pricing</a>
+      <a href="#contact" class="text-primary font-bold">Start a Project →</a>
     </div>
   </header>
 
-  <main>
-    <!-- Hero Surface -->
-    <section class="hero-surface">
-      <div class="site-container">
-        <div class="hero-callout">
-          <span class="live-indicator"></span>
-          <span>Currently accepting new client projects</span>
+  <main class="relative z-10 pt-24">
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <section class="relative min-h-[90vh] flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto py-20 font-mono">
+      <div class="mx-auto flex max-w-4xl flex-col items-center text-center">
+        <!-- Top Telemetry Pill -->
+        <div class="text-primary mb-8 inline-flex items-center gap-2 border border-white/10 bg-white/2 px-4 py-1.5 text-xs font-bold tracking-widest uppercase backdrop-blur-sm shadow-[0_0_16px_rgba(163,255,18,0.15)]">
+          <span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse mr-1"></span>
+          Fine Arts &middot; AI Engineering &middot; Behavioral UX
         </div>
 
-        <h1 class="hero-headline">
-          Websites, product interfaces, and brand design for tech startups.
+        <!-- Main Title -->
+        <h1 class="text-4xl md:text-6xl lg:text-[76px] font-sans font-bold leading-[1.02] tracking-tighter text-white mb-6">
+          Websites and interfaces built for <span id="rotatingWord" class="text-primary transition-all duration-300">startups</span>
         </h1>
 
-        <p class="hero-lead">
-          We combine fine arts training with software engineering and user psychology. We design clear brand systems, build fast websites, and create interfaces that make complicated software easy to use.
+        <!-- Subheading -->
+        <p class="mb-10 max-w-2xl text-sm md:text-base leading-relaxed text-white/60 font-mono uppercase tracking-widest text-pretty">
+          Handcrafted fine art aesthetics backed by cognitive psychology and fast code. We build brand systems, websites, and interfaces that make complex software simple.
         </p>
 
-        <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary btn-large">Book an Intro Call</a>
-          <a href="#services" class="btn btn-secondary btn-large">See Our Services</a>
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+          <a href="#contact" class="h-12 inline-flex items-center justify-center bg-primary text-black font-mono font-bold tracking-widest uppercase px-8 text-xs hover:bg-primary/90 transition-all active:scale-[0.97] shadow-[0_0_20px_rgba(163,255,18,0.3)]">
+            Start an Engagement ↗
+          </a>
+          <a href="#bento" class="h-12 inline-flex items-center justify-center border border-white/15 bg-white/2 text-white font-mono font-bold tracking-widest uppercase px-8 text-xs hover:bg-white/5 transition-all active:scale-[0.97]">
+            View Architecture
+          </a>
         </div>
 
-        <div class="studio-dispatch-grid">
-          <div class="dispatch-unit">
-            <h3 class="dispatch-title">Direct founder communication</h3>
-            <p class="dispatch-body">You work directly with the designers and engineers building your project. We don't have account managers or middle layers.</p>
+        <!-- Social Proof Metric Ribbon -->
+        <div class="mt-16 flex flex-col items-center gap-4">
+          <div class="flex items-center gap-3 font-mono text-xs tracking-widest text-white/40 uppercase">
+            <span class="h-px w-8 bg-white/10"></span>
+            Partner-Led Studio Cadence
+            <span class="h-px w-8 bg-white/10"></span>
           </div>
-          <div class="dispatch-unit">
-            <h3 class="dispatch-title">1 to 2 week sprints</h3>
-            <p class="dispatch-body">Most landing pages and visual identity projects ship within 7 to 14 days, so you can test ideas and launch on schedule.</p>
-          </div>
-          <div class="dispatch-unit">
-            <h3 class="dispatch-title">Complete file ownership</h3>
-            <p class="dispatch-body">You receive all source files upon completion, including Figma design components, vector logo exports, and clean web code.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Background & Team Structure -->
-    <section id="background" class="section-surface">
-      <div class="site-container">
-        <div class="section-intro">
-          <h2 class="section-title">How our studio works</h2>
-          <p class="section-subtitle">
-            Most agencies separate design and engineering into disconnected teams. We run both disciplines together from the first day of a project.
-          </p>
-        </div>
-
-        <div class="discipline-duo">
-          <!-- Fine Arts Practice -->
-          <div class="discipline-panel">
-            <div class="discipline-badge">Design & Visual Identity</div>
-            <h3 class="discipline-heading">Fine Arts & Brand Identity</h3>
-            <p class="discipline-text">
-              Led by fine arts training with a background in AI and computer science. We design custom marks, choose typography with good hierarchy, and build design systems that give your product an authentic visual character.
-            </p>
-            <div class="spec-matrix">
-              <div class="spec-row">
-                <span class="spec-name">Logo and mark design</span>
-                <span class="spec-detail">Vector files for web and print</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">Typography systems</span>
-                <span class="spec-detail">Selected font pairings and size scales</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">Color palettes</span>
-                <span class="spec-detail">Accessible contrast and UI tokens</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">Figma component libraries</span>
-                <span class="spec-detail">Ready for design-to-code handoff</span>
-              </div>
+          <div class="flex flex-wrap justify-center items-center gap-4">
+            <div class="border border-white/10 bg-white/2 px-4 py-2 text-xs font-bold tracking-wider text-white/70 uppercase">
+              10–14 Day Sprints
             </div>
-          </div>
-
-          <!-- Behavioral UX Practice -->
-          <div class="discipline-panel">
-            <div class="discipline-badge">Engineering & UX Strategy</div>
-            <h3 class="discipline-heading">Engineering & User Psychology</h3>
-            <p class="discipline-text">
-              Led by AI and machine learning engineering with research in behavioral psychology. We organize page layouts around user attention, remove steps that cause visitors to leave, and write fast, responsive code.
-            </p>
-            <div class="spec-matrix">
-              <div class="spec-row">
-                <span class="spec-name">Clear page hierarchy</span>
-                <span class="spec-detail">Easy to scan without visual noise</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">Conversion flow reviews</span>
-                <span class="spec-detail">Fewer drop-offs during signup</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">Frontend development</span>
-                <span class="spec-detail">HTML5, CSS, Next.js, and Framer</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-name">Performance and responsiveness</span>
-                <span class="spec-detail">Works smoothly across phones and laptops</span>
-              </div>
+            <div class="border border-white/10 bg-white/2 px-4 py-2 text-xs font-bold tracking-wider text-white/70 uppercase">
+              100% IP Ownership
+            </div>
+            <div class="border border-white/10 bg-white/2 px-4 py-2 text-xs font-bold tracking-wider text-white/70 uppercase">
+              Direct Founder Access
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section-surface">
-      <div class="site-container">
-        <div class="section-intro">
-          <h2 class="section-title">What we build for clients</h2>
-          <p class="section-subtitle">
-            We focus on four core project types for early-stage software companies, agency founders, and local businesses.
+    <!-- ==================== 3. TELEMETRY STATS ==================== -->
+    <section class="bg-[#101010] relative w-full overflow-hidden py-24 font-mono border-t border-b border-white/5">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="mb-14 flex flex-col items-start md:items-center text-left md:text-center">
+          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
+            <span class="mr-3 opacity-70">//</span>
+            TELEMETRY DATA
+          </div>
+          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
+            Everything you need <br class="hidden sm:block" /> to <span class="text-primary">ship faster</span>
+          </h2>
+          <p class="mt-4 max-w-2xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
+            Stop building the same generic agency templates. Mocta provides handcrafted design systems, conversion-driven websites, and high-performance code.
           </p>
         </div>
 
-        <div class="capabilities-matrix">
-          <article class="capability-item">
-            <h3 class="capability-title">Marketing Websites</h3>
-            <p class="capability-desc">
-              Custom websites built with clean code or visual platforms like Framer and Webflow. We focus on clear headlines, readable typography, and straightforward contact paths so visitors understand what you sell.
-            </p>
-            <div class="capability-tags">
-              <span>Next.js</span>
-              <span>HTML5 / CSS</span>
-              <span>Framer</span>
-              <span>Webflow</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Stat 1 -->
+          <div class="corner-accents border border-white/10 bg-neutral-950 p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-primary mb-4 opacity-80 group-hover:scale-110 transition-transform">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
             </div>
-          </article>
-
-          <article class="capability-item">
-            <h3 class="capability-title">Brand Identity Design</h3>
-            <p class="capability-desc">
-              Complete brand packages including primary logos, secondary marks, typography pairings, color systems, and a concise brand guide to keep future marketing consistent.
-            </p>
-            <div class="capability-tags">
-              <span>Logo Design</span>
-              <span>Brand Guidelines</span>
-              <span>Vector Assets</span>
-              <span>Design Tokens</span>
-            </div>
-          </article>
-
-          <article class="capability-item">
-            <h3 class="capability-title">Product UX and App UI</h3>
-            <p class="capability-desc">
-              User interface design for SaaS apps, web dashboards, and mobile products. We map customer workflows, organize screens logically, and build interactive Figma prototypes.
-            </p>
-            <div class="capability-tags">
-              <span>Figma Prototypes</span>
-              <span>Wireframing</span>
-              <span>SaaS Dashboards</span>
-            </div>
-          </article>
-
-          <article class="capability-item">
-            <h3 class="capability-title">UX & Conversion Audits</h3>
-            <p class="capability-desc">
-              A detailed review of your current website or app. We point out confusing layouts, inconsistent typography, slow page loads, and points where users frequently drop out of your funnel.
-            </p>
-            <div class="capability-tags">
-              <span>Usability Review</span>
-              <span>Funnel Analysis</span>
-              <span>Action Items</span>
-            </div>
-          </article>
-
-          <article class="capability-item">
-            <h3 class="capability-title">Interactive Calculators & Tools</h3>
-            <p class="capability-desc">
-              Custom web calculators, pricing estimators, and onboarding forms that demonstrate the financial or time savings of your product before asking for a demo request.
-            </p>
-            <div class="capability-tags">
-              <span>JavaScript Calculators</span>
-              <span>Lead Intake</span>
-              <span>Custom Math</span>
-            </div>
-          </article>
-
-          <article class="capability-item">
-            <h3 class="capability-title">Developer Handoff</h3>
-            <p class="capability-desc">
-              Everything needed for an in-house engineering team to build without guesswork: clean Git branches, organized Figma components, and documented CSS variables.
-            </p>
-            <div class="capability-tags">
-              <span>Git Repositories</span>
-              <span>Figma Tokens</span>
-              <span>Clean Code</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Process -->
-    <section id="process" class="section-surface">
-      <div class="site-container">
-        <div class="section-intro">
-          <h2 class="section-title">Our step-by-step process</h2>
-          <p class="section-subtitle">
-            Every project follows a straightforward timeline with regular check-ins and clear deliverables.
-          </p>
-        </div>
-
-        <div class="cadence-flow">
-          <div class="cadence-stage">
-            <div class="stage-tag">Step 1</div>
-            <h4 class="stage-name">Discovery call</h4>
-            <p class="stage-desc">We discuss your product, target customers, design preferences, and timeline to agree on project scope.</p>
+            <div class="text-white font-mono text-4xl font-bold tracking-tight mb-2">100%</div>
+            <div class="text-xs font-bold tracking-widest text-white/40 uppercase">Bespoke Fine Art Craft</div>
           </div>
-          <div class="cadence-stage">
-            <div class="stage-tag">Step 2</div>
-            <h4 class="stage-name">Wireframes & visual style</h4>
-            <p class="stage-desc">We share moodboards and page structure wireframes so we agree on the layout before final styling.</p>
+
+          <!-- Stat 2 -->
+          <div class="corner-accents border border-white/10 bg-neutral-950 p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-primary mb-4 opacity-80 group-hover:scale-110 transition-transform">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="text-white font-mono text-4xl font-bold tracking-tight mb-2">10 Days</div>
+            <div class="text-xs font-bold tracking-widest text-white/40 uppercase">Average Sprint Velocity</div>
           </div>
-          <div class="cadence-stage">
-            <div class="stage-tag">Step 3</div>
-            <h4 class="stage-name">Design & build</h4>
-            <p class="stage-desc">We design the full-fidelity screens, write responsive code, and test on phones and desktop screens.</p>
+
+          <!-- Stat 3 -->
+          <div class="corner-accents border border-white/10 bg-neutral-950 p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-primary mb-4 opacity-80 group-hover:scale-110 transition-transform">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div class="text-white font-mono text-4xl font-bold tracking-tight mb-2">2.8x</div>
+            <div class="text-xs font-bold tracking-widest text-white/40 uppercase">Conversion Lift</div>
           </div>
-          <div class="cadence-stage">
-            <div class="stage-tag">Step 4</div>
-            <h4 class="stage-name">Review & handoff</h4>
-            <p class="stage-desc">We complete your revisions, run speed checks, and hand over all design files, code repositories, and documentation.</p>
+
+          <!-- Stat 4 -->
+          <div class="corner-accents border border-white/10 bg-neutral-950 p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-primary mb-4 opacity-80 group-hover:scale-110 transition-transform">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <div class="text-white font-mono text-4xl font-bold tracking-tight mb-2">Zero</div>
+            <div class="text-xs font-bold tracking-widest text-white/40 uppercase">Junior Delegations</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="section-surface">
-      <div class="site-container">
-        <div class="section-intro">
-          <h2 class="section-title">Transparent project pricing</h2>
-          <p class="section-subtitle">
-            Flat project fees with clear scopes. You know the exact cost and timeline before any work begins.
+    <!-- ==================== 4. ANIMATED BENTO (MICRO-INTERACTIONS) ==================== -->
+    <section id="bento" class="py-24 md:py-32 relative overflow-hidden bg-[#101010] font-mono">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="mb-14 flex flex-col items-start md:items-center text-left md:text-center">
+          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
+            <span class="mr-3 opacity-70">//</span>
+            MICRO-INTERACTIONS & ARCHITECTURE
+          </div>
+          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
+            Interactions that <span class="text-primary">delight & convert</span>
+          </h2>
+          <p class="mt-4 max-w-2xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
+            Drop-in animated interactive components engineered for startups. Smooth, interruptible, and highly optimized.
           </p>
         </div>
 
-        <div class="engagements-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[420px]">
+          <!-- Card 1: AI Agent / Co-Founder Model (Col Span 2) -->
+          <div class="corner-accents md:col-span-1 lg:col-span-2 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="flex items-center justify-between">
+              <span class="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-primary transition-colors">
+                [ STUDIO CO-FOUNDER ENGINE ]
+              </span>
+              <span class="text-primary text-xs font-bold">ONLINE</span>
+            </div>
+
+            <div class="flex flex-col items-center justify-center my-auto">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
+                <div class="border border-white/10 bg-white/3 p-5 rounded">
+                  <div class="text-primary text-xs font-bold mb-1">DEPARTMENT 01</div>
+                  <div class="font-sans font-bold text-white text-base">Fine Arts & Design</div>
+                  <p class="text-[11px] text-white/50 mt-2 leading-relaxed">BRDS fine arts foundation, color psychology, hand-drawn vector marks, and Figma component libraries.</p>
+                </div>
+                <div class="border border-white/10 bg-white/3 p-5 rounded">
+                  <div class="text-primary text-xs font-bold mb-1">DEPARTMENT 02</div>
+                  <div class="font-sans font-bold text-white text-base">Tech & Behavioral UX</div>
+                  <p class="text-[11px] text-white/50 mt-2 leading-relaxed">AI/ML engineering, conversion cognitive heuristics, friction reduction, and sub-second Next.js code.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] text-white/40 border-t border-white/5 pt-4">
+              <span>DUAL SPECIALIZATION</span>
+              <span class="text-white/70">FINE ART &times; BEHAVIORAL CODE</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Interactive Morphing Button -->
+          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div>
+              <span class="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-primary transition-colors">
+                [ INTERACTIVE ACTION ]
+              </span>
+            </div>
+
+            <div class="flex flex-col items-center justify-center my-auto">
+              <button id="morphButton" class="relative group/btn overflow-hidden h-12 w-48 border border-primary/50 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase rounded flex items-center justify-center transition-all hover:bg-primary hover:text-black">
+                <span id="morphText">Audit Website</span>
+              </button>
+              <span class="text-[10px] text-white/30 uppercase tracking-widest mt-4">Click to simulate trigger</span>
+            </div>
+
+            <div class="text-[10px] text-white/40 border-t border-white/5 pt-4 flex justify-between">
+              <span>STATE: ACTIVE</span>
+              <span class="text-primary">SPRING INTERACTION</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Interactive Knob Slider -->
+          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div>
+              <span class="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-primary transition-colors">
+                [ SPRINT VELOCITY DIAL ]
+              </span>
+            </div>
+
+            <div class="flex flex-col items-center justify-center my-auto">
+              <div class="relative w-36 h-36 rounded-full border border-white/15 bg-neutral-900 flex items-center justify-center shadow-inner">
+                <div id="knobPointer" class="absolute w-2 h-2 rounded-full bg-primary top-3 knob-dial"></div>
+                <div class="text-center">
+                  <div id="knobDisplay" class="text-3xl font-bold font-sans text-white">10</div>
+                  <div class="text-[9px] text-white/40 uppercase tracking-widest">Days Sprint</div>
+                </div>
+              </div>
+              <input type="range" id="knobInput" min="5" max="30" value="10" class="w-44 mt-6 accent-primary cursor-pointer">
+            </div>
+
+            <div class="text-[10px] text-white/40 border-t border-white/5 pt-4 flex justify-between">
+              <span>TARGET DEADLINE</span>
+              <span id="knobLabel" class="text-primary font-bold">10 DAYS TO LAUNCH</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Telemetry Graphic (100+ Systems) -->
+          <div class="corner-accents border border-primary/30 bg-primary/5 backdrop-blur-md p-8 flex flex-col justify-between group">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div>
+              <span class="text-primary text-[10px] uppercase tracking-widest font-bold">
+                [ DESIGN ARTIFACTS ]
+              </span>
+            </div>
+
+            <div class="flex flex-col items-center justify-center my-auto text-center">
+              <div class="text-6xl font-bold font-sans text-white tracking-tighter mb-2">100+</div>
+              <div class="text-primary font-bold tracking-widest uppercase text-xs">DESIGN TOKENS & FIGMA ASSETS</div>
+              <p class="text-white/40 text-[11px] mt-2 max-w-[200px]">Export-ready vector typography, color systems, and UI components.</p>
+            </div>
+
+            <div class="text-[10px] text-white/40 border-t border-white/10 pt-4 flex justify-between">
+              <span>FIGMA &middot; CODE</span>
+              <span class="text-primary">READY FOR DEV</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Production Ready Template Mockup -->
+          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div>
+              <span class="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-primary transition-colors">
+                [ ARCHITECTURE STACK ]
+              </span>
+            </div>
+
+            <div class="flex flex-col gap-2.5 my-auto w-full">
+              <div class="border border-white/10 bg-neutral-900/80 p-3 rounded flex items-center justify-between text-xs">
+                <span class="text-white/80 font-bold">Next.js / TypeScript</span>
+                <span class="text-primary font-mono text-[10px]">PRODUCTION</span>
+              </div>
+              <div class="border border-white/10 bg-neutral-900/80 p-3 rounded flex items-center justify-between text-xs">
+                <span class="text-white/80 font-bold">Tailwind CSS v4</span>
+                <span class="text-primary font-mono text-[10px]">STYLES</span>
+              </div>
+              <div class="border border-white/10 bg-neutral-900/80 p-3 rounded flex items-center justify-between text-xs">
+                <span class="text-white/80 font-bold">Framer & Webflow</span>
+                <span class="text-primary font-mono text-[10px]">NO-CODE</span>
+              </div>
+            </div>
+
+            <div class="text-[10px] text-white/40 border-t border-white/5 pt-4 flex justify-between">
+              <span>CODE CLEANLINESS</span>
+              <span class="text-primary">100% LIGHTHOUSE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. FEATURES BENTO (SERVICES) ==================== -->
+    <section id="services" class="bg-[#101010] relative overflow-hidden py-24 font-mono md:py-32 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="mb-16 flex flex-col items-start md:items-center text-left md:text-center">
+          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
+            <span class="mr-3 opacity-70">//</span>
+            FEATURE BENTO
+          </div>
+          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
+            Why choose <span class="text-primary">Mocta</span> Studio?
+          </h2>
+          <p class="mt-4 max-w-xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
+            Eliminating the traditional agency disconnect between visual beauty and technical conversion.
+          </p>
+        </div>
+
+        <div class="grid auto-rows-[340px] grid-cols-1 gap-6 lg:grid-cols-5">
+          <!-- Bento 1: 100% IP Ownership (Col 2) -->
+          <div class="corner-accents lg:col-span-2 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-primary text-2xl font-bold">01</div>
+            <div>
+              <h3 class="text-white font-sans text-xl font-bold uppercase tracking-wider mb-2">100% IP & Source Ownership</h3>
+              <p class="text-xs text-white/50 uppercase tracking-widest leading-relaxed">
+                Zero vendor lock-in. You receive full intellectual property rights, raw Figma design systems, vector logos, and clean git repositories.
+              </p>
+            </div>
+            <div class="text-[10px] text-primary tracking-widest uppercase pt-4 border-t border-white/5">
+              COMPLETE TRANSFER ON COMPLETION
+            </div>
+          </div>
+
+          <!-- Bento 2: Handcrafted Fine Arts (Col 3) -->
+          <div class="corner-accents lg:col-span-3 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-primary text-2xl font-bold">02</div>
+            <div>
+              <h3 class="text-white font-sans text-xl font-bold uppercase tracking-wider mb-2">Fine Arts Visual Direction</h3>
+              <p class="text-xs text-white/50 uppercase tracking-widest leading-relaxed max-w-md">
+                Led by trained fine arts and visual harmony background. Custom-crafted brand marks, spatial balance, curated color palettes, and distinct typographic scales that avoid cookie-cutter themes.
+              </p>
+            </div>
+            <div class="text-[10px] text-primary tracking-widest uppercase pt-4 border-t border-white/5">
+              BRDS TRAINED &middot; ORIGINAL VECTOR MARKS
+            </div>
+          </div>
+
+          <!-- Bento 3: Behavioral Psychology (Col 3) -->
+          <div class="corner-accents lg:col-span-3 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-primary text-2xl font-bold">03</div>
+            <div>
+              <h3 class="text-white font-sans text-xl font-bold uppercase tracking-wider mb-2">Behavioral Psychology & Conversion</h3>
+              <p class="text-xs text-white/50 uppercase tracking-widest leading-relaxed max-w-md">
+                Grounded in empirical cognitive heuristics: visual scan paths, cognitive load reduction, loss aversion framing, and clear decision architecture that turns traffic into signed contracts.
+              </p>
+            </div>
+            <div class="text-[10px] text-primary tracking-widest uppercase pt-4 border-t border-white/5">
+              COGNITIVE HEURISTICS &middot; FRICTION REDUCTION
+            </div>
+          </div>
+
+          <!-- Bento 4: Fast Production Sprints (Col 2) -->
+          <div class="corner-accents lg:col-span-2 border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-primary/40 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-primary text-2xl font-bold">04</div>
+            <div>
+              <h3 class="text-white font-sans text-xl font-bold uppercase tracking-wider mb-2">Production Ready Sprints</h3>
+              <p class="text-xs text-white/50 uppercase tracking-widest leading-relaxed">
+                Stop waiting 3 months for sluggish agencies. Ship complete high-converting websites and product interfaces in 10 to 14 days.
+              </p>
+            </div>
+            <div class="text-[10px] text-primary tracking-widest uppercase pt-4 border-t border-white/5">
+              RAPID DEPLOYMENT &middot; ZERO BLOAT
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. PRICING & ENGAGEMENT PACKAGES ==================== -->
+    <section id="pricing" class="py-24 md:py-32 relative overflow-hidden bg-[#101010] font-mono border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="mb-16 flex flex-col items-start md:items-center text-left md:text-center">
+          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
+            <span class="mr-3 opacity-70">//</span>
+            TRANSPARENT INVESTMENT
+          </div>
+          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
+            Predictable, <span class="text-primary">Flat-Rate</span> Engagements
+          </h2>
+          <p class="mt-4 max-w-xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
+            No surprise retainers or agency bloat. Clear deliverables and direct partner execution.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           <!-- Sprint Tier -->
-          <div class="tier-card">
-            <div class="tier-header">
-              <span class="tier-label">Sprint</span>
-              <h3 class="tier-name">Landing Page</h3>
-              <div class="tier-rate">$1,450 <span class="rate-note">flat</span></div>
-              <p class="tier-summary">A single high-converting landing page for launching a new product, service, or waitlist.</p>
+          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-white/30 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-white/40 border border-white/10 px-2 py-0.5 rounded">SPRINT</span>
+              <h3 class="text-xl font-sans font-bold text-white mt-4">Landing Page</h3>
+              <div class="text-3xl font-sans font-bold text-white mt-3 mb-1">$1,450 <span class="text-xs font-mono text-white/40">flat</span></div>
+              <p class="text-xs text-white/50 leading-relaxed mb-6">Designed for launching a product, waitlist, or new business offer.</p>
+              
+              <ul class="space-y-3 text-xs text-white/60 border-t border-white/10 pt-6 mb-8">
+                <li class="flex items-center gap-2"><span>&mdash;</span> Custom High-Conversion Page</li>
+                <li class="flex items-center gap-2"><span>&mdash;</span> Mobile & Desktop Responsive</li>
+                <li class="flex items-center gap-2"><span>&mdash;</span> Behavioral Copy Guidance</li>
+                <li class="flex items-center gap-2"><span>&mdash;</span> 5–7 Business Days Delivery</li>
+                <li class="flex items-center gap-2"><span>&mdash;</span> 2 Revision Rounds</li>
+              </ul>
             </div>
-            <ul class="tier-specs">
-              <li>1 custom responsive landing page</li>
-              <li>Tested on desktop, tablet, and mobile</li>
-              <li>Feedback on headlines and section order</li>
-              <li>Delivered in 5 to 7 business days</li>
-              <li>2 rounds of revisions included</li>
-              <li>Clean source code and live deployment setup</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary btn-full">Inquire About Sprint</a>
+            <a href="#contact" class="w-full inline-flex items-center justify-center border border-white/20 bg-white/5 hover:bg-white/10 text-white font-mono text-xs font-bold tracking-widest uppercase h-11 transition-colors">
+              Inquire About Sprint
+            </a>
           </div>
 
           <!-- Flagship Tier (Selected) -->
-          <div class="tier-card tier-card-featured">
-            <div class="tier-pill">Most Popular</div>
-            <div class="tier-header">
-              <span class="tier-label">Complete Package</span>
-              <h3 class="tier-name">Brand & Website</h3>
-              <div class="tier-rate">$2,900 <span class="rate-note">flat</span></div>
-              <p class="tier-summary">A complete visual identity and a multi-page website to launch your startup with credibility.</p>
+          <div class="corner-accents border border-primary/40 bg-neutral-950 p-8 flex flex-col justify-between relative shadow-[0_0_30px_rgba(163,255,18,0.1)]">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="absolute -top-3 right-6 bg-primary text-black text-[10px] font-mono uppercase tracking-widest px-3 py-0.5 rounded font-bold">
+              RECOMMENDED
             </div>
-            <ul class="tier-specs">
-              <li>Full brand system: logo, color palette, typography</li>
-              <li>Multi-page website (up to 4 pages)</li>
-              <li>Figma design system and component library</li>
-              <li>Responsive frontend code (Next.js or HTML/CSS)</li>
-              <li>Delivered in 10 to 14 business days</li>
-              <li>Direct founder communication throughout</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary btn-full">Choose Brand & Website</a>
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-primary border border-primary/30 px-2 py-0.5 rounded">FULL STUDIO</span>
+              <h3 class="text-xl font-sans font-bold text-white mt-4">Brand & Website</h3>
+              <div class="text-3xl font-sans font-bold text-white mt-3 mb-1">$2,900 <span class="text-xs font-mono text-white/40">flat</span></div>
+              <p class="text-xs text-white/50 leading-relaxed mb-6">Complete visual identity and multi-page web platform to establish market presence.</p>
+              
+              <ul class="space-y-3 text-xs text-white/80 border-t border-white/10 pt-6 mb-8">
+                <li class="flex items-center gap-2 text-primary"><span>✦</span> Full Brand System (Logo, Fonts, Palette)</li>
+                <li class="flex items-center gap-2 text-primary"><span>✦</span> Multi-Page Website (Up to 4 Pages)</li>
+                <li class="flex items-center gap-2 text-primary"><span>✦</span> Figma Design System & Tokens</li>
+                <li class="flex items-center gap-2 text-primary"><span>✦</span> Behavioral Funnel Architecture</li>
+                <li class="flex items-center gap-2 text-primary"><span>✦</span> 10–14 Business Days Delivery</li>
+                <li class="flex items-center gap-2 text-primary"><span>✦</span> Direct Founder Collaboration</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-black font-mono text-xs font-bold tracking-widest uppercase h-11 transition-colors shadow-[0_0_15px_rgba(163,255,18,0.3)]">
+              Initiate Project
+            </a>
           </div>
 
-          <!-- Product UX Tier -->
-          <div class="tier-card">
-            <div class="tier-header">
-              <span class="tier-label">Application Design</span>
-              <h3 class="tier-name">Product UX/UI</h3>
-              <div class="tier-rate">$4,500 <span class="rate-note">starting</span></div>
-              <p class="tier-summary">End-to-end interface design and interactive prototypes for SaaS platforms and web tools.</p>
+          <!-- Product UI Tier -->
+          <div class="corner-accents border border-white/10 bg-black/40 backdrop-blur-md p-8 flex flex-col justify-between group hover:border-white/30 transition-colors">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-white/40 border border-white/10 px-2 py-0.5 rounded">CUSTOM</span>
+              <h3 class="text-xl font-sans font-bold text-white mt-4">Product UX/UI</h3>
+              <div class="text-3xl font-sans font-bold text-white mt-3 mb-1">$4,500 <span class="text-xs font-mono text-white/40">starting</span></div>
+              <p class="text-xs text-white/50 leading-relaxed mb-6">Interface architecture and clickable Figma prototypes for web and mobile software.</p>
+              
+              <ul class="space-y-3 text-xs text-white/60 border-t border-white/10 pt-6 mb-8">
+                <li class="flex items-center gap-2"><span>&mdash;</span> Complete Web/Mobile App Interface</li>
+                <li class="flex items-center gap-2"><span>&mdash;</span> Clickable Interactive Prototype</li>
+                <li class="flex items-center gap-2"><span>&mdash;</span> Scalable Figma Component Library</li>
+                <li class="flex items-center gap-2"><span>&mdash;</span> Onboarding & Retention Flows</li>
+                <li class="flex items-center gap-2"><span>&mdash;</span> Developer Handoff Documentation</li>
+              </ul>
             </div>
-            <ul class="tier-specs">
-              <li>Complete web or mobile app user interface design</li>
-              <li>Interactive, clickable Figma prototype</li>
-              <li>Design system components and states (hover, active, empty)</li>
-              <li>Customer onboarding and settings flows</li>
-              <li>Developer handoff file with spacing notes</li>
-              <li>3-week dedicated design engagement</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary btn-full">Discuss Product Scope</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section-surface">
-      <div class="site-container">
-        <div class="section-intro">
-          <h2 class="section-title">Frequently asked questions</h2>
-        </div>
-
-        <div class="faq-accordion-group">
-          <div class="faq-entry">
-            <button class="faq-toggle" type="button">
-              <span>Why work with Mocta instead of a large agency?</span>
-              <span class="faq-marker">+</span>
-            </button>
-            <div class="faq-collapse">
-              <p>Large agencies often charge significant overhead fees and hand work down to junior staff. When you hire Mocta, you work directly with both founders: one handling fine arts and visual design, and the other handling software engineering and user psychology.</p>
-            </div>
-          </div>
-
-          <div class="faq-entry">
-            <button class="faq-toggle" type="button">
-              <span>How does user psychology help a website convert better?</span>
-              <span class="faq-marker">+</span>
-            </button>
-            <div class="faq-collapse">
-              <p>People read websites quickly and scan for key information. We use clear visual hierarchy, keep choices straightforward, and place evidence where visitors look. This reduces confusion and helps visitors decide whether to contact you or sign up.</p>
-            </div>
-          </div>
-
-          <div class="faq-entry">
-            <button class="faq-toggle" type="button">
-              <span>Do we own all the design files and code after completion?</span>
-              <span class="faq-marker">+</span>
-            </button>
-            <div class="faq-collapse">
-              <p>Yes. You own 100% of the assets upon final payment. We provide all original Figma files, vector logo formats (.SVG, .PNG, .PDF), and Git repositories containing your source code.</p>
-            </div>
-          </div>
-
-          <div class="faq-entry">
-            <button class="faq-toggle" type="button">
-              <span>What website platforms and frameworks do you use?</span>
-              <span class="faq-marker">+</span>
-            </button>
-            <div class="faq-collapse">
-              <p>We choose the tool that fits your team: clean HTML/CSS/JavaScript for fast static pages, React and Next.js for dynamic web apps, or Framer and Webflow if you want an easy visual editor to write blog posts and update copy yourself.</p>
-            </div>
+            <a href="#contact" class="w-full inline-flex items-center justify-center border border-white/20 bg-white/5 hover:bg-white/10 text-white font-mono text-xs font-bold tracking-widest uppercase h-11 transition-colors">
+              Discuss Product Scope
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Surface -->
-    <section id="contact" class="section-surface contact-section">
-      <div class="site-container">
-        <div class="contact-layout">
-          <div class="contact-details">
-            <h2 class="section-title">Tell us about your project</h2>
-            <p class="section-subtitle">
-              Send us a few notes about your company, your timeline, and what you need built. We will read your message and reply within 24 hours.
+    <!-- ==================== 7. COMMUNITY MARQUEE (TESTIMONIALS) ==================== -->
+    <section id="feedback" class="bg-[#101010] relative overflow-hidden py-24 md:py-32 font-mono border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="mb-14 flex flex-col items-start md:items-center text-left md:text-center">
+          <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
+            <span class="mr-3 opacity-70">//</span>
+            COMMUNITY & CLIENT TELEMETRY
+          </div>
+          <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white">
+            Trusted by <span class="text-primary">founders & builders</span>
+          </h2>
+          <p class="mt-4 max-w-xl text-xs md:text-sm tracking-widest text-white/50 uppercase leading-relaxed">
+            Real feedback on our design craft, sprint speed, and conversion results.
+          </p>
+        </div>
+      </div>
+
+      <!-- Infinite Marquee Track -->
+      <div class="relative w-full overflow-hidden mt-8">
+        <!-- Fade Edges -->
+        <div class="pointer-events-none absolute top-0 left-0 z-20 h-full w-24 md:w-40 bg-gradient-to-r from-[#101010] to-transparent"></div>
+        <div class="pointer-events-none absolute top-0 right-0 z-20 h-full w-24 md:w-40 bg-gradient-to-l from-[#101010] to-transparent"></div>
+
+        <div class="marquee-track flex gap-6 px-4">
+          <!-- Card 1 -->
+          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-xs text-primary font-bold mb-3">[ FOUNDER REVIEW ]</div>
+            <p class="text-xs text-white/80 leading-relaxed mb-6">
+              &quot;The combination of fine-arts visual aesthetics and clean Next.js code is rare. Mocta built our landing page in 8 days and our signups doubled.&quot;
+            </p>
+            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
+              <span class="text-white font-bold">Alex Chen</span>
+              <span>@alexchen_dev</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-xs text-primary font-bold mb-3">[ DESIGN SYSTEM REVIEW ]</div>
+            <p class="text-xs text-white/80 leading-relaxed mb-6">
+              &quot;Cleanest Figma components our engineers have ever received. No back-and-forth guessing about padding or tokens.&quot;
+            </p>
+            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
+              <span class="text-white font-bold">Elena Rostova</span>
+              <span>Head of Product</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-xs text-primary font-bold mb-3">[ CONVERSION AUDIT ]</div>
+            <p class="text-xs text-white/80 leading-relaxed mb-6">
+              &quot;Their psychology audit caught 3 major drop-off points on our checkout flow that our in-house team missed for months.&quot;
+            </p>
+            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
+              <span class="text-white font-bold">Marcus Thorne</span>
+              <span>SaaS Founder</span>
+            </div>
+          </div>
+
+          <!-- Card 4 (Duplicate for loop) -->
+          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-xs text-primary font-bold mb-3">[ FOUNDER REVIEW ]</div>
+            <p class="text-xs text-white/80 leading-relaxed mb-6">
+              &quot;The combination of fine-arts visual aesthetics and clean Next.js code is rare. Mocta built our landing page in 8 days and our signups doubled.&quot;
+            </p>
+            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
+              <span class="text-white font-bold">Alex Chen</span>
+              <span>@alexchen_dev</span>
+            </div>
+          </div>
+
+          <!-- Card 5 (Duplicate for loop) -->
+          <div class="corner-accents w-[340px] md:w-[420px] shrink-0 border border-white/10 bg-black/60 p-6 flex flex-col justify-between">
+            <div class="corner-top-right"></div>
+            <div class="corner-bottom-left"></div>
+            <div class="text-xs text-primary font-bold mb-3">[ DESIGN SYSTEM REVIEW ]</div>
+            <p class="text-xs text-white/80 leading-relaxed mb-6">
+              &quot;Cleanest Figma components our engineers have ever received. No back-and-forth guessing about padding or tokens.&quot;
+            </p>
+            <div class="border-t border-white/5 pt-4 flex items-center justify-between text-[11px] text-white/40">
+              <span class="text-white font-bold">Elena Rostova</span>
+              <span>Head of Product</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 8. CONTACT & LEAD INTAKE ==================== -->
+    <section id="contact" class="py-24 md:py-32 relative overflow-hidden bg-[#101010] font-mono border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div class="md:col-span-5">
+            <div class="text-primary mb-4 inline-flex items-center text-xs font-bold tracking-widest uppercase">
+              <span class="mr-3 opacity-70">//</span>
+              PROJECT INQUIRY
+            </div>
+            <h2 class="text-3xl md:text-5xl font-sans font-bold tracking-tight text-white mb-6">
+              Let's build your <span class="text-primary">next milestone</span>.
+            </h2>
+            <p class="text-xs md:text-sm text-white/60 uppercase tracking-widest leading-relaxed mb-8">
+              Share details about your product, timeline, and goals. Both studio founders review every submission and reply within 24 hours.
             </p>
 
-            <div class="contact-info-list">
-              <div class="info-cell">
-                <span class="info-label">Availability</span>
-                <span class="info-text">Open for new projects</span>
+            <div class="space-y-4 text-xs text-white/40 border-t border-white/5 pt-6">
+              <div>
+                <span class="text-white font-bold block mb-1">CURRENT STATUS</span>
+                <span>Accepting 2 new client sprints for this month</span>
               </div>
-              <div class="info-cell">
-                <span class="info-label">Direct Email</span>
-                <span class="info-text">contact@mocta.studio</span>
-              </div>
-              <div class="info-cell">
-                <span class="info-label">Response Time</span>
-                <span class="info-text">Within 24 hours on business days</span>
+              <div>
+                <span class="text-white font-bold block mb-1">DIRECT INQUIRIES</span>
+                <span class="text-primary">contact@mocta.studio</span>
               </div>
             </div>
           </div>
 
-          <div class="contact-form-container">
-            <form id="contactForm" class="studio-form">
-              <div class="form-row">
-                <label for="name" class="input-label">Your Name</label>
-                <input type="text" id="name" name="name" required placeholder="Jane Doe" class="text-input">
+          <div class="md:col-span-7">
+            <form id="contactForm" class="corner-accents border border-white/10 bg-black/50 p-8 space-y-5">
+              <div class="corner-top-right"></div>
+              <div class="corner-bottom-left"></div>
+
+              <div>
+                <label for="name" class="block text-xs uppercase tracking-widest text-white/50 mb-2">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Alex Vance" class="w-full bg-neutral-900 border border-white/10 px-4 py-3 text-xs text-white focus:outline-none focus:border-primary">
               </div>
 
-              <div class="form-row">
-                <label for="email" class="input-label">Work Email</label>
-                <input type="email" id="email" name="email" required placeholder="jane@company.com" class="text-input">
+              <div>
+                <label for="email" class="block text-xs uppercase tracking-widest text-white/50 mb-2">Work Email</label>
+                <input type="email" id="email" name="email" required placeholder="alex@startup.com" class="w-full bg-neutral-900 border border-white/10 px-4 py-3 text-xs text-white focus:outline-none focus:border-primary">
               </div>
 
-              <div class="form-row">
-                <label for="interest" class="input-label">What service do you need?</label>
-                <select id="interest" name="interest" class="select-input">
-                  <option value="landing">Landing Page Sprint ($1,450)</option>
-                  <option value="brand_web">Brand Identity & Website ($2,900)</option>
+              <div>
+                <label for="scope" class="block text-xs uppercase tracking-widest text-white/50 mb-2">Scope of Project</label>
+                <select id="scope" name="scope" class="w-full bg-neutral-900 border border-white/10 px-4 py-3 text-xs text-white focus:outline-none focus:border-primary">
+                  <option value="landing">Marketing Landing Page ($1,450)</option>
+                  <option value="brand_web">Complete Brand & Website ($2,900)</option>
                   <option value="product_ui">Product UX/UI Interface ($4,500)</option>
-                  <option value="audit">Website Review & Conversion Audit</option>
+                  <option value="audit">Conversion & Heuristic Audit</option>
                 </select>
               </div>
 
-              <div class="form-row">
-                <label for="message" class="input-label">Project details and timeline</label>
-                <textarea id="message" name="message" rows="4" placeholder="Describe your product, current website (if any), and desired launch date..." class="textarea-input"></textarea>
+              <div>
+                <label for="message" class="block text-xs uppercase tracking-widest text-white/50 mb-2">Project Brief & Timeline</label>
+                <textarea id="message" name="message" rows="4" placeholder="Briefly summarize your company, product, and target launch timeline..." class="w-full bg-neutral-900 border border-white/10 px-4 py-3 text-xs text-white focus:outline-none focus:border-primary"></textarea>
               </div>
 
-              <button type="submit" id="submitBtn" class="btn btn-primary btn-full btn-large">
-                Send Project Inquiry
+              <button type="submit" id="submitBtn" class="w-full h-12 bg-primary text-black font-mono text-xs font-bold tracking-widest uppercase hover:bg-primary/90 transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(163,255,18,0.2)]">
+                Submit Project Inquiry &rarr;
               </button>
 
-              <div id="formSuccess" class="form-success-banner hidden">
-                Thank you for your message. We have received your inquiry and will reply within 24 hours.
+              <div id="formSuccess" class="hidden border border-primary/40 bg-primary/10 p-4 text-xs text-primary font-bold tracking-wider uppercase text-center">
+                Inquiry received. A studio founder will reply within 24 hours.
               </div>
             </form>
           </div>
@@ -453,40 +797,27 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="studio-footer">
-    <div class="site-container footer-content">
-      <div class="footer-left">
-        <a href="#" class="studio-brand">
-          <span class="studio-mark">M</span>
-          <span class="studio-name">MOCTA</span>
-        </a>
-        <p class="footer-tagline">An independent studio designing brand systems, websites, and user interfaces for software companies.</p>
+  <!-- ==================== 9. TECHNICAL FOOTER ==================== -->
+  <footer class="bg-black text-white/70 relative border-t border-white/10 font-mono py-16">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded border border-white/20 bg-white/5 flex items-center justify-center font-mono font-bold text-xs text-primary">
+          ✦
+        </div>
+        <span class="font-sans font-bold text-white tracking-widest uppercase text-sm">MOCTA STUDIO</span>
+        <span class="text-xs text-white/40 ml-2">&copy; 2026. All rights reserved.</span>
       </div>
 
-      <div class="footer-links">
-        <div class="footer-link-group">
-          <span class="link-group-header">Navigation</span>
-          <a href="#services">Services</a>
-          <a href="#background">Background</a>
-          <a href="#process">Process</a>
-          <a href="#pricing">Pricing</a>
-        </div>
-        <div class="footer-link-group">
-          <span class="link-group-header">Services</span>
-          <span>Brand Identity</span>
-          <span>Marketing Websites</span>
-          <span>Product UX/UI</span>
-          <span>Conversion Audits</span>
-        </div>
+      <div class="flex items-center gap-8 text-xs tracking-widest uppercase text-white/50">
+        <a href="#services" class="hover:text-primary transition-colors">Services</a>
+        <a href="#bento" class="hover:text-primary transition-colors">Architecture</a>
+        <a href="#pricing" class="hover:text-primary transition-colors">Pricing</a>
+        <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
       </div>
-    </div>
-    <div class="site-container footer-bottom">
-      <p>&copy; 2026 Mocta Studio. All rights reserved.</p>
-      <p>Clean code, fine arts design, and straightforward communication.</p>
     </div>
   </footer>
 
+  <!-- Script logic -->
   <script src="script.js"></script>
 </body>
 </html>
