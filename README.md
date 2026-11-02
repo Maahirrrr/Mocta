@@ -1,20 +1,20 @@
-# Mocta (✦ Design, Tech & Behavioral UX Studio)
+# Mocta Studio (Digital Product & Brand Design)
 
-> **Where Fine Arts Aesthetics Meets Behavioral Science and Clean Code.**
-
-Mocta is a boutique digital studio founded by two B.Tech AI & ML innovators:
-- **Design & Fine Arts Lead**: BRDS fine arts training, visual composition, bespoke typography, color psychology, and original brand identities.
-- **Tech, Psychology & Strategy Lead**: B.Tech AI & ML engineering, behavioral psychology triggers (cognitive load reduction, clear decision architecture, user trust), and high-performance full-stack web builds.
+An independent digital design and engineering studio partnering with emerging technology companies to build brand identities, high-conversion web platforms, and intuitive application interfaces.
 
 ---
 
-## 🚀 Live Demo & Structure
+## 🏛️ Practice Areas
 
-- `index.html` - Clean, human-crafted agency portfolio featuring the Founders' Synergy duality section, services showcase, interactive cost/timeline estimator, transparent packages, FAQ accordion, and contact form.
-- `style.css` - Custom responsive design system with dark palette, Space Grotesk & Plus Jakarta Sans typography, and subtle micro-interactions.
-- `script.js` - Project estimator, dynamic package pricing, accordion controls, and lead form handling.
+1. **High-Conversion Marketing Websites**: Fast, responsive web platforms built with clean typography, clear positioning, and robust conversion funnels.
+2. **Brand Identity & Design Systems**: Comprehensive visual identity systems including logomarks, typography rules, color palettes, and component tokens.
+3. **Digital Product UX/UI Architecture**: Web and mobile application interfaces engineered for clarity, minimal cognitive friction, and intuitive onboarding.
+4. **Behavioral UX Audits & Conversion Strategy**: Rigorous heuristic analysis of digital funnels to eliminate drop-off points.
 
 ---
 
-## 💡 The Core Vision
-Start as a lean, profitable UX & branding studio to generate cash flow from day one, deeply understand real customer problems, and evolve into specialized software products based on real startup needs.
+## 📁 Repository Structure
+
+- `index.html` — Production-grade studio landing page built with clean semantic HTML.
+- `style.css` — High-taste, minimal dark aesthetic system utilizing `Inter`, `Plus Jakarta Sans`, and `JetBrains Mono`.
+- `script.js` — Accessible accordion logic, smooth navigation, and inquiry form submission.
