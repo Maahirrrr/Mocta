@@ -47,6 +47,8 @@ export default {
         body: ["'Barlow'", "sans-serif"],
         sans: ["'Barlow'", "sans-serif"],
         serif: ["'Instrument Serif'", "serif"],
+        mono: ["'GT Pressura Mono'", "monospace"],
+        condensed: ["'Mixtape Extra Condensed'", "sans-serif"],
       },
     },
   },
