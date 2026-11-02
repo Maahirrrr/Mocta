@@ -1,14 +1,55 @@
 /**
- * Mocta Studio — Interaction & Enhancement Scripts
- * Inspired by endcap.design interactions:
+ * Mocta Studio — Interaction & Comprehensive Animation Engine
+ * Features:
+ * - Scroll reveal with IntersectionObserver
+ * - Magnetic micro-interaction on CTA buttons
  * - Mobile responsive navigation menu toggle
- * - Smooth FAQ details accordions
- * - Letter rise-in on oversized footer signoff
- * - Contact inquiry submission handling
+ * - Letter splitting & interactive hover on footer signoff
+ * - Quick contact dock toggle on mobile
+ * - Interactive single-open accordion for FAQ
+ * - Asynchronous inquiry form submission
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Menu Enhancement
+  // 1. Scroll-triggered Reveal Animations
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealElements.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // 2. Magnetic Micro-Interaction on Primary Buttons (Desktop)
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const magneticButtons = document.querySelectorAll('.hx-btn, .button, .re-circle, .hx-path-go');
+    magneticButtons.forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  // 3. Mobile Navigation Menu Enhancement
   const mast = document.querySelector('.mast');
   if (mast) {
     const menuToggle = mast.querySelector('.menu-toggle');
@@ -39,14 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Close menu on escape
+      // Close menu on escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
           setMenu(false);
         }
       });
 
-      // Close menu on outside click
+      // Close menu on click outside
       document.addEventListener('click', (e) => {
         if (!mast.contains(e.target)) {
           setMenu(false);
@@ -59,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 2. Letter Splitting on Footer Signoff
+  // 4. Letter Splitting and Physics Hover on Oversized Signoff
   document.querySelectorAll('.ed-signoff').forEach((signoff) => {
     const word = signoff.firstChild;
     if (!word || word.nodeType !== 3) return;
@@ -91,22 +132,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. Scroll Dock Toggle on Mobile
+  // 5. Scroll Dock Toggle on Mobile
   const dock = document.querySelector('.hx-dock');
   if (dock) {
-    let lastScroll = window.scrollY;
     window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll > 120) {
+      if (window.scrollY > 120) {
         dock.classList.add('is-on');
       } else {
         dock.classList.remove('is-on');
       }
-      lastScroll = currentScroll;
     }, { passive: true });
   }
 
-  // 4. Contact Form Handling
+  // 6. Interactive Contact Form Submission
   const form = document.querySelector('#contact-form');
   const successNotice = document.querySelector('#form-success');
   if (form && successNotice) {
@@ -130,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Single Open Accordion (Optional Clean Polish)
+  // 7. Accordion Single-Open Functionality
   const faqItems = document.querySelectorAll('.hx-faq-item');
   faqItems.forEach((item) => {
     item.addEventListener('toggle', () => {
