@@ -11,7 +11,196 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261102b">
+
+  <!-- Critical Palette & Theme Tokens -->
+  <style>
+    :root {
+      --bg: #080D0A;
+      --muted: #0D1410;
+      --surface: #121C16;
+      --border: #1C2E24;
+      --accent: #3D7A5F;
+      --accent-hi: #52A07D;
+      --hl: #C8A96A;
+      --text: #E6EDE8;
+      --text2: #9BB0A4;
+      --on: #FFFFFF;
+    }
+
+    html, body {
+      background-color: #080D0A !important;
+      color: #E6EDE8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, #hero-title, .wordmark {
+      color: #E6EDE8 !important;
+    }
+
+    p, .ed-hero-lede p, .hx-step p {
+      color: #9BB0A4 !important;
+    }
+
+    /* Masthead navigation */
+    .mast {
+      background: rgba(8, 13, 10, 0.95) !important;
+      border-bottom: 1px solid #1C2E24 !important;
+    }
+
+    .mast nav > a {
+      color: #9BB0A4 !important;
+    }
+
+    .mast nav > a:hover {
+      color: #E6EDE8 !important;
+    }
+
+    /* Primary Accent Buttons */
+    .button, .hx-btn, .mast nav .nav-contact {
+      background: #3D7A5F !important;
+      color: #FFFFFF !important;
+      border: 1px solid #3D7A5F !important;
+    }
+
+    .button:hover, .hx-btn:hover, .mast nav .nav-contact:hover {
+      background: #52A07D !important;
+      border-color: #52A07D !important;
+    }
+
+    .hx-btn-ghost {
+      background: #121C16 !important;
+      color: #E6EDE8 !important;
+      border: 1px solid #1C2E24 !important;
+    }
+
+    .hx-btn-ghost:hover {
+      border-color: #3D7A5F !important;
+      color: #52A07D !important;
+    }
+
+    /* Sections background rhythm */
+    .ed-opening {
+      background: #080D0A !important;
+      border-bottom: 1px solid #1C2E24 !important;
+    }
+
+    .hx-proof {
+      background: #0D1410 !important;
+      border-top: 1px solid #1C2E24 !important;
+      border-bottom: 1px solid #1C2E24 !important;
+    }
+
+    .hx-process {
+      background: #080D0A !important;
+      border-top: 1px solid #1C2E24 !important;
+      border-bottom: 1px solid #1C2E24 !important;
+    }
+
+    .ed-founder {
+      background: #0D1410 !important;
+      border-top: 1px solid #1C2E24 !important;
+      border-bottom: 1px solid #1C2E24 !important;
+    }
+
+    .re-invitation {
+      background: #080D0A !important;
+      border-top: 1px solid #1C2E24 !important;
+    }
+
+    .footer {
+      background: #080D0A !important;
+      border-top: 1px solid #1C2E24 !important;
+    }
+
+    /* Cards & Components */
+    .hx-path, .re-service, .ed-print-image, .hx-quote-side .hx-quote, .ed-cover-detail {
+      background: #121C16 !important;
+      border-color: #1C2E24 !important;
+      color: #E6EDE8 !important;
+    }
+
+    .hx-path:hover, .re-service:hover {
+      background: #0D1410 !important;
+      border-color: #3D7A5F !important;
+    }
+
+    /* Eyebrows, Gold highlights and numbers */
+    .eyebrow, .re-index, .hx-path-n, .hx-step-n, .ed-print-caption > span, .route-number, .ed-issue-line p:last-child {
+      color: #C8A96A !important;
+    }
+
+    /* SVG wireframe paths */
+    .gx-draw path.hx-ln {
+      stroke: #52A07D !important;
+    }
+
+    .gx-draw .hx-fill {
+      fill: #3D7A5F !important;
+    }
+
+    .gx-draw circle {
+      fill: #3D7A5F !important;
+    }
+
+    .hx-svg-label {
+      fill: #C8A96A !important;
+    }
+
+    /* Status beacon */
+    .status-beacon {
+      background: #121C16 !important;
+      border: 1px solid #1C2E24 !important;
+      color: #9BB0A4 !important;
+    }
+
+    .status-beacon-dot {
+      background: #3D7A5F !important;
+    }
+
+    /* Wordmark dot */
+    .wordmark span, .mo-dot {
+      color: #3D7A5F !important;
+    }
+
+    /* Mobile contact dock */
+    .hx-dock-main {
+      background: #3D7A5F !important;
+      color: #FFFFFF !important;
+    }
+
+    .hx-dock-alt {
+      background: #121C16 !important;
+      color: #E6EDE8 !important;
+      border: 1px solid #1C2E24 !important;
+    }
+
+    /* FAQ Details */
+    .hx-faq-list {
+      border-top: 1px solid #1C2E24 !important;
+    }
+
+    .hx-faq-item {
+      border-bottom: 1px solid #1C2E24 !important;
+    }
+
+    .hx-faq-item summary {
+      color: #E6EDE8 !important;
+    }
+
+    .hx-faq-item i {
+      background: #121C16 !important;
+      border-color: #1C2E24 !important;
+      color: #9BB0A4 !important;
+    }
+
+    .hx-faq-item[open] i {
+      background: #3D7A5F !important;
+      border-color: #3D7A5F !important;
+      color: #FFFFFF !important;
+    }
+  </style>
+
 </head>
 <body class="mo gx-js gx">
 
