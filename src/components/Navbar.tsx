@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import logoIcon from '../assets/logo-icon.png';
 
 export const Navbar: React.FC = () => {
   const navLinks = [
@@ -13,14 +12,9 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 px-8 lg:px-16 py-3 flex items-center justify-between pointer-events-auto">
-      {/* Left: Logo image (h-12 w-12) */}
-      <a href="#home" className="flex items-center gap-3 group">
-        <img
-          src={logoIcon}
-          alt="Mocta"
-          className="h-12 w-12 object-contain group-hover:scale-105 transition-transform duration-300"
-        />
-        <span className="font-heading italic text-2xl font-bold tracking-tight text-white hidden sm:inline-block">
+      {/* Left: Mocta written brand name */}
+      <a href="#home" className="flex items-center group">
+        <span className="font-heading italic text-2xl md:text-3xl font-medium tracking-tight text-white group-hover:opacity-85 transition-opacity duration-200">
           Mocta
         </span>
       </a>
