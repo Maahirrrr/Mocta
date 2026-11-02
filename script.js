@@ -1,35 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Accordion Logic
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const trigger = item.querySelector('.faq-trigger');
-    trigger.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      
-      // Close all items
-      faqItems.forEach(i => {
-        i.classList.remove('active');
-        const body = i.querySelector('.faq-body');
-        if (body) body.style.maxHeight = null;
+  // Watermelon UI Accordion Interaction
+  const accordionButtons = document.querySelectorAll('.accordion-btn');
+
+  accordionButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.accordion-item');
+      const content = item.querySelector('.accordion-content');
+      const icon = item.querySelector('.accordion-icon');
+      const isOpen = !content.classList.contains('hidden');
+
+      // Close all accordion items
+      document.querySelectorAll('.accordion-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.accordion-icon').forEach(i => {
+        i.textContent = '+';
+        i.classList.remove('rotate-45');
       });
 
-      // Toggle current item
-      if (!isActive) {
-        item.classList.add('active');
-        const body = item.querySelector('.faq-body');
-        if (body) body.style.maxHeight = body.scrollHeight + 'px';
+      // Toggle clicked item
+      if (!isOpen) {
+        content.classList.remove('hidden');
+        icon.textContent = '×';
+        icon.classList.add('rotate-45');
       }
     });
   });
 
-  // Open first FAQ by default
-  if (faqItems.length > 0) {
-    faqItems[0].classList.add('active');
-    const firstBody = faqItems[0].querySelector('.faq-body');
-    if (firstBody) firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
+  // Open the first item by default
+  const firstItem = document.querySelector('.accordion-item');
+  if (firstItem) {
+    const firstContent = firstItem.querySelector('.accordion-content');
+    const firstIcon = firstItem.querySelector('.accordion-icon');
+    if (firstContent && firstIcon) {
+      firstContent.classList.remove('hidden');
+      firstIcon.textContent = '×';
+      firstIcon.classList.add('rotate-45');
+    }
   }
 
-  // Contact Form Submission
+  // Watermelon UI Form Submission Simulation
   const contactForm = document.getElementById('contactForm');
   const submitBtn = document.getElementById('submitBtn');
   const formSuccess = document.getElementById('formSuccess');
@@ -38,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
-      const prevText = submitBtn.innerText;
+      const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerText = 'Submitting...';
+      submitBtn.textContent = 'Submitting Inquiry...';
 
       setTimeout(() => {
         submitBtn.classList.add('hidden');
@@ -50,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Smooth anchor scrolling
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
+  // Smooth Scrolling for Anchors
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
 

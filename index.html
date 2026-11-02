@@ -1,416 +1,562 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mocta | Digital Product & Brand Design Studio</title>
-  <meta name="description" content="Mocta is an independent design and engineering studio. We partner with emerging technology companies and founders to build brand identities, high-conversion websites, and intuitive digital interfaces.">
+  <title>Mocta — Digital Product, Brand & Behavioral UX Studio</title>
+  <meta name="description" content="Mocta is an independent design and engineering studio. We partner with emerging technology companies to build brand identities, high-conversion websites, and intuitive digital interfaces.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN for Watermelon UI utility classes -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace'],
+          },
+          colors: {
+            border: 'hsl(240 3.7% 15.9%)',
+            input: 'hsl(240 3.7% 15.9%)',
+            ring: 'hsl(240 4.9% 83.9%)',
+            background: 'hsl(240 10% 3.9%)',
+            foreground: 'hsl(0 0% 98%)',
+            primary: {
+              DEFAULT: 'hsl(0 0% 98%)',
+              foreground: 'hsl(240 5.9% 10%)',
+            },
+            secondary: {
+              DEFAULT: 'hsl(240 3.7% 15.9%)',
+              foreground: 'hsl(0 0% 98%)',
+            },
+            muted: {
+              DEFAULT: 'hsl(240 3.7% 15.9%)',
+              foreground: 'hsl(240 5% 64.9%)',
+            },
+            accent: {
+              DEFAULT: 'hsl(240 3.7% 15.9%)',
+              foreground: 'hsl(0 0% 98%)',
+            },
+            card: {
+              DEFAULT: 'hsl(240 10% 4.9%)',
+              foreground: 'hsl(0 0% 98%)',
+            },
+          },
+          borderRadius: {
+            lg: '0.65rem',
+            md: 'calc(0.65rem - 2px)',
+            sm: 'calc(0.65rem - 4px)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Watermelon UI Glow Horizon & Grid Mask */
+    .horizon-glow {
+      background: radial-gradient(50% 50% at 50% 0%, rgba(120, 119, 198, 0.18) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+    .grid-pattern {
+      background-size: 48px 48px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+    }
+  </style>
 </head>
-<body>
-  <!-- Navigation Header -->
-  <header class="header">
-    <div class="container nav-bar">
-      <a href="#" class="brand-mark">
-        <span class="brand-glyph">M</span>
-        <span class="brand-name">MOCTA</span>
+<body class="bg-background text-foreground min-h-screen antialiased selection:bg-foreground selection:text-background relative">
+
+  <!-- Ambient Horizon & Grid Background -->
+  <div class="pointer-events-none fixed inset-0 z-0 flex justify-center">
+    <div class="h-[550px] w-full max-w-7xl horizon-glow opacity-80"></div>
+    <div class="absolute inset-0 grid-pattern"></div>
+  </div>
+
+  <!-- Header / Navigation (Watermelon UI Sticky Header Pattern) -->
+  <header class="sticky top-0 z-50 w-full border-b border-border/60 bg-background/75 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto flex h-16 items-center justify-between px-6">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="h-6 w-6 rounded bg-foreground text-background font-mono font-bold text-xs flex items-center justify-center transition-transform group-hover:scale-95">
+          M
+        </div>
+        <span class="font-sans font-semibold tracking-tight text-base">MOCTA</span>
+        <span class="hidden sm:inline-flex text-[11px] font-mono text-muted-foreground border border-border px-2 py-0.5 rounded-full ml-1">
+          STUDIO
+        </span>
       </a>
-      <nav class="nav-menu">
-        <a href="#capabilities" class="nav-link">Capabilities</a>
-        <a href="#approach" class="nav-link">Approach</a>
-        <a href="#process" class="nav-link">Process</a>
-        <a href="#engagements" class="nav-link">Engagements</a>
-        <a href="#faq" class="nav-link">FAQ</a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+        <a href="#practices" class="transition-colors hover:text-foreground">Practice Areas</a>
+        <a href="#bento" class="transition-colors hover:text-foreground">Architecture</a>
+        <a href="#process" class="transition-colors hover:text-foreground">Process</a>
+        <a href="#engagements" class="transition-colors hover:text-foreground">Engagements</a>
+        <a href="#faq" class="transition-colors hover:text-foreground">FAQ</a>
       </nav>
-      <div class="nav-action">
-        <a href="#contact" class="btn btn-primary">Start an Engagement</a>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="inline-flex items-center justify-center rounded-md text-xs sm:text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 shadow-sm">
+          Initiate Engagement
+        </a>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-meta">
-          <span class="status-dot"></span>
-          <span>Studio Open for Q4 / Q1 Engagements</span>
+  <main class="relative z-10">
+    <!-- Hero Section (Watermelon UI Horizon Hero Pattern) -->
+    <section class="py-20 md:py-28 max-w-6xl mx-auto px-6">
+      <div class="flex flex-col items-start max-w-3xl">
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs font-mono text-muted-foreground mb-8 backdrop-blur">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>Studio Open for Q4 / Q1 Partner Engagements</span>
         </div>
-        <h1 class="hero-title">
-          We design brands, websites, and interfaces for <span>ambitious technology companies.</span>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.08] mb-6">
+          We design brands, websites, and interfaces for <span class="text-muted-foreground">ambitious technology ventures.</span>
         </h1>
-        <p class="hero-subtitle">
-          Mocta is an independent studio operating at the intersection of fine art direction and behavioral engineering. We transform early-stage products into established, highly credible market leaders.
-        </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary btn-lg">Schedule an Intro Call</a>
-          <a href="#capabilities" class="btn btn-secondary btn-lg">View Capabilities</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-cell">
-            <span class="stat-value">Direct Access</span>
-            <span class="stat-label">Senior-level attention on every project</span>
-            <span class="stat-description">No agency bloat, account executives, or junior handoffs.</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-value">10–14 Days</span>
-            <span class="stat-label">Average initial deployment sprint</span>
-            <span class="stat-description">High-velocity shipping designed for venture and market timelines.</span>
-          </div>
-          <div class="stat-cell">
-            <span class="stat-value">End-to-End</span>
-            <span class="stat-label">From raw concept to production release</span>
-            <span class="stat-description">Brand identity, Figma design systems, and responsive web code.</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Methodology / Studio Philosophy -->
-    <section id="approach" class="section">
-      <div class="container">
-        <span class="section-label">Studio Approach</span>
-        <h2 class="section-heading">Built around two fundamental disciplines.</h2>
-        <p class="section-subtext">
-          Most tech startups struggle with a false compromise: design agencies that create beautiful art that doesn't convert, or dev shops that build working code with zero aesthetic taste. We unify both.
+        <p class="text-lg md:text-xl text-muted-foreground font-normal leading-relaxed mb-10 max-w-2xl">
+          Mocta is an independent studio operating at the intersection of fine art direction and behavioral engineering. We elevate emerging software products into credible, category-defining market leaders.
         </p>
 
-        <div class="methodology-grid">
-          <div class="method-card">
-            <span class="method-dept">Department 01 / Visual & Identity</span>
-            <h3>Fine Art Direction & Visual Identity</h3>
-            <p>
-              Grounded in traditional visual composition, spatial balance, and typography. We develop bespoke visual systems that separate your company from the sea of cookie-cutter venture templates.
-            </p>
-            <ul class="capability-list">
-              <li>Comprehensive Brand Identity & Logo Systems</li>
-              <li>Typography Scale & Color Harmony Systems</li>
-              <li>Design Tokens & Production-Ready Figma Libraries</li>
-              <li>Custom Marketing Asset Suites & Editorial Layouts</li>
-            </ul>
-          </div>
-
-          <div class="method-card">
-            <span class="method-dept">Department 02 / Engineering & Behavioral UX</span>
-            <h3>Behavioral UX & Front-End Engineering</h3>
-            <p>
-              Informed by cognitive psychology and conversion architecture. We structure every user flow to eliminate friction, establish trust, and turn visitors into committed users.
-            </p>
-            <ul class="capability-list">
-              <li>Information Architecture & Friction Minimization</li>
-              <li>Cognitive Load Reduction & Trust Signaling</li>
-              <li>Clean, High-Performance Web Development</li>
-              <li>Interactive SaaS Product & Prototype Architecture</li>
-            </ul>
-          </div>
+        <div class="flex flex-wrap items-center gap-4 mb-16">
+          <a href="#contact" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-all bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-6 shadow">
+            Schedule Studio Introduction →
+          </a>
+          <a href="#practices" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-border bg-card text-foreground hover:bg-accent h-11 px-6">
+            Explore Practice Areas
+          </a>
         </div>
-      </div>
-    </section>
 
-    <!-- Capabilities / Services -->
-    <section id="capabilities" class="section">
-      <div class="container">
-        <span class="section-label">Practice Areas</span>
-        <h2 class="section-heading">How we partner with companies.</h2>
-        <p class="section-subtext">
-          Whether you are preparing for a launch, raising a round, or scaling an existing product, we provide focused execution across four core disciplines.
-        </p>
-
-        <div class="services-grid">
-          <div class="service-card">
-            <span class="service-index">01</span>
-            <h3>High-Conversion Marketing Websites</h3>
-            <p>
-              Fast, responsive websites engineered with clean typography, clear positioning, and robust conversion funnels that articulate complex value clearly.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">Next.js / HTML5</span>
-              <span class="tech-tag">Framer</span>
-              <span class="tech-tag">Webflow</span>
-              <span class="tech-tag">Responsive</span>
-            </div>
-          </div>
-
-          <div class="service-card">
-            <span class="service-index">02</span>
-            <h3>Brand Identity & Design Systems</h3>
-            <p>
-              Complete corporate identity systems including logomarks, typography rules, color palettes, and component guidelines built for scale.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">Logomark</span>
-              <span class="tech-tag">Brand Book</span>
-              <span class="tech-tag">Vector Tokens</span>
-              <span class="tech-tag">Identity</span>
-            </div>
-          </div>
-
-          <div class="service-card">
-            <span class="service-index">03</span>
-            <h3>Digital Product UX/UI Architecture</h3>
-            <p>
-              Complex web and mobile application interfaces mapped for maximum clarity, low cognitive drag, and intuitive onboarding experiences.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">Figma</span>
-              <span class="tech-tag">User Flows</span>
-              <span class="tech-tag">Wireframing</span>
-              <span class="tech-tag">Prototypes</span>
-            </div>
-          </div>
-
-          <div class="service-card">
-            <span class="service-index">04</span>
-            <h3>Design Audit & Conversion Strategy</h3>
-            <p>
-              Rigorous behavioral review of your existing digital surface to identify drop-off points, messaging ambiguity, and visual hierarchy flaws.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">Heuristic Review</span>
-              <span class="tech-tag">Friction Audit</span>
-              <span class="tech-tag">Conversion Map</span>
-            </div>
-          </div>
-
-          <div class="service-card">
-            <span class="service-index">05</span>
-            <h3>Interactive Product Tools</h3>
-            <p>
-              Custom interactive calculators, onboarding flows, and dynamic lead evaluation tools built directly into your web experience.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">Interactive JS</span>
-              <span class="tech-tag">Lead Flows</span>
-              <span class="tech-tag">Custom Logic</span>
-            </div>
-          </div>
-
-          <div class="service-card">
-            <span class="service-index">06</span>
-            <h3>Production Handoff & Governance</h3>
-            <p>
-              Full delivery of organized source code, clean Figma components, exportable vector assets, and engineering implementation documentation.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">Git Repository</span>
-              <span class="tech-tag">Design Systems</span>
-              <span class="tech-tag">Documentation</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Process -->
-    <section id="process" class="section">
-      <div class="container">
-        <span class="section-label">Execution Framework</span>
-        <h2 class="section-heading">Predictable milestones, fast cadence.</h2>
-        <p class="section-subtext">
-          We operate in structured, focused phases to ensure total clarity and eliminate scope drift.
-        </p>
-
-        <div class="process-grid">
-          <div class="process-col">
-            <span class="step-marker">Phase 01</span>
-            <h4>Discovery & Strategy</h4>
-            <p>We analyze your business model, customer psychology, and competitive landscape to establish the strategic baseline.</p>
-          </div>
-          <div class="process-col">
-            <span class="step-marker">Phase 02</span>
-            <h4>Art Direction & UX Structure</h4>
-            <p>We establish visual moodboards, typographic hierarchy, and structural wireframes before any final styling begins.</p>
-          </div>
-          <div class="process-col">
-            <span class="step-marker">Phase 03</span>
-            <h4>Design System & Build</h4>
-            <p>High-fidelity screen layouts, responsive development, interaction testing, and performance optimization.</p>
-          </div>
-          <div class="process-col">
-            <span class="step-marker">Phase 04</span>
-            <h4>Delivery & Launch</h4>
-            <p>Multi-device QA, analytics hookup, speed checks, and complete handover of all repositories and source files.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing / Engagement Models -->
-    <section id="engagements" class="section">
-      <div class="container">
-        <span class="section-label">Engagement Models</span>
-        <h2 class="section-heading">Transparent scope & investment.</h2>
-        <p class="section-subtext">
-          Clear, flat-rate engagements tailored to early-stage startups and scaling companies.
-        </p>
-
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <span class="pricing-badge">Sprint</span>
-            <div class="tier-title">Marketing Landing Page</div>
-            <div class="tier-price">$1,450 <span>flat</span></div>
-            <p class="tier-desc">Engineered for startups launching a new product, service, or fundraising announcement.</p>
-            <ul class="tier-specs">
-              <li>High-Conversion Single Page Website</li>
-              <li>Full Responsive Layout (Desktop, Tablet, Mobile)</li>
-              <li>Cognitive Hierarchy & Copy Guidance</li>
-              <li>Turnaround in 5–7 Business Days</li>
-              <li>2 Structured Revision Cycles</li>
-              <li>Production Source Code & Deployment</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary btn-block">Inquire About Sprint</a>
-          </div>
-
-          <div class="pricing-card highlighted">
-            <span class="pricing-badge">Recommended</span>
-            <div class="tier-title">Complete Brand & Web Presence</div>
-            <div class="tier-price">$2,900 <span>flat</span></div>
-            <p class="tier-desc">A complete visual and digital overhaul to establish market credibility and drive inbound interest.</p>
-            <ul class="tier-specs">
-              <li>Full Brand Identity System (Logo, Color, Typography)</li>
-              <li>Multi-Page Website (Up to 4 Core Pages)</li>
-              <li>Behavioral UX & Conversion Funnel Layout</li>
-              <li>Complete Figma Design Tokens & Component Library</li>
-              <li>Turnaround in 10–14 Business Days</li>
-              <li>Direct Studio Lead Access & Revisions</li>
-            </ul>
-            <a href="#contact" class="btn btn-primary btn-block">Initiate Project</a>
-          </div>
-
-          <div class="pricing-card">
-            <span class="pricing-badge">Custom</span>
-            <div class="tier-title">Product Interface Architecture</div>
-            <div class="tier-price">$4,500 <span>starting</span></div>
-            <p class="tier-desc">Comprehensive UX/UI design system and prototype architecture for SaaS or mobile software.</p>
-            <ul class="tier-specs">
-              <li>End-to-End Application UI/UX Design</li>
-              <li>Clickable, High-Fidelity Interactive Prototype</li>
-              <li>Design System Component Architecture in Figma</li>
-              <li>Onboarding & Retention Flow Optimization</li>
-              <li>Complete Developer Specification & Handoff</li>
-              <li>Dedicated 3-Week Engagement Block</li>
-            </ul>
-            <a href="#contact" class="btn btn-secondary btn-block">Discuss Product</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section">
-      <div class="container">
-        <span class="section-label">Questions</span>
-        <h2 class="section-heading">Frequently asked questions.</h2>
-        
-        <div class="faq-container">
-          <div class="accordion-list">
-            <div class="faq-item">
-              <button class="faq-trigger">
-                <span>How does Mocta compare to traditional branding agencies?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-body">
-                <p>Traditional agencies employ large account management layers and hand off actual execution to junior contractors while charging substantial monthly retainers. Mocta is an independent studio where senior partners lead strategy, design, and code directly on every account.</p>
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-trigger">
-                <span>How does behavioral psychology influence your design process?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-body">
-                <p>Aesthetics create visual interest, but behavioral psychology informs decision-making. We apply empirical cognitive principles—including choice architecture, visual scan paths, cognitive friction reduction, and social validation cues—to ensure visitors clearly understand your product and take action.</p>
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-trigger">
-                <span>What are the handoff deliverables?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-body">
-                <p>You retain 100% intellectual property ownership. Deliverables include vector brand assets, organized Figma design systems with components and tokens, responsive web code in clean Git repositories, and deployment documentation.</p>
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-trigger">
-                <span>What technical stacks do you support?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-body">
-                <p>We work with modern standards tailored to your team's operational needs: clean static HTML/CSS/JavaScript, React/Next.js for custom applications, or Framer and Webflow if your marketing team prefers a visual CMS.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <span class="section-label">Start an Engagement</span>
-        <div class="contact-grid">
+        <!-- Metric Stat Strip (Watermelon UI Spec) -->
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-border/80">
           <div>
-            <h2 class="section-heading">Let's discuss your next milestone.</h2>
-            <p class="section-subtext">
-              Share details about your product, timeline, and goals. We review all inquiries promptly and reply within 24 hours.
+            <div class="text-base font-semibold text-foreground tracking-tight">Direct Access</div>
+            <div class="text-xs font-mono text-muted-foreground mt-0.5">Partner-Led Execution</div>
+            <p class="text-xs text-muted-foreground/80 mt-1.5 leading-relaxed">No junior handoffs or account managers. Senior partners lead design and code directly.</p>
+          </div>
+          <div>
+            <div class="text-base font-semibold text-foreground tracking-tight">10–14 Days</div>
+            <div class="text-xs font-mono text-muted-foreground mt-0.5">Rapid Deployment Cadence</div>
+            <p class="text-xs text-muted-foreground/80 mt-1.5 leading-relaxed">Agile sprint cycles built around funding milestones and commercial go-to-market dates.</p>
+          </div>
+          <div>
+            <div class="text-base font-semibold text-foreground tracking-tight">100% Bespoke</div>
+            <div class="text-xs font-mono text-muted-foreground mt-0.5">Zero Cookie-Cutter Themes</div>
+            <p class="text-xs text-muted-foreground/80 mt-1.5 leading-relaxed">Fine-art trained craft paired with empirical behavioral science and high-speed code.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Section (Watermelon UI Bento Pattern) -->
+    <section id="bento" class="py-20 border-t border-border/60 bg-card/20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted-foreground">Architectural Foundation</span>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground mt-2">The Mocta Dual-Practice Model</h2>
+          <p class="text-muted-foreground mt-2 max-w-xl text-sm leading-relaxed">
+            Eliminating the false trade-off between aesthetic distinction and functional conversion.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+          <!-- Bento Box 1: Visual Art Direction (7 Cols) -->
+          <div class="md:col-span-7 rounded-lg border border-border bg-card p-8 flex flex-col justify-between hover:border-border/90 transition-colors">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono text-muted-foreground uppercase tracking-wider">Practice 01 / Visual Identity</span>
+                <span class="h-2 w-2 rounded-full bg-rose-500/80"></span>
+              </div>
+              <h3 class="text-xl font-bold tracking-tight mb-2">Fine Art Direction & Visual Identity</h3>
+              <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+                Rooted in formal visual arts training, composition theory, color psychology, and custom typographic scale. We craft authentic identities that break away from repetitive venture template trends.
+              </p>
+            </div>
+            <div class="pt-6 border-t border-border/60 grid grid-cols-2 gap-3 text-xs text-muted-foreground">
+              <div class="flex items-center gap-2"><span>✦</span> Bespoke Vector Brand Marks</div>
+              <div class="flex items-center gap-2"><span>✦</span> Typography & Hierarchy Tokens</div>
+              <div class="flex items-center gap-2"><span>✦</span> Curated Palette Harmony</div>
+              <div class="flex items-center gap-2"><span>✦</span> Figma Design Systems</div>
+            </div>
+          </div>
+
+          <!-- Bento Box 2: Behavioral UX & Code (5 Cols) -->
+          <div class="md:col-span-5 rounded-lg border border-border bg-card p-8 flex flex-col justify-between hover:border-border/90 transition-colors">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono text-muted-foreground uppercase tracking-wider">Practice 02 / Engineering</span>
+                <span class="h-2 w-2 rounded-full bg-indigo-500/80"></span>
+              </div>
+              <h3 class="text-xl font-bold tracking-tight mb-2">Behavioral UX & Front-End Engineering</h3>
+              <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+                Guided by cognitive psychology heuristics. We eliminate user hesitation, structure clear decision architecture, and engineer fast web experiences.
+              </p>
+            </div>
+            <div class="pt-6 border-t border-border/60 flex flex-col gap-2.5 text-xs text-muted-foreground">
+              <div class="flex items-center gap-2"><span>✦</span> Cognitive Load & Drop-off Reduction</div>
+              <div class="flex items-center gap-2"><span>✦</span> Conversion Funnel Layouts</div>
+              <div class="flex items-center gap-2"><span>✦</span> Clean Next.js / HTML5 Architecture</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice Areas / Services Grid (Watermelon UI Component Card Grid) -->
+    <section id="practices" class="py-20 border-t border-border/60">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted-foreground">Studio Capabilities</span>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground mt-2">Comprehensive Execution Disciplines</h2>
+          <p class="text-muted-foreground mt-2 max-w-xl text-sm leading-relaxed">
+            Focused capabilities designed to support early-stage products and scaling startups through critical growth inflections.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Card 1 -->
+          <div class="rounded-lg border border-border bg-card p-6 flex flex-col justify-between hover:border-muted-foreground/30 transition-all">
+            <div>
+              <span class="font-mono text-xs text-muted-foreground">01</span>
+              <h3 class="text-base font-semibold tracking-tight text-foreground mt-4 mb-2">High-Conversion Web Platforms</h3>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">
+                Lightning-fast websites structured to explain complex product value simply and transform passive visitors into pipeline.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-border/60">
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Next.js / HTML5</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Framer</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Webflow</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="rounded-lg border border-border bg-card p-6 flex flex-col justify-between hover:border-muted-foreground/30 transition-all">
+            <div>
+              <span class="font-mono text-xs text-muted-foreground">02</span>
+              <h3 class="text-base font-semibold tracking-tight text-foreground mt-4 mb-2">Brand Identity & Design Tokens</h3>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">
+                Logomarks, typographic scale, color tokens, and complete brand documentation ready for cross-platform expansion.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-border/60">
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Vector Craft</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Brand Book</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Tokens</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="rounded-lg border border-border bg-card p-6 flex flex-col justify-between hover:border-muted-foreground/30 transition-all">
+            <div>
+              <span class="font-mono text-xs text-muted-foreground">03</span>
+              <h3 class="text-base font-semibold tracking-tight text-foreground mt-4 mb-2">Digital Product UX/UI Architecture</h3>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">
+                Web and mobile product interfaces mapped for intuitive navigation, rapid onboarding, and minimum user friction.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-border/60">
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Figma Prototypes</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">User Flows</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">SaaS UX</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="rounded-lg border border-border bg-card p-6 flex flex-col justify-between hover:border-muted-foreground/30 transition-all">
+            <div>
+              <span class="font-mono text-xs text-muted-foreground">04</span>
+              <h3 class="text-base font-semibold tracking-tight text-foreground mt-4 mb-2">Behavioral Conversion Audit</h3>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">
+                Deep heuristic evaluation of your existing conversion surfaces to diagnose drop-off triggers and layout friction.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-border/60">
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Heuristic Review</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Drop-off Map</span>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="rounded-lg border border-border bg-card p-6 flex flex-col justify-between hover:border-muted-foreground/30 transition-all">
+            <div>
+              <span class="font-mono text-xs text-muted-foreground">05</span>
+              <h3 class="text-base font-semibold tracking-tight text-foreground mt-4 mb-2">Interactive Product Widgets</h3>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">
+                Bespoke interactive calculators, dynamic onboarding flows, and valuation tools that instantly demonstrate value.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-border/60">
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Dynamic Logic</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Lead Capture</span>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="rounded-lg border border-border bg-card p-6 flex flex-col justify-between hover:border-muted-foreground/30 transition-all">
+            <div>
+              <span class="font-mono text-xs text-muted-foreground">06</span>
+              <h3 class="text-base font-semibold tracking-tight text-foreground mt-4 mb-2">Production Handoff & Governance</h3>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">
+                Clean git repositories, documented component tokens, and pixel-perfect specifications for internal engineering teams.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-border/60">
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Git Handoff</span>
+              <span class="font-mono text-[11px] bg-secondary text-secondary-foreground px-2 py-0.5 rounded">Specs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process / Milestones (Watermelon UI Step Pattern) -->
+    <section id="process" class="py-20 border-t border-border/60 bg-card/20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted-foreground">Studio Framework</span>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground mt-2">Structured Milestones, Zero Guesswork</h2>
+          <p class="text-muted-foreground mt-2 max-w-xl text-sm leading-relaxed">
+            Every engagement follows a proven, transparent sprint methodology designed to eliminate scope drift.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div class="rounded-lg border border-border bg-card p-6">
+            <span class="text-xs font-mono text-muted-foreground">Phase 01</span>
+            <h4 class="text-base font-semibold mt-3 mb-2">Strategy & Alignment</h4>
+            <p class="text-xs text-muted-foreground leading-relaxed">
+              Dissecting audience psychology, positioning goals, and customer conversion paths.
+            </p>
+          </div>
+          <div class="rounded-lg border border-border bg-card p-6">
+            <span class="text-xs font-mono text-muted-foreground">Phase 02</span>
+            <h4 class="text-base font-semibold mt-3 mb-2">Art Direction & Flows</h4>
+            <p class="text-xs text-muted-foreground leading-relaxed">
+              Curating typographic scales, visual moodboards, and structural wireframes.
+            </p>
+          </div>
+          <div class="rounded-lg border border-border bg-card p-6">
+            <span class="text-xs font-mono text-muted-foreground">Phase 03</span>
+            <h4 class="text-base font-semibold mt-3 mb-2">Design System & Build</h4>
+            <p class="text-xs text-muted-foreground leading-relaxed">
+              Building responsive production code, smooth interactions, and component libraries.
+            </p>
+          </div>
+          <div class="rounded-lg border border-border bg-card p-6">
+            <span class="text-xs font-mono text-muted-foreground">Phase 04</span>
+            <h4 class="text-base font-semibold mt-3 mb-2">Verification & Launch</h4>
+            <p class="text-xs text-muted-foreground leading-relaxed">
+              Cross-browser QA, performance audits, analytics wiring, and full IP handover.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Engagement Models (Watermelon UI Pricing Card Block) -->
+    <section id="engagements" class="py-20 border-t border-border/60">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted-foreground">Investment Models</span>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground mt-2">Transparent Partner Engagements</h2>
+          <p class="text-muted-foreground mt-2 max-w-xl text-sm leading-relaxed">
+            Flat, predictable pricing with direct partner involvement across the entire timeline.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <!-- Tier 1 -->
+          <div class="rounded-lg border border-border bg-card p-8 flex flex-col justify-between hover:border-muted-foreground/30 transition-colors">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-muted-foreground border border-border px-2 py-0.5 rounded">Sprint</span>
+              <h3 class="text-lg font-bold text-foreground mt-4">Landing Page Sprint</h3>
+              <div class="text-3xl font-bold tracking-tight text-foreground mt-3 mb-1">$1,450 <span class="text-xs font-normal text-muted-foreground">flat</span></div>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">Designed for companies launching a new product, service, or venture milestone.</p>
+              
+              <ul class="space-y-2.5 text-xs text-muted-foreground border-t border-border/60 pt-6 mb-8">
+                <li class="flex items-center gap-2"><span>—</span> High-Conversion Single Page Website</li>
+                <li class="flex items-center gap-2"><span>—</span> Full Responsive Architecture</li>
+                <li class="flex items-center gap-2"><span>—</span> Copy & Cognitive Structure Review</li>
+                <li class="flex items-center gap-2"><span>—</span> 5–7 Business Days Delivery</li>
+                <li class="flex items-center gap-2"><span>—</span> 2 Structured Revision Rounds</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full inline-flex items-center justify-center rounded-md text-xs font-medium border border-border bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 transition-colors">
+              Inquire About Sprint
+            </a>
+          </div>
+
+          <!-- Tier 2 (Highlighted) -->
+          <div class="rounded-lg border border-foreground/30 bg-card p-8 flex flex-col justify-between relative shadow-lg">
+            <div class="absolute -top-3 right-6 bg-primary text-primary-foreground text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full font-semibold">
+              Most Selected
+            </div>
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-primary border border-primary/30 px-2 py-0.5 rounded">Complete</span>
+              <h3 class="text-lg font-bold text-foreground mt-4">Brand & Web Presence</h3>
+              <div class="text-3xl font-bold tracking-tight text-foreground mt-3 mb-1">$2,900 <span class="text-xs font-normal text-muted-foreground">flat</span></div>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">Full identity creation and multi-page web architecture to establish market authority.</p>
+              
+              <ul class="space-y-2.5 text-xs text-foreground/90 border-t border-border/60 pt-6 mb-8">
+                <li class="flex items-center gap-2"><span>✦</span> Full Brand System (Logo, Fonts, Palette)</li>
+                <li class="flex items-center gap-2"><span>✦</span> Multi-Page Website (Up to 4 Pages)</li>
+                <li class="flex items-center gap-2"><span>✦</span> Behavioral UX & Conversion Funnel Layout</li>
+                <li class="flex items-center gap-2"><span>✦</span> Figma Design System & Tokens</li>
+                <li class="flex items-center gap-2"><span>✦</span> 10–14 Business Days Delivery</li>
+                <li class="flex items-center gap-2"><span>✦</span> Dedicated Revisions & Source Code</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full inline-flex items-center justify-center rounded-md text-xs font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 transition-colors">
+              Initiate Project
+            </a>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="rounded-lg border border-border bg-card p-8 flex flex-col justify-between hover:border-muted-foreground/30 transition-colors">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-wider text-muted-foreground border border-border px-2 py-0.5 rounded">Custom</span>
+              <h3 class="text-lg font-bold text-foreground mt-4">Product Interface UX/UI</h3>
+              <div class="text-3xl font-bold tracking-tight text-foreground mt-3 mb-1">$4,500 <span class="text-xs font-normal text-muted-foreground">starting</span></div>
+              <p class="text-xs text-muted-foreground leading-relaxed mb-6">End-to-end interface system and interactive clickable prototype for complex SaaS apps.</p>
+              
+              <ul class="space-y-2.5 text-xs text-muted-foreground border-t border-border/60 pt-6 mb-8">
+                <li class="flex items-center gap-2"><span>—</span> Full Web or Mobile Application UI/UX</li>
+                <li class="flex items-center gap-2"><span>—</span> Clickable High-Fidelity Prototype</li>
+                <li class="flex items-center gap-2"><span>—</span> Scalable Component Library in Figma</li>
+                <li class="flex items-center gap-2"><span>—</span> Onboarding & Retention Flow Optimization</li>
+                <li class="flex items-center gap-2"><span>—</span> Developer Handoff Documentation</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full inline-flex items-center justify-center rounded-md text-xs font-medium border border-border bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 transition-colors">
+              Discuss Product Scope
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section (Watermelon UI Accordion Pattern) -->
+    <section id="faq" class="py-20 border-t border-border/60 bg-card/20">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="mb-12">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted-foreground">Common Inquiries</span>
+          <h2 class="text-3xl font-bold tracking-tight text-foreground mt-2">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="space-y-3" id="accordionContainer">
+          <div class="border border-border rounded-lg bg-card overflow-hidden accordion-item">
+            <button class="w-full px-6 py-4 text-left flex items-center justify-between text-sm font-medium hover:text-primary transition-colors accordion-btn">
+              <span>Why choose Mocta over a traditional branding or dev agency?</span>
+              <span class="font-mono text-muted-foreground accordion-icon text-base">+</span>
+            </button>
+            <div class="px-6 pb-4 text-xs text-muted-foreground leading-relaxed hidden accordion-content">
+              Traditional agencies assign your account to junior associates while billing heavy administrative overhead. At Mocta, senior partners lead every project directly—combining fine-arts visual aesthetics with empirical behavioral science and modern engineering.
+            </div>
+          </div>
+
+          <div class="border border-border rounded-lg bg-card overflow-hidden accordion-item">
+            <button class="w-full px-6 py-4 text-left flex items-center justify-between text-sm font-medium hover:text-primary transition-colors accordion-btn">
+              <span>How does behavioral psychology influence your design decisions?</span>
+              <span class="font-mono text-muted-foreground accordion-icon text-base">+</span>
+            </button>
+            <div class="px-6 pb-4 text-xs text-muted-foreground leading-relaxed hidden accordion-content">
+              Aesthetics drive initial attention, but cognitive psychology guides action. We structure information hierarchy, eliminate decision paralysis, format trust signals, and optimize visual scan paths so visitors quickly understand your value proposition.
+            </div>
+          </div>
+
+          <div class="border border-border rounded-lg bg-card overflow-hidden accordion-item">
+            <button class="w-full px-6 py-4 text-left flex items-center justify-between text-sm font-medium hover:text-primary transition-colors accordion-btn">
+              <span>What do we receive at handoff? Do we own all IP?</span>
+              <span class="font-mono text-muted-foreground accordion-icon text-base">+</span>
+            </button>
+            <div class="px-6 pb-4 text-xs text-muted-foreground leading-relaxed hidden accordion-content">
+              Yes, 100% intellectual property ownership transfers to you. You receive vector files, complete Figma component libraries, responsive source code repositories, and deployment documentation.
+            </div>
+          </div>
+
+          <div class="border border-border rounded-lg bg-card overflow-hidden accordion-item">
+            <button class="w-full px-6 py-4 text-left flex items-center justify-between text-sm font-medium hover:text-primary transition-colors accordion-btn">
+              <span>What tech stacks and tools do you support?</span>
+              <span class="font-mono text-muted-foreground accordion-icon text-base">+</span>
+            </button>
+            <div class="px-6 pb-4 text-xs text-muted-foreground leading-relaxed hidden accordion-content">
+              We build with modern frameworks: clean semantic HTML5/CSS, Next.js/React, Tailwind CSS, or visual platforms like Framer and Webflow if your marketing team wants self-serve publishing freedom.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section (Watermelon UI Form Block) -->
+    <section id="contact" class="py-20 border-t border-border/60">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div class="md:col-span-5">
+            <span class="text-xs font-mono uppercase tracking-widest text-muted-foreground">Project Inquiry</span>
+            <h2 class="text-3xl font-bold tracking-tight text-foreground mt-2 mb-4">Let's discuss your next milestone.</h2>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-8">
+              Share details about your product, timeline, and goals. A studio partner will review your inquiry and respond within 24 hours.
             </p>
 
-            <div class="contact-meta-group">
-              <div class="meta-block">
-                <span class="meta-label">Location & Availability</span>
-                <span class="meta-val">Operating globally across North America, Europe & APAC</span>
+            <div class="space-y-4 text-xs text-muted-foreground font-mono">
+              <div>
+                <span class="block text-foreground font-semibold mb-0.5">AVAILABILITY</span>
+                <span>Active for Q4 / Q1 Partner Engagements</span>
               </div>
-              <div class="meta-block">
-                <span class="meta-label">Response Time</span>
-                <span class="meta-val">Within 24 hours on business days</span>
+              <div>
+                <span class="block text-foreground font-semibold mb-0.5">RESPONSE TIME</span>
+                <span>Under 24 hours on business days</span>
               </div>
-              <div class="meta-block">
-                <span class="meta-label">Direct Communication</span>
-                <span class="meta-val">contact@mocta.studio</span>
+              <div>
+                <span class="block text-foreground font-semibold mb-0.5">DIRECT INQUIRIES</span>
+                <span class="text-foreground">contact@mocta.studio</span>
               </div>
             </div>
           </div>
 
-          <div>
-            <form id="contactForm" class="contact-form">
-              <div class="form-field">
-                <label for="name" class="form-label">Full Name</label>
-                <input type="text" id="name" name="name" class="form-input" required placeholder="Jane Doe">
+          <div class="md:col-span-7">
+            <form id="contactForm" class="rounded-lg border border-border bg-card p-8 space-y-5">
+              <div>
+                <label for="name" class="block text-xs font-medium text-muted-foreground mb-1.5">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="Jane Doe" class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-ring">
               </div>
 
-              <div class="form-field">
-                <label for="email" class="form-label">Work Email</label>
-                <input type="email" id="email" name="email" class="form-input" required placeholder="jane@company.com">
+              <div>
+                <label for="email" class="block text-xs font-medium text-muted-foreground mb-1.5">Work Email</label>
+                <input type="email" id="email" name="email" required placeholder="jane@company.com" class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-ring">
               </div>
 
-              <div class="form-field">
-                <label for="interest" class="form-label">Engagement Type</label>
-                <select id="interest" name="interest" class="form-select">
-                  <option value="landing">Marketing Landing Page Sprint</option>
-                  <option value="branding_web">Brand Identity & Complete Web Presence</option>
-                  <option value="product_ui">Product UX/UI Interface Architecture</option>
-                  <option value="audit">Design System & Conversion Audit</option>
+              <div>
+                <label for="interest" class="block text-xs font-medium text-muted-foreground mb-1.5">Engagement Scope</label>
+                <select id="interest" name="interest" class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-ring">
+                  <option value="landing">Marketing Landing Page Sprint ($1,450)</option>
+                  <option value="brand_web">Complete Brand & Web Presence ($2,900)</option>
+                  <option value="product">Product Interface Architecture ($4,500)</option>
+                  <option value="audit">Behavioral UX & Conversion Audit</option>
                 </select>
               </div>
 
-              <div class="form-field">
-                <label for="message" class="form-label">Project Details & Timeline</label>
-                <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Briefly summarize your company, product, and target timeline..."></textarea>
+              <div>
+                <label for="message" class="block text-xs font-medium text-muted-foreground mb-1.5">Project Overview & Timeline</label>
+                <textarea id="message" name="message" rows="4" placeholder="Briefly summarize your product, goals, and target timeline..." class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-ring"></textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBtn">
-                Submit Project Inquiry
+              <button type="submit" id="submitBtn" class="w-full inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4">
+                Submit Project Inquiry →
               </button>
 
-              <div id="formSuccess" class="form-alert hidden">
-                Thank you for your inquiry. A studio lead will review your submission and contact you shortly.
+              <div id="formSuccess" class="hidden rounded-md border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-400 text-center">
+                Inquiry received. A studio partner will follow up within 24 hours.
               </div>
             </form>
           </div>
@@ -419,37 +565,22 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-desc">
-          <a href="#" class="brand-mark">
-            <span class="brand-glyph">M</span>
-            <span class="brand-name">MOCTA</span>
-          </a>
-          <p>An independent digital studio crafting fine-art brand systems, high-conversion web platforms, and intuitive interfaces.</p>
+  <!-- Footer (Watermelon UI Footer Block) -->
+  <footer class="border-t border-border/60 bg-background py-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div class="flex items-center gap-2">
+        <div class="h-5 w-5 rounded bg-foreground text-background font-mono font-bold text-[11px] flex items-center justify-center">
+          M
         </div>
-        <div class="footer-cols">
-          <div class="footer-col">
-            <span class="footer-col-title">Studio</span>
-            <a href="#capabilities">Capabilities</a>
-            <a href="#approach">Approach</a>
-            <a href="#process">Process</a>
-            <a href="#engagements">Engagements</a>
-          </div>
-          <div class="footer-col">
-            <span class="footer-col-title">Practice Areas</span>
-            <span>Brand Identity</span>
-            <span>Web Platforms</span>
-            <span>Product UX/UI</span>
-            <span>Behavioral Strategy</span>
-          </div>
-        </div>
+        <span class="font-sans font-semibold tracking-tight text-sm">MOCTA</span>
+        <span class="text-xs text-muted-foreground ml-2">© 2026 Mocta Studio. All rights reserved.</span>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Mocta Studio. All rights reserved.</p>
-        <p>Crafted with restraint and technical discipline.</p>
+
+      <div class="flex items-center gap-6 text-xs text-muted-foreground">
+        <a href="#practices" class="hover:text-foreground transition-colors">Practices</a>
+        <a href="#bento" class="hover:text-foreground transition-colors">Architecture</a>
+        <a href="#engagements" class="hover:text-foreground transition-colors">Engagements</a>
+        <a href="#contact" class="hover:text-foreground transition-colors">Contact</a>
       </div>
     </div>
   </footer>
