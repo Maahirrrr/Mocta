@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
         <a href="#terms" className="hover:text-foreground transition-colors">
           Terms
         </a>
-        <a href="mailto:hello@mindloop.io" className="hover:text-foreground transition-colors">
+        <a href="mailto:hello@mocta.design" className="hover:text-foreground transition-colors">
           Contact
         </a>
       </div>
