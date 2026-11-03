@@ -26,7 +26,7 @@ const servicesData: ServiceItem[] = [
   {
     id: 'branding',
     number: '02',
-    title: 'branding',
+    title: 'Branding',
     subtitle: 'Identity',
     description: 'Foundational visual identities built for enduring prestige. Logos, logotypes, color theory, and bespoke typographic guidelines.',
     deliverables: ['Brand Guidelines', 'Typography Hierarchy', 'Iconography', 'Packaging & Collateral'],
@@ -66,7 +66,7 @@ const servicesData: ServiceItem[] = [
   {
     id: 'advertising',
     number: '06',
-    title: 'advertising',
+    title: 'Advertising',
     subtitle: 'Creative Ads',
     description: 'High-conversion campaign collateral, dynamic motion assets, and viral storytelling designed to command user attention across channels.',
     deliverables: ['Performance Motion', 'Social Video Assets', 'Display Ad Systems', 'Pitch Decks'],
