@@ -4,12 +4,12 @@ export const IntroSection: React.FC = () => {
   return (
     <section
       aria-labelledby="intro-heading"
-      className="w-full py-24 md:py-32 bg-[#080808] text-[#f2f2f0]"
+      className="w-full py-20 md:py-28 bg-[#080808] text-[#f2f2f0]"
     >
       <div className="mocta-wrap">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
-          {/* Left study plate */}
-          <div data-reveal className="md:col-span-5 flex flex-col gap-3">
+          {/* Left architectural study */}
+          <div data-reveal className="md:col-span-5">
             <img
               src="./assets/perspective-shot-building-windows-melbourne.webp"
               width={1024}
@@ -19,13 +19,10 @@ export const IntroSection: React.FC = () => {
               decoding="async"
               className="w-full aspect-square object-cover bg-[#141414]"
             />
-            <p className="text-[length:var(--step-small)] text-[#a1a19e] leading-relaxed">
-              Spatial composition from fine-arts drafting applied directly to screen hierarchy.
-            </p>
           </div>
 
-          {/* Right studio thesis */}
-          <div className="md:col-span-7 md:pt-6 flex flex-col justify-between gap-8">
+          {/* Right minimal statement */}
+          <div className="md:col-span-7 md:pt-4 flex flex-col justify-between gap-8">
             <h2
               id="intro-heading"
               data-reveal
@@ -37,19 +34,19 @@ export const IntroSection: React.FC = () => {
             <p
               data-reveal
               style={{ ['--rd' as string]: '80ms' }}
-              className="text-[length:var(--step-lead)] text-[#f2f2f0] leading-[1.38] max-w-[42ch]"
+              className="text-[length:var(--step-lead)] text-[#f2f2f0] leading-[1.38] max-w-[38ch]"
             >
-              Small businesses and startups lose customers when their site hides the offer behind vague slogans or cluttered navigation. Mocta pairs observational fine-arts design with behavioral psychology and production AI engineering. We design how an identity feels on first glance, structure pages around buyer decisions, and ship clean production software.
+              Fine-arts draftsmanship paired with behavioral psychology and AI engineering. We turn unclear startup offers into fast, conversion-focused products.
             </p>
 
-            {/* Concrete capabilities strip */}
+            {/* Minimal proof pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 pt-4">
               <div data-reveal style={{ ['--rd' as string]: '120ms' }}>
                 <p className="font-compressed text-[length:var(--step-lead)] leading-none text-[#f2f2f0] tabular mb-2">
                   4 tracks
                 </p>
                 <p className="text-[length:var(--step-small)] text-[#a1a19e]">
-                  Websites, landing pages, apps, and complete brand identities
+                  Websites, landing pages, apps, identity.
                 </p>
               </div>
               <div data-reveal style={{ ['--rd' as string]: '180ms' }}>
@@ -57,15 +54,15 @@ export const IntroSection: React.FC = () => {
                   Behavioral UX
                 </p>
                 <p className="text-[length:var(--step-small)] text-[#a1a19e]">
-                  Layouts shaped around decision flow and buyer confidence
+                  Layouts structured for fast buyer decisions.
                 </p>
               </div>
               <div data-reveal style={{ ['--rd' as string]: '240ms' }}>
                 <p className="font-compressed text-[length:var(--step-lead)] leading-none text-[#f2f2f0] tabular mb-2">
-                  AI product lab
+                  AI lab
                 </p>
                 <p className="text-[length:var(--step-small)] text-[#a1a19e]">
-                  Every recurring client problem becomes a tested software tool
+                  Recurring bottlenecks built into software.
                 </p>
               </div>
             </div>

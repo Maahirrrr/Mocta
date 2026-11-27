@@ -18,8 +18,8 @@ const servicesData: ServiceItem[] = [
     title: 'Landing pages',
     subtitle: 'Conversion UX',
     description:
-      'Focused campaign and launch pages structured using behavioral psychology so first-time visitors understand your value proposition and take action quickly.',
-    deliverables: ['Decision Mapping', 'Direct Copywriting', 'Interactive Demos', 'Speed Optimization'],
+      'Campaign pages grounded in behavioral psychology so visitors grasp the offer and act fast.',
+    deliverables: ['Decision Mapping', 'Direct Copy', 'Speed Tuning'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef694221ab31dc7a0898e_Home-artdirection-transcode.webm',
     posterSrc:
@@ -30,8 +30,8 @@ const servicesData: ServiceItem[] = [
     title: 'Branding',
     subtitle: 'Fine-arts craft',
     description:
-      'Custom visual identities rooted in hand-drawn proportion studies, expressive illustration, and clear typographic systems built to stand apart from templates.',
-    deliverables: ['Drawn Logo Systems', 'Typography Rules', 'Color Proportion', 'Launch Stationery'],
+      'Original marks, drawn studies, and typography systems built from manual draftsmanship.',
+    deliverables: ['Drawn Logos', 'Type Systems', 'Visual Guidelines'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef76a17912168bc67811f_Home-branding-transcode.webm',
     posterSrc:
@@ -42,8 +42,8 @@ const servicesData: ServiceItem[] = [
     title: 'Websites',
     subtitle: 'Design & Code',
     description:
-      'Multi-page company sites engineered cleanly in React or Webflow with fast static loads, structured CMS editing, and verified mobile layouts.',
-    deliverables: ['React / Webflow Build', 'CMS Collections', 'Technical SEO', 'Analytics Hookup'],
+      'Fast production websites in React or Webflow built around clean structure and SEO.',
+    deliverables: ['React & Webflow', 'CMS Setup', 'Technical SEO'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef7ea54539b4433a39276_Webflow-home-transcode.webm',
     posterSrc:
@@ -52,10 +52,10 @@ const servicesData: ServiceItem[] = [
   {
     id: 'apps',
     title: 'Web & mobile apps',
-    subtitle: 'Product Systems',
+    subtitle: 'Product UI',
     description:
-      'Clear product interfaces, SaaS dashboards, and client portals designed to reduce daily cognitive friction across complex workflows.',
-    deliverables: ['User Flow Audits', 'Component Kits', 'Working Prototypes', 'Full-Stack Shipping'],
+      'Clear dashboards, booking portals, and software interfaces engineered for low cognitive load.',
+    deliverables: ['Product Flows', 'UI Kits', 'Full-Stack Code'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef86a1717db6af24e06f2_UI-UX-Home-transcode.webm',
     posterSrc:
@@ -64,10 +64,10 @@ const servicesData: ServiceItem[] = [
   {
     id: 'motion',
     title: 'GSAP animations',
-    subtitle: 'Interactions',
+    subtitle: 'Transitions',
     description:
-      'Tactile scroll choreography and smooth feedback states tuned with proper easing and reduced-motion fallbacks across every browser.',
-    deliverables: ['Scroll Transitions', 'Lenis Inertia', 'Interactive UI States', 'SVG Path Motion'],
+      'Scroll choreography and tactile UI feedback tuned for desktop and phone frame rates.',
+    deliverables: ['Scroll Physics', 'Lenis Inertia', 'Micro-Interactions'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F69f31d237bb976aa6e0bc834_Scene-1_webm.webm',
     posterSrc:
@@ -78,8 +78,8 @@ const servicesData: ServiceItem[] = [
     title: 'Advertising',
     subtitle: 'Campaign Assets',
     description:
-      'Launch visuals, product reels, and paid-acquisition graphics shaped to carry one clear startup message in the first three seconds.',
-    deliverables: ['Launch Reels', 'Social Ad Cuts', 'Investor Decks', 'Product Previews'],
+      'Focused launch visuals and motion cutdowns shaped to win attention in three seconds.',
+    deliverables: ['Launch Reels', 'Social Creative', 'Pitch Decks'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68df9e1b94554da67438cec0_Ads-service-homeV3-transcode.mp4',
     posterSrc:
@@ -90,8 +90,8 @@ const servicesData: ServiceItem[] = [
     title: 'AI workflows',
     subtitle: 'Automation',
     description:
-      'Practical machine-learning features and workflow tools built straight into your site or operations, from quote estimators to lead qualification.',
-    deliverables: ['Quote Calculators', 'Intake Agents', 'API Integrations', 'Custom Micro-Tools'],
+      'Custom quote builders, intake agents, and automated pipelines integrated into your business.',
+    deliverables: ['Quote Builders', 'Intake Agents', 'API Pipelines'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68befca9c05567e63bc4d4a0_seo%20content%20home-transcode.webm',
     posterSrc:
@@ -123,10 +123,10 @@ export const ServicesSection: React.FC = () => {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="w-full py-24 md:py-32 bg-[#080808] text-[#f2f2f0]"
+      className="w-full py-20 md:py-28 bg-[#080808] text-[#f2f2f0]"
     >
       <div className="mocta-wrap">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end mb-12 md:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end mb-12 md:mb-14">
           <div className="md:col-span-7">
             <h2
               id="services-heading"
@@ -142,7 +142,7 @@ export const ServicesSection: React.FC = () => {
               style={{ ['--rd' as string]: '80ms' }}
               className="text-[length:var(--step-body)] text-[#a1a19e] leading-relaxed"
             >
-              Practical websites, apps, branding, and landing pages engineered for small businesses and startups ready to launch and earn.
+              Websites, branding, apps, and AI systems built for launch.
             </p>
           </div>
         </div>
@@ -205,7 +205,7 @@ export const ServicesSection: React.FC = () => {
                         {service.description}
                       </p>
                       <p className="text-[length:var(--step-small)] text-[#a1a19e]">
-                        Includes: {service.deliverables.join(' · ')}
+                        {service.deliverables.join(' · ')}
                       </p>
                     </div>
                   )}
@@ -250,21 +250,21 @@ export const ServicesSection: React.FC = () => {
             </p>
 
             <p className="text-[length:var(--step-small)] text-[#a1a19e] mb-6">
-              Includes: {activeService.deliverables.join(' · ')}
+              {activeService.deliverables.join(' · ')}
             </p>
 
             <a
               href="#pricing"
               className="self-start text-[length:var(--step-small)] font-semibold text-[#f2f2f0] underline underline-offset-4 decoration-[#a1a19e] hover:decoration-[#f2f2f0] transition-colors duration-200"
             >
-              Estimate {activeService.title}
+              Scope {activeService.title}
             </a>
           </div>
         </div>
 
-        <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <p className="text-[length:var(--step-body)] text-[#a1a19e]">
-            Shipped in focused weekly builds with fixed upfront pricing.
+            Fixed pricing. Weekly sprints.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -305,33 +305,30 @@ export const ServicesSection: React.FC = () => {
                 <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
                   Fine-Arts &amp; Brand
                 </h3>
-                <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
-                  <li>Original logotypes from drawn studies</li>
-                  <li>Typographic and color rules</li>
-                  <li>Custom editorial illustrations</li>
-                  <li>Social and launch visual kits</li>
+                <ul className="space-y-2 text-[length:var(--step-small)] text-[#a1a19e]">
+                  <li>Original logotypes</li>
+                  <li>Typography &amp; color rules</li>
+                  <li>Custom illustration kits</li>
                 </ul>
               </div>
               <div className="bg-[#141414] p-7">
                 <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
                   Conversion UX &amp; Apps
                 </h3>
-                <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
-                  <li>Behavioral funnel teardowns</li>
-                  <li>High-converting startup landing pages</li>
-                  <li>React &amp; mobile interface builds</li>
-                  <li>Real-device accessibility audits</li>
+                <ul className="space-y-2 text-[length:var(--step-small)] text-[#a1a19e]">
+                  <li>Behavioral funnel audits</li>
+                  <li>Startup landing pages</li>
+                  <li>React &amp; mobile builds</li>
                 </ul>
               </div>
               <div className="bg-[#141414] p-7">
                 <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
                   AI &amp; Product Lab
                 </h3>
-                <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
-                  <li>Automated quote and intake flows</li>
-                  <li>Custom LLM customer workflows</li>
-                  <li>Reusable internal software tools</li>
-                  <li>Clean full-stack code handoff</li>
+                <ul className="space-y-2 text-[length:var(--step-small)] text-[#a1a19e]">
+                  <li>Quote &amp; intake workflows</li>
+                  <li>Custom LLM integrations</li>
+                  <li>Internal software tools</li>
                 </ul>
               </div>
             </motion.div>

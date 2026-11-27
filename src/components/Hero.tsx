@@ -92,9 +92,9 @@ export const Hero: React.FC = () => {
             <p
               data-load
               style={{ ['--d' as string]: '240ms' }}
-              className="text-[length:var(--step-body)] text-[#f2f2f0] leading-relaxed max-w-[38ch] lg:text-right"
+              className="text-[length:var(--step-body)] text-[#f2f2f0] leading-relaxed max-w-[34ch] lg:text-right"
             >
-              Mocta designs and engineers websites, landing pages, apps, and brand identities using behavioral psychology and practical AI software.
+              Websites, branding, apps, and AI engineered for startups that convert.
             </p>
 
             <div className="flex flex-wrap items-center gap-5">

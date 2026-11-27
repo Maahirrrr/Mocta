@@ -11,21 +11,21 @@ interface Addon {
 const addons: Addon[] = [
   {
     id: 'illustration',
-    label: 'Fine-Arts Brand & Illustration Pack',
+    label: 'Fine-Arts Brand Kit',
     price: 900,
-    summary: 'Drawn logo variations, custom icons, and typography kit',
+    summary: 'Custom logo, type, and drawn assets',
   },
   {
     id: 'psychology',
-    label: 'Behavioral Conversion Audit',
+    label: 'Behavioral UX Audit',
     price: 800,
-    summary: 'Decision-flow teardown and friction removal across checkout',
+    summary: 'Conversion teardown across flows',
   },
   {
     id: 'ai-agent',
-    label: 'AI Quote & Lead Workflow',
+    label: 'AI Quote & Intake Flow',
     price: 1400,
-    summary: 'Automated project scoping, intake routing, and email sync',
+    summary: 'Automated scoping and email sync',
   },
 ];
 
@@ -41,8 +41,8 @@ export const ProcessPricingSection: React.FC = () => {
 
   const basePrices: Record<'landing' | 'website' | 'app', { price: number; name: string }> = {
     landing: { price: 2400, name: 'Landing Page Sprint (5 days)' },
-    website: { price: 4800, name: 'Startup Website & Brand (2 weeks)' },
-    app: { price: 8500, name: 'Web / Mobile App + AI (4 weeks)' },
+    website: { price: 4800, name: 'Brand & Website (2 weeks)' },
+    app: { price: 8500, name: 'App & AI Build (4 weeks)' },
   };
 
   const addonTotal = addons
@@ -55,9 +55,9 @@ export const ProcessPricingSection: React.FC = () => {
     .map((a) => a.label)
     .join(', ');
 
-  const mailSubject = encodeURIComponent(`Mocta Project Scope: ${basePrices[engagement].name}`);
+  const mailSubject = encodeURIComponent(`Mocta Scope: ${basePrices[engagement].name}`);
   const mailBody = encodeURIComponent(
-    `Selected package: ${basePrices[engagement].name}\nOptional modules: ${chosenNames || 'Core build'}\nEstimated budget: $${total.toLocaleString()}\n\nBusiness & timeline notes:`
+    `Package: ${basePrices[engagement].name}\nAdd-ons: ${chosenNames || 'Core'}\nEstimate: $${total.toLocaleString()}\n\nProject summary:`
   );
 
   return (
@@ -66,100 +66,81 @@ export const ProcessPricingSection: React.FC = () => {
       <section
         id="process"
         aria-labelledby="process-heading"
-        className="w-full py-24 md:py-32 bg-[#080808] text-[#f2f2f0]"
+        className="w-full py-20 md:py-28 bg-[#080808] text-[#f2f2f0]"
       >
         <div className="mocta-wrap">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             <div data-reveal className="lg:col-span-5">
               <h2
                 id="process-heading"
-                className="font-compressed text-[length:var(--step-head)] leading-[0.9] tracking-[-0.03em] text-[#f2f2f0] max-w-[15ch] mb-6"
+                className="font-compressed text-[length:var(--step-head)] leading-[0.9] tracking-[-0.03em] text-[#f2f2f0] max-w-[15ch] mb-5"
               >
-                From client builds to product software
+                Services built into software
               </h2>
-              <p className="text-[length:var(--step-body)] text-[#a1a19e] leading-relaxed max-w-[40ch] mb-8">
-                Every startup website, brand system, and custom app we ship reveals real operational bottlenecks. Solving them for businesses drives both immediate revenue for our clients and the reusable AI products built inside Mocta.
+              <p className="text-[length:var(--step-body)] text-[#a1a19e] leading-relaxed max-w-[38ch] mb-8">
+                Every custom site and app exposes real bottlenecks we turn into reusable AI products.
               </p>
 
-              <figure className="flex flex-col gap-2">
-                <img
-                  src="./assets/concrete-stairs-bw.webp"
-                  width={1024}
-                  height={683}
-                  alt="Stepped concrete architectural silhouette under sharp afternoon light"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full aspect-[16/10] object-cover bg-[#141414]"
-                />
-                <figcaption className="text-[length:var(--step-small)] text-[#a1a19e]">
-                  Structured delivery schedule across research, fine-arts study, and code
-                </figcaption>
-              </figure>
+              <img
+                src="./assets/concrete-stairs-bw.webp"
+                width={1024}
+                height={683}
+                alt="Stepped concrete architectural silhouette under sharp afternoon light"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-[16/10] object-cover bg-[#141414]"
+              />
             </div>
 
             <div
               data-reveal
               style={{ ['--rd' as string]: '100ms' }}
-              className="lg:col-span-7 bg-[#141414] p-7 md:p-10 flex flex-col gap-8"
+              className="lg:col-span-7 bg-[#141414] p-7 md:p-10 flex flex-col gap-7"
             >
               <div>
-                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
-                  Stage 1: Behavioral research &amp; drawn studies
+                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-2">
+                  Monday–Tuesday
                 </h3>
-                <div className="space-y-3 text-[length:var(--step-body)]">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span>Buyer friction audit &amp; offer positioning</span>
-                    <span className="text-[#a1a19e] tabular shrink-0">Days 1–2</span>
-                  </div>
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span>Hand-drawn layouts, palette &amp; type selection</span>
-                    <span className="text-[#a1a19e] tabular shrink-0">Day 2</span>
-                  </div>
+                <div className="flex items-baseline justify-between gap-4 text-[length:var(--step-body)]">
+                  <span>Behavioral friction audit &amp; hand-drawn layout studies</span>
+                  <span className="text-[#a1a19e] tabular shrink-0">Days 1–2</span>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
-                  Stage 2: Engineering, UX &amp; AI workflows
+                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-2">
+                  Wednesday–Thursday
                 </h3>
-                <div className="space-y-3 text-[length:var(--step-body)]">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span>Responsive website, landing page, or app code</span>
-                    <span className="text-[#a1a19e] tabular shrink-0">Days 3–4</span>
-                  </div>
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span>Quote builders, intake bots &amp; motion physics</span>
-                    <span className="text-[#a1a19e] tabular shrink-0">Day 4</span>
-                  </div>
+                <div className="flex items-baseline justify-between gap-4 text-[length:var(--step-body)]">
+                  <span>Production code, scroll motion &amp; AI quote workflows</span>
+                  <span className="text-[#a1a19e] tabular shrink-0">Days 3–4</span>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
-                  Stage 3: Device QA, launch &amp; product insights
+                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-2">
+                  Friday
                 </h3>
-                <div className="space-y-3 text-[length:var(--step-body)]">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span>Real-browser checks across desktop and mobile</span>
-                    <span className="text-[#a1a19e] tabular shrink-0">Day 5</span>
-                  </div>
+                <div className="flex items-baseline justify-between gap-4 text-[length:var(--step-body)]">
+                  <span>Real-device browser audit &amp; domain launch</span>
+                  <span className="text-[#a1a19e] tabular shrink-0">Day 5</span>
                 </div>
               </div>
 
               <div className="bg-[#f2f2f0] text-[#080808] p-4 flex items-center justify-between gap-4 font-semibold text-[length:var(--step-small)]">
-                <span>Live site, brand kit &amp; workflow automation</span>
-                <span className="tabular">From 5 days</span>
+                <span>Live site, brand kit &amp; workflow</span>
+                <span className="tabular">5 days</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Inverted Paper Field: Fine-Arts Drawing Study + Startup Scope Configurator */}
+      {/* Inverted Paper Field: Study + Startup Estimator */}
       <section
         id="pricing"
         aria-labelledby="pricing-heading"
-        className="w-full py-24 md:py-32 bg-[#f2f2f0] text-[#080808]"
+        className="w-full py-20 md:py-28 bg-[#f2f2f0] text-[#080808]"
       >
         <div className="mocta-wrap">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
@@ -170,25 +151,19 @@ export const ProcessPricingSection: React.FC = () => {
               >
                 Scope your build
               </h2>
-              <p className="text-[length:var(--step-lead)] text-[#080808] leading-[1.35] max-w-[36ch]">
-                Clear upfront packages sized for founders, studios, and growing local businesses.
+              <p className="text-[length:var(--step-lead)] text-[#080808] leading-[1.35] max-w-[30ch]">
+                Clear upfront packages for startups and growing businesses.
               </p>
 
-              {/* 17th-century ruled pen & graphite study matching Mocta's fine-arts drafting roots */}
-              <figure className="flex flex-col gap-2 pt-2">
-                <img
-                  src="./assets/architectural-study.jpg"
-                  width={3887}
-                  height={2740}
-                  alt="17th-century architectural drawing in pen, ink, and ruled red graphite construction lines"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full aspect-[4/3] object-cover"
-                />
-                <figcaption className="text-[length:var(--step-small)] text-[#4a4a48]">
-                  Drafted proportions precede every screen layout. Study via The Met (CC0).
-                </figcaption>
-              </figure>
+              <img
+                src="./assets/architectural-study.jpg"
+                width={3887}
+                height={2740}
+                alt="17th-century architectural drawing in pen, ink, and ruled red graphite construction lines"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-[4/3] object-cover"
+              />
             </div>
 
             <div data-ui className="lg:col-span-7 bg-[#e4e4e0] p-6 md:p-8 flex flex-col gap-6">
@@ -293,7 +268,7 @@ export const ProcessPricingSection: React.FC = () => {
               <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <span className="text-[length:var(--step-small)] text-[#4a4a48] block">
-                    Estimated project total
+                    Estimated total
                   </span>
                   <span className="font-compressed text-[length:var(--step-head)] leading-none tabular text-[#080808]">
                     ${total.toLocaleString()}

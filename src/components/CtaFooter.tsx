@@ -104,9 +104,9 @@ export const CtaFooter: React.FC = () => {
           </div>
 
           <div className="col-span-2 md:col-span-4 flex flex-col gap-2 text-[#a1a19e]">
-            <span className="text-[#f2f2f0] font-semibold mb-1">Mocta Studio &amp; AI Lab</span>
+            <span className="text-[#f2f2f0] font-semibold mb-1">Mocta Studio</span>
             <p className="leading-relaxed">
-              Independent branding, behavioral UX, and AI engineering agency partnering with early-stage startups and small businesses worldwide.
+              Branding, behavioral UX, and AI engineering for startups.
             </p>
             <a
               href="mailto:hello@mocta.design"
