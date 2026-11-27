@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
 
 interface ServiceItem {
   id: string;
-  number: string;
   title: string;
   subtitle: string;
   description: string;
@@ -15,292 +15,331 @@ interface ServiceItem {
 const servicesData: ServiceItem[] = [
   {
     id: 'art-direction',
-    number: '01',
     title: 'Art direction',
     subtitle: 'Storytelling',
-    description: 'Transforming brand visions into immersive visual narratives with bespoke typography, art curation, and cinematic pacing.',
+    description:
+      'Transforming brand visions into coherent visual narratives with custom typography scales, photography curation, and deliberate editorial pacing.',
     deliverables: ['Visual Systems', 'Editorial Direction', 'Design Tokens', 'Motion Language'],
-    videoSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef694221ab31dc7a0898e_Home-artdirection-transcode.webm',
-    posterSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef694221ab31dc7a0898e_Home-artdirection-poster-00001.jpg',
+    videoSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef694221ab31dc7a0898e_Home-artdirection-transcode.webm',
+    posterSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef694221ab31dc7a0898e_Home-artdirection-poster-00001.jpg',
   },
   {
     id: 'branding',
-    number: '02',
     title: 'Branding',
     subtitle: 'Identity',
-    description: 'Foundational visual identities built for enduring prestige. Logos, logotypes, color theory, and bespoke typographic guidelines.',
-    deliverables: ['Brand Guidelines', 'Typography Hierarchy', 'Iconography', 'Packaging & Collateral'],
-    videoSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef76a17912168bc67811f_Home-branding-transcode.webm',
-    posterSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef76a17912168bc67811f_Home-branding-poster-00001.jpg',
+    description:
+      'Foundational visual identities built for lasting clarity: logotypes, proportion rules, color specifications, and packaging guidelines.',
+    deliverables: ['Brand Guidelines', 'Typography Hierarchy', 'Mark Construction', 'Print & Digital Specs'],
+    videoSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef76a17912168bc67811f_Home-branding-transcode.webm',
+    posterSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef76a17912168bc67811f_Home-branding-poster-00001.jpg',
   },
   {
     id: 'webflow',
-    number: '03',
     title: 'Webflow',
     subtitle: 'Integration',
-    description: 'Engineering responsive, lightning-fast web applications with clean headless architecture, CMS mastery, and custom API pipelines.',
-    deliverables: ['Custom Code Embeds', 'CMS Architecture', 'Performance Optimization', 'CRM & Webhooks'],
-    videoSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef7ea54539b4433a39276_Webflow-home-transcode.webm',
-    posterSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef7ea54539b4433a39276_Webflow-home-poster-00001.jpg',
+    description:
+      'Engineering responsive web applications with fast static performance, structured CMS collections, and custom API integrations.',
+    deliverables: ['Custom Code Embeds', 'CMS Architecture', 'Performance Budgets', 'CRM Webhooks'],
+    videoSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef7ea54539b4433a39276_Webflow-home-transcode.webm',
+    posterSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef7ea54539b4433a39276_Webflow-home-poster-00001.jpg',
   },
   {
     id: 'ui-ux',
-    number: '04',
     title: 'UI/UX Design',
     subtitle: 'Wireframes',
-    description: 'Intuitive human-centered digital experiences sculpted from thorough product strategy, high-density wireframes, and tested prototypes.',
-    deliverables: ['Information Architecture', 'Figma Design Systems', 'Interactive Prototyping', 'User Testing'],
-    videoSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef86a1717db6af24e06f2_UI-UX-Home-transcode.webm',
-    posterSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef86a1717db6af24e06f2_UI-UX-Home-poster-00001.jpg',
+    description:
+      'Human-centered product and marketing interfaces shaped through information architecture, working prototypes, and real-browser QA.',
+    deliverables: ['Information Architecture', 'Component Libraries', 'Interactive Prototypes', 'Usability Audits'],
+    videoSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef86a1717db6af24e06f2_UI-UX-Home-transcode.webm',
+    posterSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef86a1717db6af24e06f2_UI-UX-Home-poster-00001.jpg',
   },
   {
     id: 'gsap',
-    number: '05',
     title: 'GSAP animations',
     subtitle: 'Transitions',
-    description: 'Liquid micro-interactions, scroll-driven choreographies, and inertia physics that make interactions feel alive and physical.',
-    deliverables: ['Custom ScrollTriggers', 'SVG Path Morphing', 'Canvas Visualizers', 'WebGL Shaders'],
-    videoSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F69f31d237bb976aa6e0bc834_Scene-1_webm.webm',
-    posterSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F69f31d237bb976aa6e0bc834_Scene-1_poster.0000000.jpg',
+    description:
+      'Responsive micro-interactions, scroll-linked motion sequences, and hardware-accelerated state changes with full reduced-motion fallbacks.',
+    deliverables: ['Scroll Choreography', 'SVG Path Morphing', 'Lenis Inertia Scroll', 'Interactive States'],
+    videoSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F69f31d237bb976aa6e0bc834_Scene-1_webm.webm',
+    posterSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F69f31d237bb976aa6e0bc834_Scene-1_poster.0000000.jpg',
   },
   {
     id: 'advertising',
-    number: '06',
     title: 'Advertising',
     subtitle: 'Creative Ads',
-    description: 'High-conversion campaign collateral, dynamic motion assets, and viral storytelling designed to command user attention across channels.',
-    deliverables: ['Performance Motion', 'Social Video Assets', 'Display Ad Systems', 'Pitch Decks'],
-    videoSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68df9e1b94554da67438cec0_Ads-service-homeV3-transcode.mp4',
-    posterSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68df9e1b94554da67438cec0_Ads-service-homeV3-poster-00001.jpg',
+    description:
+      'High-contrast campaign creatives, motion cuts, and landing funnels built to communicate the product offer within three seconds.',
+    deliverables: ['Performance Motion', 'Social Cutdowns', 'Campaign Landing Pages', 'Pitch Collateral'],
+    videoSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68df9e1b94554da67438cec0_Ads-service-homeV3-transcode.mp4',
+    posterSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68df9e1b94554da67438cec0_Ads-service-homeV3-poster-00001.jpg',
   },
   {
     id: 'seo-content',
-    number: '07',
     title: 'SEO & Content',
     subtitle: 'Ranking',
-    description: 'AI-assisted semantic search optimization and editorial content distribution designed to win generative engine discovery.',
-    deliverables: ['LLM Search Optimization (GEO)', 'Technical Audit', 'Content Architecture', 'Authority Building'],
-    videoSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68befca9c05567e63bc4d4a0_seo%20content%20home-transcode.webm',
-    posterSrc: 'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68befca9c05567e63bc4d4a0_seo%20content%20home-poster-00001.jpg',
+    description:
+      'Semantic HTML structure, schema markup, and editorial content architecture tuned for search engines and answer engines alike.',
+    deliverables: ['Semantic Audits', 'Structured Schema', 'Editorial Copywriting', 'Answer Engine Reach'],
+    videoSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68befca9c05567e63bc4d4a0_seo%20content%20home-transcode.webm',
+    posterSrc:
+      'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68befca9c05567e63bc4d4a0_seo%20content%20home-poster-00001.jpg',
   },
 ];
 
 export const ServicesSection: React.FC = () => {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string>('art-direction');
+  const [mobileOpenId, setMobileOpenId] = useState<string | null>(null);
   const [showAllDrawer, setShowAllDrawer] = useState(false);
+  const previewVideoRef = useRef<HTMLVideoElement>(null);
+
+  const activeService =
+    servicesData.find((s) => s.id === activeId) || servicesData[0];
+
+  useEffect(() => {
+    const vid = previewVideoRef.current;
+    if (!vid) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      vid.pause();
+      return;
+    }
+    vid.load();
+    vid.play().catch(() => {});
+  }, [activeId]);
 
   return (
-    <section id="services" className="relative w-full py-32 md:py-48 bg-black text-white border-t border-white/10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-16">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-6 border-b border-white/10 pb-10">
-          <div>
-            <div className="flex items-center gap-2 font-mono text-xs text-white/50 tracking-widest uppercase mb-4">
-              <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-              <span>[ 02 / SERVICES ]</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight">
-              Design, Motion &amp; <span className="font-serif italic font-normal">Intelligence</span>
+    <section
+      id="services"
+      aria-labelledby="services-heading"
+      className="w-full py-24 md:py-32 bg-[#080808] text-[#f2f2f0]"
+    >
+      <div className="mocta-wrap">
+        {/* Heading + Plain intro */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end mb-12 md:mb-16">
+          <div className="md:col-span-7">
+            <h2
+              id="services-heading"
+              data-reveal
+              className="font-compressed text-[length:var(--step-head)] leading-[0.9] tracking-[-0.03em] text-[#f2f2f0]"
+            >
+              Services
             </h2>
           </div>
-          <p className="text-white/60 text-sm md:text-base max-w-md font-normal leading-relaxed">
-            From creative art direction and identity systems to Webflow engineering and autonomous workflow automation.
-          </p>
-        </div>
-
-        {/* Studio Namma inspired Services List */}
-        <div 
-          className="relative divide-y divide-white/10"
-          onMouseLeave={() => setHoveredId(null)}
-        >
-          {servicesData.map((service) => {
-            const isHovered = hoveredId === service.id;
-            const isAnyHovered = hoveredId !== null;
-            const opacity = isAnyHovered ? (isHovered ? 1 : 0.22) : 1;
-
-            return (
-              <div
-                key={service.id}
-                onMouseEnter={() => setHoveredId(service.id)}
-                className="group relative transition-opacity duration-300 py-8 md:py-12 cursor-pointer"
-                style={{ opacity }}
-              >
-                {/* Main Row Container */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="flex items-baseline gap-6 md:gap-10">
-                    <span className="font-mono text-xs md:text-sm text-white/40 group-hover:text-white transition-colors duration-200">
-                      ({service.number})
-                    </span>
-                    <h3 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight transition-transform duration-300 group-hover:translate-x-3 text-white">
-                      {service.title}
-                    </h3>
-                  </div>
-
-                  <div className="flex items-center gap-6 self-start md:self-auto pl-12 md:pl-0">
-                    <div className="font-mono text-xs md:text-sm text-white/60 uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm group-hover:border-white/40 group-hover:text-white transition-all">
-                      {service.subtitle}
-                    </div>
-                    <motion.div
-                      animate={{ rotate: isHovered ? 45 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/60 group-hover:text-white group-hover:border-white transition-colors"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M2 10L10 2M10 2H4M10 2V8" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </motion.div>
-                  </div>
-                </div>
-
-                {/* Expanding Media & Details Accordion on Hover */}
-                <AnimatePresence>
-                  {isHovered && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden mt-6 md:mt-8"
-                    >
-                      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 rounded-2xl liquid-glass border border-white/10 bg-black/60">
-                        {/* Looping Visual Preview Video */}
-                        <div className="md:col-span-5 relative aspect-video md:aspect-[4/3] rounded-xl overflow-hidden border border-white/10 bg-neutral-900">
-                          <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            poster={service.posterSrc}
-                            className="w-full h-full object-cover filter brightness-95"
-                          >
-                            <source src={service.videoSrc} type="video/webm" />
-                            <source src={service.videoSrc} type="video/mp4" />
-                          </video>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                        </div>
-
-                        {/* Deliverables and Description */}
-                        <div className="md:col-span-7 flex flex-col justify-between py-2">
-                          <div>
-                            <p className="text-white/80 text-sm md:text-base leading-relaxed mb-6 font-normal">
-                              {service.description}
-                            </p>
-                            <div className="mb-4">
-                              <span className="font-mono text-xs uppercase tracking-wider text-white/40 block mb-3">
-                                Deliverables &amp; Scope
-                              </span>
-                              <div className="flex flex-wrap gap-2">
-                                {service.deliverables.map((d, i) => (
-                                  <span
-                                    key={i}
-                                    className="font-mono text-xs px-3 py-1 rounded bg-white/5 border border-white/10 text-white/90"
-                                  >
-                                    {d}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                            <span className="font-mono text-xs text-white/40">Studio Production / Q1</span>
-                            <a
-                              href="#contact"
-                              className="font-mono text-xs text-white underline underline-offset-4 hover:text-white/70 transition-colors"
-                            >
-                              Inquire regarding {service.title} →
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom Action: [See all] Button & Studio Statement */}
-        <div className="mt-16 md:mt-24 pt-10 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="font-mono text-xs text-white/50 uppercase tracking-widest text-center sm:text-left">
-            Comprehensive studio engagements • Fixed-timeline sprints • Retainers
-          </p>
-
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setShowAllDrawer(!showAllDrawer)}
-              className="liquid-glass text-white font-mono text-xs uppercase tracking-widest px-6 py-3.5 rounded-full hover:border-white/40 transition-all flex items-center gap-2 cursor-pointer active:scale-95"
+          <div className="md:col-span-5">
+            <p
+              data-reveal
+              style={{ ['--rd' as string]: '80ms' }}
+              className="text-[length:var(--step-body)] text-[#a1a19e] leading-relaxed"
             >
-              <span>{showAllDrawer ? 'Hide Matrix' : 'See all'}</span>
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                className={`transition-transform duration-300 ${showAllDrawer ? 'rotate-180' : ''}`}
+              Seven core disciplines delivered as one integrated team, from art direction and brand systems to custom Webflow engineering and AI automation.
+            </p>
+          </div>
+        </div>
+
+        {/* Desktop: Interactive index left + Fixed preview stage right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Service Index Rows */}
+          <div className="lg:col-span-7 flex flex-col gap-2">
+            {servicesData.map((service, idx) => {
+              const isSelected = activeId === service.id;
+              const isMobileOpen = mobileOpenId === service.id;
+              return (
+                <div
+                  key={service.id}
+                  data-reveal
+                  style={{ ['--rd' as string]: `${idx * 45}ms` }}
+                  className="w-full"
+                >
+                  <button
+                    type="button"
+                    onMouseEnter={() => setActiveId(service.id)}
+                    onFocus={() => setActiveId(service.id)}
+                    onClick={() => {
+                      setActiveId(service.id);
+                      setMobileOpenId(isMobileOpen ? null : service.id);
+                    }}
+                    aria-expanded={isMobileOpen}
+                    className={`w-full text-left px-5 py-5 md:py-6 flex items-center justify-between gap-4 transition-[background-color,opacity,transform] duration-200 ${
+                      isSelected
+                        ? 'bg-[#141414] opacity-100'
+                        : 'bg-transparent opacity-60 hover:opacity-95'
+                    }`}
+                  >
+                    <span className="font-compressed text-[length:var(--step-head)] leading-none tracking-[-0.02em] text-[#f2f2f0]">
+                      {service.title}
+                    </span>
+
+                    <span className="flex items-center gap-3 shrink-0">
+                      <span className="text-[length:var(--step-small)] text-[#a1a19e]">
+                        {service.subtitle}
+                      </span>
+                      <ArrowUpRight
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isSelected ? 'text-[#f2f2f0] translate-x-0.5 -translate-y-0.5' : 'text-[#a1a19e]'
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </button>
+
+                  {/* Mobile-only inline accordion preview (collapsed by default to avoid clutter above next item) */}
+                  {isMobileOpen && (
+                    <div className="lg:hidden bg-[#141414] px-5 pb-6 flex flex-col gap-4">
+                      <img
+                        src={service.posterSrc}
+                        alt={`${service.title} preview frame`}
+                        width={640}
+                        height={400}
+                        loading="lazy"
+                        className="w-full aspect-video object-cover bg-[#080808]"
+                      />
+                      <p className="text-[length:var(--step-body)] text-[#f2f2f0] leading-relaxed">
+                        {service.description}
+                      </p>
+                      <p className="text-[length:var(--step-small)] text-[#a1a19e]">
+                        Deliverables: {service.deliverables.join(' · ')}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop Right Sticky Stage */}
+          <div
+            data-reveal
+            style={{ ['--rd' as string]: '120ms' }}
+            className="hidden lg:flex lg:col-span-5 flex-col bg-[#141414] p-6 sticky top-24"
+          >
+            <div className="w-full aspect-[4/3] bg-[#080808] overflow-hidden mb-6">
+              <video
+                ref={previewVideoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                poster={activeService.posterSrc}
+                aria-hidden="true"
+                className="w-full h-full object-cover"
               >
-                <path d="M2 4L6 8L10 4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+                <source src={activeService.videoSrc} type="video/webm" />
+                <source src={activeService.videoSrc} type="video/mp4" />
+              </video>
+            </div>
+
+            <div className="flex items-baseline justify-between gap-4 mb-3">
+              <h3 className="font-compressed text-[length:var(--step-lead)] leading-none text-[#f2f2f0]">
+                {activeService.title}
+              </h3>
+              <span className="text-[length:var(--step-small)] text-[#a1a19e]">
+                {activeService.subtitle}
+              </span>
+            </div>
+
+            <p className="text-[length:var(--step-body)] text-[#f2f2f0] leading-relaxed mb-4">
+              {activeService.description}
+            </p>
+
+            <p className="text-[length:var(--step-small)] text-[#a1a19e] mb-6">
+              Deliverables: {activeService.deliverables.join(' · ')}
+            </p>
 
             <a
-              href="https://studionamma.com/services"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white text-black font-semibold text-xs uppercase tracking-wider px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity flex items-center gap-1.5"
+              href="#pricing"
+              className="self-start text-[length:var(--step-small)] font-semibold text-[#f2f2f0] underline underline-offset-4 decoration-[#a1a19e] hover:decoration-[#f2f2f0] transition-colors duration-200"
             >
-              <span>Explore Studio</span>
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M1 9L9 1M9 1H3M9 1V7" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              Scope {activeService.title} in your sprint
             </a>
           </div>
         </div>
 
-        {/* Collapsible Full Service Matrix */}
+        {/* Bottom Matrix Action Bar */}
+        <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <p className="text-[length:var(--step-body)] text-[#a1a19e]">
+            Available as five-day product sprints or ongoing studio retainers.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setShowAllDrawer(!showAllDrawer)}
+              className="bg-[#141414] hover:bg-[#1c1c1b] text-[#f2f2f0] text-[length:var(--step-small)] font-medium px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150"
+            >
+              <span>{showAllDrawer ? 'Hide matrix' : 'All deliverables'}</span>
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 ${
+                  showAllDrawer ? 'rotate-180' : ''
+                }`}
+                aria-hidden="true"
+              />
+            </button>
+
+            <a
+              href="#pricing"
+              className="bg-[#f2f2f0] text-[#080808] font-semibold text-[length:var(--step-small)] px-5 py-3 rounded-full hover:bg-[#ffffff] inline-flex items-center gap-1.5 whitespace-nowrap transition-colors duration-150"
+            >
+              <span>Scope build</span>
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+
+        {/* Expandable Deliverable Matrix */}
         <AnimatePresence>
           {showAllDrawer && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden mt-8"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.25 }}
+              className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6"
             >
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 rounded-2xl liquid-glass border border-white/10 bg-neutral-950/80">
-                <div className="border border-white/10 p-6 rounded-xl bg-white/[0.02]">
-                  <span className="font-mono text-xs text-white/40 block mb-2">PHASE 01</span>
-                  <h4 className="text-xl font-medium mb-3">Creative Direction &amp; Identity</h4>
-                  <ul className="space-y-2 text-xs font-mono text-white/70">
-                    <li>• Art Direction &amp; Design Systems</li>
-                    <li>• Bespoke Typography &amp; Logotypes</li>
-                    <li>• Motion Guidelines &amp; Storyboards</li>
-                    <li>• Generative Art Concepts</li>
-                  </ul>
-                </div>
-                <div className="border border-white/10 p-6 rounded-xl bg-white/[0.02]">
-                  <span className="font-mono text-xs text-white/40 block mb-2">PHASE 02</span>
-                  <h4 className="text-xl font-medium mb-3">Engineering &amp; Interaction</h4>
-                  <ul className="space-y-2 text-xs font-mono text-white/70">
-                    <li>• Custom Webflow &amp; React Development</li>
-                    <li>• GSAP &amp; Lenis Physics Animations</li>
-                    <li>• Shader Visuals &amp; Micro-interactions</li>
-                    <li>• Lighthouse 100 Performance Tuning</li>
-                  </ul>
-                </div>
-                <div className="border border-white/10 p-6 rounded-xl bg-white/[0.02]">
-                  <span className="font-mono text-xs text-white/40 block mb-2">PHASE 03</span>
-                  <h4 className="text-xl font-medium mb-3">Growth &amp; AI Workflows</h4>
-                  <ul className="space-y-2 text-xs font-mono text-white/70">
-                    <li>• Generative Engine Optimization (GEO)</li>
-                    <li>• Automated Quote &amp; Intake Triage</li>
-                    <li>• Performance Display &amp; Ad Creatives</li>
-                    <li>• Autonomous Document Processing</li>
-                  </ul>
-                </div>
+              <div className="bg-[#141414] p-7">
+                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
+                  Direction &amp; Identity
+                </h3>
+                <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
+                  <li>Art direction &amp; design systems</li>
+                  <li>Bespoke typography &amp; logotypes</li>
+                  <li>Motion guidelines &amp; storyboards</li>
+                  <li>Editorial art curation</li>
+                </ul>
+              </div>
+              <div className="bg-[#141414] p-7">
+                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
+                  Engineering &amp; Motion
+                </h3>
+                <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
+                  <li>Custom React &amp; Webflow builds</li>
+                  <li>GSAP &amp; Lenis scroll choreography</li>
+                  <li>Responsive touch &amp; keyboard QA</li>
+                  <li>Performance tuning &amp; accessibility</li>
+                </ul>
+              </div>
+              <div className="bg-[#141414] p-7">
+                <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
+                  Growth &amp; Workflows
+                </h3>
+                <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
+                  <li>Answer-engine semantic optimization</li>
+                  <li>Automated quote &amp; intake triage</li>
+                  <li>Performance campaign collateral</li>
+                  <li>CRM &amp; webhook pipeline sync</li>
+                </ul>
               </div>
             </motion.div>
           )}

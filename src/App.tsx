@@ -4,31 +4,54 @@ import 'lenis/dist/lenis.css';
 
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { StartSection } from './components/StartSection';
+import { IntroSection } from './components/IntroSection';
 import { ServicesSection } from './components/ServicesSection';
-import { FeaturesChess } from './components/FeaturesChess';
-import { FeaturesGrid } from './components/FeaturesGrid';
-import { Stats } from './components/Stats';
-import { Testimonials } from './components/Testimonials';
+import { CapabilitiesSection } from './components/CapabilitiesSection';
+import { ProcessPricingSection } from './components/ProcessPricingSection';
 import { CtaFooter } from './components/CtaFooter';
 
 export const App: React.FC = () => {
-  // Initialize luxury smooth slow scroll (Lenis)
+  // Smooth inertial scroll & single-shot section reveal observer
   useEffect(() => {
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+
+    if (calm || !('IntersectionObserver' in window)) {
+      revealEls.forEach((el) => el.classList.add('is-in'));
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.05 }
+      );
+      revealEls.forEach((el) => io.observe(el));
+
+      // Cleanup observer on unmount
+      var disconnectObserver = () => io.disconnect();
+    }
+
+    if (calm) return () => disconnectObserver?.();
+
     const lenis = new Lenis({
-      lerp: 0.05,
+      lerp: 0.08,
       wheelMultiplier: 0.9,
       touchMultiplier: 1.5,
       infinite: false,
     });
 
+    let rafId = 0;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    const rafId = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    // Smooth anchor navigation
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
@@ -38,7 +61,7 @@ export const App: React.FC = () => {
         const el = document.querySelector(href);
         if (el) {
           e.preventDefault();
-          lenis.scrollTo(el as HTMLElement, { offset: -70, duration: 1.2 });
+          lenis.scrollTo(el as HTMLElement, { offset: -64, duration: 1.1 });
         }
       }
     };
@@ -49,41 +72,21 @@ export const App: React.FC = () => {
       cancelAnimationFrame(rafId);
       document.removeEventListener('click', handleAnchorClick);
       lenis.destroy();
+      disconnectObserver?.();
     };
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-black text-white font-body selection:bg-white selection:text-black">
-      {/* 4K UHD Atmospheric Depth & Ambient Lighting */}
-      <div
-        className="fixed inset-0 pointer-events-none z-[1] opacity-50 mix-blend-screen"
-        style={{
-          background: 'radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.09) 0%, rgba(0, 0, 0, 0) 60%)',
-        }}
-      />
-      {/* 4K Micro-film Grain Texture to eliminate banding on OLED / 4K monitors */}
-      <div
-        className="fixed inset-0 pointer-events-none z-[2] opacity-[0.025] contrast-150 brightness-150"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      <div className="relative z-10">
-        <Navbar />
-        <div id="home">
-          <Hero />
-        </div>
-        <div className="bg-black">
-          <StartSection />
-          <ServicesSection />
-          <FeaturesChess />
-          <FeaturesGrid />
-          <Stats />
-          <Testimonials />
-          <CtaFooter />
-        </div>
-      </div>
+    <div className="min-h-[100svh] bg-[#080808] text-[#f2f2f0] font-sans">
+      <Navbar />
+      <main>
+        <Hero />
+        <IntroSection />
+        <ServicesSection />
+        <CapabilitiesSection />
+        <ProcessPricingSection />
+      </main>
+      <CtaFooter />
     </div>
   );
 };

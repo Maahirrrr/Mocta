@@ -1,68 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap');
-
-@font-face {
-  font-family: 'Mixtape Extra Condensed';
-  src: url('/fonts/MixtapeExtraCondensed-ExtraBold.otf') format('opentype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'GT Pressura Mono';
-  src: url('/fonts/GTPressuraMono-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 213 45% 67%;
-    --foreground: 0 0% 100%;
-    --card: 213 45% 62%;
-    --card-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 213 45% 67%;
-    --secondary: 213 45% 72%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 213 35% 60%;
-    --muted-foreground: 0 0% 100% / 0.7;
-    --accent: 213 45% 72%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --border: 0 0% 100% / 0.2;
-    --input: 0 0% 100% / 0.2;
-    --ring: 0 0% 100% / 0.3;
-    --radius: 9999px;
-    --glass-bg: rgba(255, 255, 255, 0.12);
-    --glass-border: rgba(255, 255, 255, 0.25);
-    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-    --glass-blur: 16px;
+    color-scheme: dark;
+    --bg: #080808;
+    --surface: #141414;
+    --surface-raised: #1c1c1b;
+    --ink: #f2f2f0;
+    --muted: #a1a19e;
+    --accent: #2563eb;
+    --accent-ink: #ffffff;
+
+    --margin: clamp(1.25rem, 2.5vw, 2.25rem);
+    --gutter: clamp(0.75rem, 1.5vw, 1.5rem);
+
+    --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+    --step-body: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+    --step-lead: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    --step-head: clamp(2.125rem, 1.4rem + 3vw, 4rem);
+    --step-display: clamp(3rem, 1.5rem + 7.2vw, 7.5rem);
+
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   * {
-    @apply border-border;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
   }
 
-  *::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    background: transparent !important;
-  }
-
-  html, body {
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-  }
-
+  *::-webkit-scrollbar,
   ::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;
@@ -70,82 +39,87 @@
     background: transparent !important;
   }
 
-  body {
-    @apply bg-black text-foreground font-body antialiased;
-    background-color: #000000;
-    color: #ffffff;
-    overflow-x: hidden;
+  html, body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    font-size: var(--step-body);
+    line-height: 1.5;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, .font-compressed {
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    font-stretch: 68%;
+    font-variation-settings: "wdth" 68;
+    font-weight: 800;
+    text-wrap: balance;
+    hyphens: none;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 }
 
-@layer components {
-  /* Liquid Glass (subtle) */
-  .liquid-glass {
-    background: rgba(255, 255, 255, 0.01);
-    background-blend-mode: luminosity;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: none;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
-  }
-  .liquid-glass::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1.4px;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.45) 0%,
-      rgba(255, 255, 255, 0.15) 20%,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0) 60%,
-      rgba(255, 255, 255, 0.15) 80%,
-      rgba(255, 255, 255, 0.45) 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
+.mocta-wrap {
+  padding-inline: var(--margin);
+  width: 100%;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Masked hero line rise settled under 1.2s, always visible under reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-line] {
+    display: block;
+    transform: translateY(105%);
+    animation: mocta-line-up 820ms var(--ease-expo) forwards;
+    animation-delay: calc(80ms + var(--i, 0) * 90ms);
   }
 
-  /* Liquid Glass Strong (prominent, used on CTA buttons) */
-  .liquid-glass-strong {
-    background: rgba(255, 255, 255, 0.01);
-    background-blend-mode: luminosity;
-    backdrop-filter: blur(50px);
-    -webkit-backdrop-filter: blur(50px);
-    border: none;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05),
-      inset 0 1px 1px rgba(255, 255, 255, 0.15);
-    position: relative;
-    overflow: hidden;
+  .js [data-load] {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: mocta-load-rise 520ms var(--ease-out) forwards;
+    animation-delay: var(--d, 260ms);
   }
-  .liquid-glass-strong::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1.4px;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.2) 20%,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0) 60%,
-      rgba(255, 255, 255, 0.2) 80%,
-      rgba(255, 255, 255, 0.5) 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
+
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 650ms var(--ease-expo) var(--rd, 0ms), transform 750ms var(--ease-expo) var(--rd, 0ms);
+  }
+
+  .js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
   }
 }
 
-/* Lenis Smooth Slow Scroll Styles */
+@keyframes mocta-line-up {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes mocta-load-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Lenis smooth scroll baseline */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -157,7 +131,4 @@ html.lenis, html.lenis body {
 }
 .lenis.lenis-stopped {
   overflow: hidden;
-}
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
 }
