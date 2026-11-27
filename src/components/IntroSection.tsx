@@ -8,7 +8,7 @@ export const IntroSection: React.FC = () => {
     >
       <div className="mocta-wrap">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
-          {/* Left architectural specimen */}
+          {/* Left study plate */}
           <div data-reveal className="md:col-span-5 flex flex-col gap-3">
             <img
               src="./assets/perspective-shot-building-windows-melbourne.webp"
@@ -20,52 +20,52 @@ export const IntroSection: React.FC = () => {
               className="w-full aspect-square object-cover bg-[#141414]"
             />
             <p className="text-[length:var(--step-small)] text-[#a1a19e] leading-relaxed">
-              Disciplined proportion: structural clarity carried from printed architecture to production code.
+              Spatial composition from fine-arts drafting applied directly to screen hierarchy.
             </p>
           </div>
 
-          {/* Right editorial statement */}
+          {/* Right studio thesis */}
           <div className="md:col-span-7 md:pt-6 flex flex-col justify-between gap-8">
             <h2
               id="intro-heading"
               data-reveal
               className="font-compressed text-[length:var(--step-head)] leading-[0.92] tracking-[-0.03em] text-[#f2f2f0] max-w-[16ch]"
             >
-              Why teams build with Mocta
+              Craft, behavior, and engineering
             </h2>
 
             <p
               data-reveal
               style={{ ['--rd' as string]: '80ms' }}
-              className="text-[length:var(--step-lead)] text-[#f2f2f0] leading-[1.38] max-w-[40ch]"
+              className="text-[length:var(--step-lead)] text-[#f2f2f0] leading-[1.38] max-w-[42ch]"
             >
-              Most agencies spend sixteen weeks circulating static slide decks before a single component renders in a browser. Mocta starts directly in production code from week one, combining custom typography, tested interaction motion, and practical quote and intake automation shipped cleanly to your own stack.
+              Small businesses and startups lose customers when their site hides the offer behind vague slogans or cluttered navigation. Mocta pairs observational fine-arts design with behavioral psychology and production AI engineering. We design how an identity feels on first glance, structure pages around buyer decisions, and ship clean production software.
             </p>
 
-            {/* Open editorial baseline figures (unboxed, clean scale) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+            {/* Concrete capabilities strip */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 pt-4">
               <div data-reveal style={{ ['--rd' as string]: '120ms' }}>
-                <p className="font-compressed text-[length:var(--step-head)] md:text-[length:var(--step-lead)] lg:text-[length:var(--step-head)] leading-none text-[#f2f2f0] tabular mb-2">
-                  5 days
+                <p className="font-compressed text-[length:var(--step-lead)] leading-none text-[#f2f2f0] tabular mb-2">
+                  4 tracks
                 </p>
                 <p className="text-[length:var(--step-small)] text-[#a1a19e]">
-                  Average window from brief to live staging build
+                  Websites, landing pages, apps, and complete brand identities
                 </p>
               </div>
               <div data-reveal style={{ ['--rd' as string]: '180ms' }}>
-                <p className="font-compressed text-[length:var(--step-head)] md:text-[length:var(--step-lead)] lg:text-[length:var(--step-head)] leading-none text-[#f2f2f0] tabular mb-2">
-                  100%
+                <p className="font-compressed text-[length:var(--step-lead)] leading-none text-[#f2f2f0] tabular mb-2">
+                  Behavioral UX
                 </p>
                 <p className="text-[length:var(--step-small)] text-[#a1a19e]">
-                  Owned clean React, Webflow, or static repository code
+                  Layouts shaped around decision flow and buyer confidence
                 </p>
               </div>
               <div data-reveal style={{ ['--rd' as string]: '240ms' }}>
-                <p className="font-compressed text-[length:var(--step-head)] md:text-[length:var(--step-lead)] lg:text-[length:var(--step-head)] leading-none text-[#f2f2f0] tabular mb-2">
-                  Paris / SF
+                <p className="font-compressed text-[length:var(--step-lead)] leading-none text-[#f2f2f0] tabular mb-2">
+                  AI product lab
                 </p>
                 <p className="text-[length:var(--step-small)] text-[#a1a19e]">
-                  Direct senior design and engineering teams across three time zones
+                  Every recurring client problem becomes a tested software tool
                 </p>
               </div>
             </div>

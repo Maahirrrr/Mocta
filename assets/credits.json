@@ -86,5 +86,27 @@
     "credit": "\"Untitled\", CC0, via rawpixel",
     "notes": [],
     "saved": "2026-11-27T13:41:05.652Z"
+  },
+  {
+    "file": "assets/architectural-study.jpg",
+    "media": "image",
+    "ref": "met:389442",
+    "title": "Architectural Study",
+    "creator": "Anonymous, Italian, 17th century",
+    "creatorUrl": null,
+    "date": "17th century",
+    "license": "public domain (CC0)",
+    "licenseCode": "cc0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "creditRequired": false,
+    "page": "https://www.metmuseum.org/art/collection/search/389442",
+    "via": "The Metropolitan Museum of Art",
+    "image": "https://images.metmuseum.org/CRDImages/dp/original/DP802725.jpg",
+    "width": 3887,
+    "height": 2740,
+    "bytes": 1703491,
+    "credit": "\"Architectural Study\", 17th century, public domain (CC0), via The Metropolitan Museum of Art",
+    "notes": [],
+    "saved": "2026-11-27T13:56:13.650Z"
   }
 ]

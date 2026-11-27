@@ -6,7 +6,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'Services', href: '#services' },
-    { label: 'Work', href: '#capabilities' },
+    { label: 'Approach', href: '#capabilities' },
     { label: 'Process', href: '#process' },
     { label: 'Pricing', href: '#pricing' },
   ];
@@ -23,7 +23,6 @@ export const Navbar: React.FC = () => {
     <>
       <header className="sticky top-0 z-40 w-full bg-[#080808] text-[#f2f2f0]">
         <div className="mocta-wrap h-16 flex items-center justify-between gap-6">
-          {/* Wordmark only, plain text per user request */}
           <a
             href="#home"
             className="font-compressed text-[length:var(--step-lead)] leading-none tracking-[-0.03em] text-[#f2f2f0] transition-opacity duration-200 hover:opacity-75"
@@ -31,7 +30,6 @@ export const Navbar: React.FC = () => {
             Mocta
           </a>
 
-          {/* Desktop Navigation: single-noun links + primary button on right */}
           <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -51,7 +49,6 @@ export const Navbar: React.FC = () => {
             </a>
           </nav>
 
-          {/* Mobile Bar: Menu toggle + action */}
           <div className="flex md:hidden items-center gap-3">
             <button
               type="button"
@@ -72,7 +69,6 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Full-screen mobile sheet */}
       {menuOpen && (
         <div
           role="dialog"

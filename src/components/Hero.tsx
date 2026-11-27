@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
       id="home"
       className="relative min-h-[calc(100svh-4rem)] w-full flex flex-col justify-end overflow-hidden bg-[#080808] text-[#f2f2f0]"
     >
-      {/* Full-bleed 4K nocturnal meadow film */}
+      {/* Full-bleed background film */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <video
           ref={videoRef}
@@ -64,26 +64,25 @@ export const Hero: React.FC = () => {
         </video>
       </div>
 
-      {/* Neutral scrim confined to bottom band for guaranteed type legibility over bright blooms */}
+      {/* Neutral bottom scrim behind display typography */}
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 right-0 h-[52%] pointer-events-none z-10"
         style={{ background: 'linear-gradient(to top, rgba(8, 8, 8, 0.94) 0%, rgba(8, 8, 8, 0.65) 55%, rgba(8, 8, 8, 0) 100%)' }} /* taste-skill-ignore: neutral scrim over film bottom edge per colour.md §7 */
       />
 
-      {/* Film-title bottom-edge typography composition anchored on page margins */}
       <div className="relative z-20 mocta-wrap pb-8 md:pb-12 pt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-end gap-6 lg:gap-8">
           <div className="lg:col-span-8">
             <h1 className="font-compressed text-[length:var(--step-display)] leading-[0.88] tracking-[-0.03em] text-[#f2f2f0]">
               <span className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
                 <span data-line style={{ ['--i' as string]: 0 }}>
-                  Web design
+                  UX, branding &amp; AI
                 </span>
               </span>
               <span className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
                 <span data-line style={{ ['--i' as string]: 1 }}>
-                  built to convert
+                  built for startups
                 </span>
               </span>
             </h1>
@@ -93,9 +92,9 @@ export const Hero: React.FC = () => {
             <p
               data-load
               style={{ ['--d' as string]: '240ms' }}
-              className="text-[length:var(--step-body)] text-[#f2f2f0] leading-relaxed max-w-[36ch] lg:text-right"
+              className="text-[length:var(--step-body)] text-[#f2f2f0] leading-relaxed max-w-[38ch] lg:text-right"
             >
-              Mocta is an independent design and engineering studio building bespoke websites, brand systems, and workflow AI in focused sprints.
+              Mocta designs and engineers websites, landing pages, apps, and brand identities using behavioral psychology and practical AI software.
             </p>
 
             <div className="flex flex-wrap items-center gap-5">
@@ -115,7 +114,7 @@ export const Hero: React.FC = () => {
                 style={{ ['--d' as string]: '420ms' }}
                 className="text-[length:var(--step-small)] font-medium text-[#f2f2f0] underline underline-offset-4 decoration-[#a1a19e] hover:decoration-[#f2f2f0] transition-colors duration-200 py-2"
               >
-                Five-day sprint
+                How we work
               </a>
             </div>
           </div>

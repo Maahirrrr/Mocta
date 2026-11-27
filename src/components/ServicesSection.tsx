@@ -14,12 +14,12 @@ interface ServiceItem {
 
 const servicesData: ServiceItem[] = [
   {
-    id: 'art-direction',
-    title: 'Art direction',
-    subtitle: 'Storytelling',
+    id: 'landing-pages',
+    title: 'Landing pages',
+    subtitle: 'Conversion UX',
     description:
-      'Transforming brand visions into coherent visual narratives with custom typography scales, photography curation, and deliberate editorial pacing.',
-    deliverables: ['Visual Systems', 'Editorial Direction', 'Design Tokens', 'Motion Language'],
+      'Focused campaign and launch pages structured using behavioral psychology so first-time visitors understand your value proposition and take action quickly.',
+    deliverables: ['Decision Mapping', 'Direct Copywriting', 'Interactive Demos', 'Speed Optimization'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef694221ab31dc7a0898e_Home-artdirection-transcode.webm',
     posterSrc:
@@ -28,46 +28,46 @@ const servicesData: ServiceItem[] = [
   {
     id: 'branding',
     title: 'Branding',
-    subtitle: 'Identity',
+    subtitle: 'Fine-arts craft',
     description:
-      'Foundational visual identities built for lasting clarity: logotypes, proportion rules, color specifications, and packaging guidelines.',
-    deliverables: ['Brand Guidelines', 'Typography Hierarchy', 'Mark Construction', 'Print & Digital Specs'],
+      'Custom visual identities rooted in hand-drawn proportion studies, expressive illustration, and clear typographic systems built to stand apart from templates.',
+    deliverables: ['Drawn Logo Systems', 'Typography Rules', 'Color Proportion', 'Launch Stationery'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef76a17912168bc67811f_Home-branding-transcode.webm',
     posterSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef76a17912168bc67811f_Home-branding-poster-00001.jpg',
   },
   {
-    id: 'webflow',
-    title: 'Webflow',
-    subtitle: 'Integration',
+    id: 'websites',
+    title: 'Websites',
+    subtitle: 'Design & Code',
     description:
-      'Engineering responsive web applications with fast static performance, structured CMS collections, and custom API integrations.',
-    deliverables: ['Custom Code Embeds', 'CMS Architecture', 'Performance Budgets', 'CRM Webhooks'],
+      'Multi-page company sites engineered cleanly in React or Webflow with fast static loads, structured CMS editing, and verified mobile layouts.',
+    deliverables: ['React / Webflow Build', 'CMS Collections', 'Technical SEO', 'Analytics Hookup'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef7ea54539b4433a39276_Webflow-home-transcode.webm',
     posterSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef7ea54539b4433a39276_Webflow-home-poster-00001.jpg',
   },
   {
-    id: 'ui-ux',
-    title: 'UI/UX Design',
-    subtitle: 'Wireframes',
+    id: 'apps',
+    title: 'Web & mobile apps',
+    subtitle: 'Product Systems',
     description:
-      'Human-centered product and marketing interfaces shaped through information architecture, working prototypes, and real-browser QA.',
-    deliverables: ['Information Architecture', 'Component Libraries', 'Interactive Prototypes', 'Usability Audits'],
+      'Clear product interfaces, SaaS dashboards, and client portals designed to reduce daily cognitive friction across complex workflows.',
+    deliverables: ['User Flow Audits', 'Component Kits', 'Working Prototypes', 'Full-Stack Shipping'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef86a1717db6af24e06f2_UI-UX-Home-transcode.webm',
     posterSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68bef86a1717db6af24e06f2_UI-UX-Home-poster-00001.jpg',
   },
   {
-    id: 'gsap',
+    id: 'motion',
     title: 'GSAP animations',
-    subtitle: 'Transitions',
+    subtitle: 'Interactions',
     description:
-      'Responsive micro-interactions, scroll-linked motion sequences, and hardware-accelerated state changes with full reduced-motion fallbacks.',
-    deliverables: ['Scroll Choreography', 'SVG Path Morphing', 'Lenis Inertia Scroll', 'Interactive States'],
+      'Tactile scroll choreography and smooth feedback states tuned with proper easing and reduced-motion fallbacks across every browser.',
+    deliverables: ['Scroll Transitions', 'Lenis Inertia', 'Interactive UI States', 'SVG Path Motion'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F69f31d237bb976aa6e0bc834_Scene-1_webm.webm',
     posterSrc:
@@ -76,22 +76,22 @@ const servicesData: ServiceItem[] = [
   {
     id: 'advertising',
     title: 'Advertising',
-    subtitle: 'Creative Ads',
+    subtitle: 'Campaign Assets',
     description:
-      'High-contrast campaign creatives, motion cuts, and landing funnels built to communicate the product offer within three seconds.',
-    deliverables: ['Performance Motion', 'Social Cutdowns', 'Campaign Landing Pages', 'Pitch Collateral'],
+      'Launch visuals, product reels, and paid-acquisition graphics shaped to carry one clear startup message in the first three seconds.',
+    deliverables: ['Launch Reels', 'Social Ad Cuts', 'Investor Decks', 'Product Previews'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68df9e1b94554da67438cec0_Ads-service-homeV3-transcode.mp4',
     posterSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68df9e1b94554da67438cec0_Ads-service-homeV3-poster-00001.jpg',
   },
   {
-    id: 'seo-content',
-    title: 'SEO & Content',
-    subtitle: 'Ranking',
+    id: 'ai-systems',
+    title: 'AI workflows',
+    subtitle: 'Automation',
     description:
-      'Semantic HTML structure, schema markup, and editorial content architecture tuned for search engines and answer engines alike.',
-    deliverables: ['Semantic Audits', 'Structured Schema', 'Editorial Copywriting', 'Answer Engine Reach'],
+      'Practical machine-learning features and workflow tools built straight into your site or operations, from quote estimators to lead qualification.',
+    deliverables: ['Quote Calculators', 'Intake Agents', 'API Integrations', 'Custom Micro-Tools'],
     videoSrc:
       'https://cdn.prod.website-files.com/679cb9cacf00799ba4b4c985%2F68befca9c05567e63bc4d4a0_seo%20content%20home-transcode.webm',
     posterSrc:
@@ -100,7 +100,7 @@ const servicesData: ServiceItem[] = [
 ];
 
 export const ServicesSection: React.FC = () => {
-  const [activeId, setActiveId] = useState<string>('art-direction');
+  const [activeId, setActiveId] = useState<string>('landing-pages');
   const [mobileOpenId, setMobileOpenId] = useState<string | null>(null);
   const [showAllDrawer, setShowAllDrawer] = useState(false);
   const previewVideoRef = useRef<HTMLVideoElement>(null);
@@ -126,7 +126,6 @@ export const ServicesSection: React.FC = () => {
       className="w-full py-24 md:py-32 bg-[#080808] text-[#f2f2f0]"
     >
       <div className="mocta-wrap">
-        {/* Heading + Plain intro */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end mb-12 md:mb-16">
           <div className="md:col-span-7">
             <h2
@@ -134,7 +133,7 @@ export const ServicesSection: React.FC = () => {
               data-reveal
               className="font-compressed text-[length:var(--step-head)] leading-[0.9] tracking-[-0.03em] text-[#f2f2f0]"
             >
-              Services
+              What we build
             </h2>
           </div>
           <div className="md:col-span-5">
@@ -143,14 +142,12 @@ export const ServicesSection: React.FC = () => {
               style={{ ['--rd' as string]: '80ms' }}
               className="text-[length:var(--step-body)] text-[#a1a19e] leading-relaxed"
             >
-              Seven core disciplines delivered as one integrated team, from art direction and brand systems to custom Webflow engineering and AI automation.
+              Practical websites, apps, branding, and landing pages engineered for small businesses and startups ready to launch and earn.
             </p>
           </div>
         </div>
 
-        {/* Desktop: Interactive index left + Fixed preview stage right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Service Index Rows */}
           <div className="lg:col-span-7 flex flex-col gap-2">
             {servicesData.map((service, idx) => {
               const isSelected = activeId === service.id;
@@ -194,7 +191,6 @@ export const ServicesSection: React.FC = () => {
                     </span>
                   </button>
 
-                  {/* Mobile-only inline accordion preview (collapsed by default to avoid clutter above next item) */}
                   {isMobileOpen && (
                     <div className="lg:hidden bg-[#141414] px-5 pb-6 flex flex-col gap-4">
                       <img
@@ -209,7 +205,7 @@ export const ServicesSection: React.FC = () => {
                         {service.description}
                       </p>
                       <p className="text-[length:var(--step-small)] text-[#a1a19e]">
-                        Deliverables: {service.deliverables.join(' · ')}
+                        Includes: {service.deliverables.join(' · ')}
                       </p>
                     </div>
                   )}
@@ -218,7 +214,6 @@ export const ServicesSection: React.FC = () => {
             })}
           </div>
 
-          {/* Desktop Right Sticky Stage */}
           <div
             data-reveal
             style={{ ['--rd' as string]: '120ms' }}
@@ -255,22 +250,21 @@ export const ServicesSection: React.FC = () => {
             </p>
 
             <p className="text-[length:var(--step-small)] text-[#a1a19e] mb-6">
-              Deliverables: {activeService.deliverables.join(' · ')}
+              Includes: {activeService.deliverables.join(' · ')}
             </p>
 
             <a
               href="#pricing"
               className="self-start text-[length:var(--step-small)] font-semibold text-[#f2f2f0] underline underline-offset-4 decoration-[#a1a19e] hover:decoration-[#f2f2f0] transition-colors duration-200"
             >
-              Scope {activeService.title} in your sprint
+              Estimate {activeService.title}
             </a>
           </div>
         </div>
 
-        {/* Bottom Matrix Action Bar */}
         <div className="mt-12 md:mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <p className="text-[length:var(--step-body)] text-[#a1a19e]">
-            Available as five-day product sprints or ongoing studio retainers.
+            Shipped in focused weekly builds with fixed upfront pricing.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -298,7 +292,6 @@ export const ServicesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Expandable Deliverable Matrix */}
         <AnimatePresence>
           {showAllDrawer && (
             <motion.div
@@ -310,35 +303,35 @@ export const ServicesSection: React.FC = () => {
             >
               <div className="bg-[#141414] p-7">
                 <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
-                  Direction &amp; Identity
+                  Fine-Arts &amp; Brand
                 </h3>
                 <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
-                  <li>Art direction &amp; design systems</li>
-                  <li>Bespoke typography &amp; logotypes</li>
-                  <li>Motion guidelines &amp; storyboards</li>
-                  <li>Editorial art curation</li>
+                  <li>Original logotypes from drawn studies</li>
+                  <li>Typographic and color rules</li>
+                  <li>Custom editorial illustrations</li>
+                  <li>Social and launch visual kits</li>
                 </ul>
               </div>
               <div className="bg-[#141414] p-7">
                 <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
-                  Engineering &amp; Motion
+                  Conversion UX &amp; Apps
                 </h3>
                 <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
-                  <li>Custom React &amp; Webflow builds</li>
-                  <li>GSAP &amp; Lenis scroll choreography</li>
-                  <li>Responsive touch &amp; keyboard QA</li>
-                  <li>Performance tuning &amp; accessibility</li>
+                  <li>Behavioral funnel teardowns</li>
+                  <li>High-converting startup landing pages</li>
+                  <li>React &amp; mobile interface builds</li>
+                  <li>Real-device accessibility audits</li>
                 </ul>
               </div>
               <div className="bg-[#141414] p-7">
                 <h3 className="font-compressed text-[length:var(--step-lead)] text-[#f2f2f0] mb-4">
-                  Growth &amp; Workflows
+                  AI &amp; Product Lab
                 </h3>
                 <ul className="space-y-2.5 text-[length:var(--step-small)] text-[#a1a19e]">
-                  <li>Answer-engine semantic optimization</li>
-                  <li>Automated quote &amp; intake triage</li>
-                  <li>Performance campaign collateral</li>
-                  <li>CRM &amp; webhook pipeline sync</li>
+                  <li>Automated quote and intake flows</li>
+                  <li>Custom LLM customer workflows</li>
+                  <li>Reusable internal software tools</li>
+                  <li>Clean full-stack code handoff</li>
                 </ul>
               </div>
             </motion.div>
